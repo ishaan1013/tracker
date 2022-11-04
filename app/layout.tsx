@@ -1,6 +1,8 @@
 import './globals.css'
 import { FiPlus, FiHelpCircle } from 'react-icons/fi'
 import { IoSearch } from 'react-icons/io5'
+import Image from 'next/image'
+import Logo from "../assets/logo.png"
 
 export default function RootLayout({
   children,
@@ -15,20 +17,32 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <div className="fixed left-0 h-screen w-16 md:w-[4.5rem] py-8 flex flex-col items-center justify-between bg-orange-600">
+        <div className="fixed left-0 h-screen w-16 md:w-[4.5rem] py-8 flex flex-col items-center justify-between bg-indigo-600 z-50">
           
           <div className="space-y-4 flex flex-col items-center justify-start">
-            <div className="mb-4 w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-600/5 via-yellow-100/70 to-white border-[1px] border-yellow-200/70" />
-            <button>
-              <IoSearch className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20 duration-200" />
+            
+            <div className="mb-4 h-8 w-8 relative">
+              <Image
+              src={Logo}
+              alt="logo"
+              layout="fill"
+              objectFit="contain"
+              />
+            </div>
+
+            <button className="relative group flex items-center">
+              <IoSearch className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20" />
+              <div className="absolute whitespace-nowrap px-2 py-0.5 left-10 rounded hidden group-hover:block bg-gray-800 z-10 font-medium text-white">Search Issues</div>
             </button>
-            <button>
-              <FiPlus className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20 duration-200" />
+            <button className="relative group flex items-center">
+              <FiPlus className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20" />
+              <div className="absolute whitespace-nowrap px-2 py-0.5 left-10 rounded hidden group-hover:block bg-gray-800 z-10 font-medium text-white">Create Issue</div>
             </button>
           </div>
 
-          <button>
-            <FiHelpCircle className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20 duration-200" />
+          <button className="relative group flex items-center">
+            <FiHelpCircle className="p-1 rounded-full w-8 h-8 text-white hover:bg-white/20" />
+            <div className="absolute whitespace-nowrap px-2 py-0.5 left-10 rounded hidden group-hover:block bg-gray-800 z-10 font-medium text-white">About This Project</div>
           </button>
 
         </div>
