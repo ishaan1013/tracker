@@ -17,7 +17,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <div className="fixed left-0 h-screen w-16 md:w-[4.5rem] py-8 flex flex-col items-center justify-between bg-indigo-600 z-50">
+        <div className="fixed left-0 h-screen w-16 py-7 flex flex-col items-center justify-between bg-indigo-600 z-50">
           
           <div className="space-y-4 flex flex-col items-center justify-start">
             
