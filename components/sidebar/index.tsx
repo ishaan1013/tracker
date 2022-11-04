@@ -12,7 +12,7 @@ export default function Sidebar() {
 
             <button 
             onClick={() => setHidden((prev) => !prev)}
-            className="top-1/2 -translate-y-1/2 -right-3 w-6 h-6 absolute flex items-center justify-center rounded-full bg-white hover:bg-indigo-50 hover:border-indigo-600 group backdrop-blur-md border-[1px] border-gray-300">
+            className="focus:outline-indigo-400 top-1/2 -translate-y-1/2 -right-3 w-6 h-6 absolute flex items-center justify-center rounded-full bg-white hover:bg-indigo-50 hover:border-indigo-600 group backdrop-blur-md border-[1px] border-gray-300">
                 <FiChevronLeft className={`w-4 h-4 group-hover:text-indigo-600 text-gray-500 ${hidden ? "rotate-180" : ""}`} />
             </button>
             
@@ -25,8 +25,8 @@ export default function Sidebar() {
                         <p className="text-sm -mt-1 text-gray-500">Project Description</p>
                     </div>
             </div>
-            <button className="p-1.5 mt-4 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTrello className="mr-2" /> Kanban Board</button>
-            <button className="p-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiSettings className="mr-2" /> Project Settings</button>
+            <button className="focus:outline-indigo-400 p-1.5 mt-4 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTrello className="mr-2" /> Kanban Board</button>
+            <button className="focus:outline-indigo-400 p-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiSettings className="mr-2" /> Project Settings</button>
             
             </div>
 

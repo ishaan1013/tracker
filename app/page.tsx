@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex mt-8">
           <div className="w-56 relative flex items-center justify-start">
             <IoSearch className="absolute left-2 text-gray-500" />
-            <input className="bg-gray-200/50 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm" />
+            <input className="focus:outline-indigo-400 bg-gray-200/50 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm" />
           </div>
         </div>
 
