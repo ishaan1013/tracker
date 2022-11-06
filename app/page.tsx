@@ -1,16 +1,17 @@
-import { IoSearch } from "react-icons/io5";
-import Sidebar from "../components/sidebar";
+import { IoSearch } from "react-icons/io5"
+import Sidebar from "../components/sidebar"
+import Priority from "../components/filters/priority"
 
 export default function Home() {
 
   return (
-    <main className="h-screen flex justify-start items-start pl-16 sm:pl-[4.5rem]">
+    <main className="h-screen flex justify-start items-start pl-16">
       
       <Sidebar />
 
       <div className="p-8">
 
-        <div className="flex items-center justify-start mb-4 space-x-2 cursor-default text-gray-500">
+        <div className="flex items-center justify-start mb-2 space-x-2 cursor-default text-gray-600">
           <p>Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;&nbsp;<span className="font-medium">Kanban Board</span></p>
         </div>
 
@@ -19,10 +20,25 @@ export default function Home() {
         </h1>
 
         <div className="flex mt-8">
-          <div className="w-56 relative flex items-center justify-start">
-            <IoSearch className="absolute left-2 text-gray-500" />
-            <input className="focus:outline-indigo-400 bg-gray-200/50 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm" />
+
+          <div className="min-w-[14rem] relative flex items-center justify-start">
+            <IoSearch className="absolute left-2 text-gray-600" />
+            <input className="focus:outline-indigo-400 bg-gray-200/50 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm text-gray-600" />
           </div>
+
+          <div className="ml-6 flex items-center -space-x-1.5 z-0">
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[4] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[3] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[2] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[1] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+          </div>
+
+          <button className="ml-6 focus:outline-indigo-400 duration-100 hover:bg-gray-200/50 w-full py-1 px-2.5 rounded text-base text-gray-600">
+            Recently Updated
+          </button>
+
+          {/* <Priority /> */}
+
         </div>
 
       </div>
