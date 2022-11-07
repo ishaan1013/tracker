@@ -5,11 +5,11 @@ import Priority from "../components/filters/priority"
 export default function Home() {
 
   return (
-    <main className="h-screen flex justify-start items-start pl-16">
+    <main className="max-h-screen flex justify-start items-start pl-72">
       
       <Sidebar />
 
-      <div className="p-8">
+      <div className="h-screen overflow-auto p-8 flex flex-col flex-grow">
 
         <div className="flex items-center justify-start mb-2 space-x-2 cursor-default text-gray-600">
           <p>Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;&nbsp;<span className="font-medium">Kanban Board</span></p>
@@ -42,10 +42,13 @@ export default function Home() {
         </div>
 
         <div className="flex mt-12 space-x-4">
-          <div className="w-72 min-h-[300px] py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
+          <div className="w-72 min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-y-auto">
             <h2 className="px-2 text-base text-start font-semibold text-gray-600 mb-3">To Do</h2>
-            <p className="bg-white w-full rounded p-2 mb-1">test</p>
-            <p className="bg-white w-full rounded p-2">test</p>
+            <div className="bg-white w-full rounded p-2 pb-24 mb-1">test</div>
+            <div className="bg-white w-full rounded p-2 pb-24 mb-1">test</div>
+            <div className="bg-white w-full rounded p-2 pb-24 mb-1">test</div>
+            <div className="bg-white w-full rounded p-2 pb-24 mb-1">test</div>
+            <div className="bg-white w-full rounded p-2 pb-24 mb-1">test</div>
           </div>
         </div>
 
