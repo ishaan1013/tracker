@@ -41,6 +41,14 @@ export default function Home() {
 
         </div>
 
+        <div className="flex mt-12 space-x-4">
+          <div className="w-72 min-h-[300px] py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
+            <h2 className="px-2 text-base text-start font-semibold text-gray-600 mb-3">To Do</h2>
+            <p className="bg-white w-full rounded p-2 mb-1">test</p>
+            <p className="bg-white w-full rounded p-2">test</p>
+          </div>
+        </div>
+
       </div>
 
       
