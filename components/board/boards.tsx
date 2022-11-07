@@ -26,9 +26,7 @@ import Preview from './preview';
 
 const Boards = () => {
 
-  const [items0, setItems0] = useState([1, 2, 3])
-  const [items1, setItems1] = useState([4, 5, 6])
-  const [items2, setItems2] = useState([7, 8, 9])
+  const [items, setItems] = useState([[9, 5, 3],[4, 2, 6],[7, 8, 1]])
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -49,25 +47,25 @@ const Boards = () => {
         const {active, over} = event
         
         if (active.id !== over.id) {
-          setItems0((items) => {
-            const oldIndex = items.indexOf(active.id)
-            const newIndex = items.indexOf(over.id)
+          setItems((items) => {
+            const oldIndex = items[0].indexOf(active.id)
+            const newIndex = items[0].indexOf(over.id)
             
-            return arrayMove(items, oldIndex, newIndex)
+            return [arrayMove(items[0], oldIndex, newIndex), items[1], items[2]]
           })
         }
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
       >
-        <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
           <h2 className="px-2 text-start text-gray-600 mb-3">TO-DO</h2>
           <SortableContext
-          items={items0}
+          items={items[0]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items0.map((item, index) => (
-                <Preview id={item} key={index} col={0}  />
+              items[0].map((item, index) => (
+                <Preview id={item} key={index} col={0} items={items} setItems={setItems} />
               ))
             }
           </SortableContext>
@@ -82,11 +80,11 @@ const Boards = () => {
         const {active, over} = event
         
         if (active.id !== over.id) {
-          setItems1((items) => {
-            const oldIndex = items.indexOf(active.id)
-            const newIndex = items.indexOf(over.id)
+          setItems((items) => {
+            const oldIndex = items[1].indexOf(active.id)
+            const newIndex = items[1].indexOf(over.id)
             
-            return arrayMove(items, oldIndex, newIndex)
+            return [items[0], arrayMove(items[1], oldIndex, newIndex), items[2]]
           })
         }
       }}
@@ -95,12 +93,12 @@ const Boards = () => {
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">IN PROGRESS</h2>
           <SortableContext
-          items={items1}
+          items={items[1]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items1.map((item, index) => (
-                <Preview id={item} key={index} col={1}   />
+              items[1].map((item, index) => (
+                <Preview id={item} key={index} col={1} items={items} setItems={setItems} />
               ))
             }
           </SortableContext>
@@ -115,11 +113,11 @@ const Boards = () => {
         const {active, over} = event
         
         if (active.id !== over.id) {
-          setItems2((items) => {
-            const oldIndex = items.indexOf(active.id)
-            const newIndex = items.indexOf(over.id)
+          setItems((items) => {
+            const oldIndex = items[2].indexOf(active.id)
+            const newIndex = items[2].indexOf(over.id)
             
-            return arrayMove(items, oldIndex, newIndex)
+            return [items[0], items[1], arrayMove(items[2], oldIndex, newIndex)]
           })
         }
       }}
@@ -128,12 +126,12 @@ const Boards = () => {
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">COMPLETE</h2>
           <SortableContext
-          items={items2}
+          items={items[2]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items2.map((item, index) => (
-                <Preview id={item} key={index} col={2}   />
+              items[2].map((item, index) => (
+                <Preview id={item} key={index} col={2} items={items} setItems={setItems} />
               ))
             }
           </SortableContext>

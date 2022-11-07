@@ -7,9 +7,11 @@ import {CSS} from '@dnd-kit/utilities'
 interface Props {
   id: number
   col: number
+  items: number[][]
+  setItems: (items: number[][]) => void
 }
 
-const Preview: React.FC<Props> = ({ id, col }) => {
+const Preview: React.FC<Props> = ({ id, col, items, setItems }) => {
 
   const {
     attributes,
@@ -33,7 +35,7 @@ const Preview: React.FC<Props> = ({ id, col }) => {
     className="bg-white w-full rounded p-3 mb-1 shadow-lg shadow-blue-900/5 focus:outline-blue-500"
     >
       <div className="flex items-center justify-between">
-        <h3 className="font-medium">Task {id}</h3>
+        <h3 className="font-medium flex-grow whitespace-nowrap overflow-ellipsis overflow-hidden md:mr-4 mr-2">Do something {id}</h3>
 
         <div className="flex justify-center p-0.5 border-[1px] border-blue-700 rounded-full">
           {
