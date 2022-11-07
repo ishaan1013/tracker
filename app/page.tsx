@@ -7,17 +7,17 @@ import Boards from "../components/board/boards"
 const Home = () => {
 
   return (
-    <main className="max-h-screen flex justify-start items-start pl-72">
+    <main className="max-h-screen flex justify-start items-start">
       
       <Sidebar />
 
       <div className="h-screen overflow-auto p-8 flex flex-col flex-grow">
 
-        <div className="flex items-center justify-start mb-2 space-x-2 cursor-default text-gray-600">
+        <div className="flex items-center justify-start mb-2 space-x-2 cursor-default text-gray-600 whitespace-nowrap">
           <p>Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;&nbsp;<span className="font-medium">Kanban Board</span></p>
         </div>
 
-        <h1 className="text-2xl font-bold">
+        <h1 className="text-2xl font-bold whitespace-nowrap">
           Kanban Board
         </h1>
 

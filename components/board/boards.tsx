@@ -39,7 +39,7 @@ const Boards = () => {
   )
 
   return (
-    <div className="flex mt-12 space-x-4 text-sm">
+    <div className="flex mt-12 md:space-x-4 space-x-2 text-sm">
 
       {/* col 1 */}
       <DndContext
@@ -59,7 +59,7 @@ const Boards = () => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
       >
-        <div className="w-72 min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">TO-DO</h2>
           <SortableContext
           items={items0}
@@ -92,7 +92,7 @@ const Boards = () => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
       >
-        <div className="w-72 min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">IN PROGRESS</h2>
           <SortableContext
           items={items1}
@@ -125,7 +125,7 @@ const Boards = () => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
       >
-        <div className="w-72 min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">COMPLETE</h2>
           <SortableContext
           items={items2}
