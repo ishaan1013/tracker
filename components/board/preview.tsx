@@ -5,10 +5,10 @@ import {useSortable} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
 
 interface Props {
-  id: number
+  id: string
   col: number
-  items: number[][]
-  setItems: (items: number[][]) => void
+  items: string[][]
+  setItems: (items: string[][]) => void
 }
 
 const Preview: React.FC<Props> = ({ id, col, items, setItems }) => {

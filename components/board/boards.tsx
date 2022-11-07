@@ -26,7 +26,7 @@ import Preview from './preview';
 
 const Boards = () => {
 
-  const [items, setItems] = useState([[9, 5, 3],[4, 2, 6],[7, 8, 1]])
+  const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
 
   const sensors = useSensors(
     useSensor(PointerSensor),
