@@ -23,21 +23,21 @@ export default function Home() {
 
           <div className="min-w-[14rem] relative flex items-center justify-start">
             <IoSearch className="absolute left-2 text-gray-600" />
-            <input className="focus:outline-indigo-400 bg-gray-200/50 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm text-gray-600" />
+            <input className="focus:outline-indigo-400 bg-gray-150 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm text-gray-600" />
           </div>
 
           <div className="ml-6 flex items-center -space-x-1.5 z-0">
-            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[4] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
-            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[3] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
-            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[2] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
-            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-200/50 border-2 border-white z-[1] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-150 border-2 border-white z-[4] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-150 border-2 border-white z-[3] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-150 border-2 border-white z-[2] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
+            <button className="w-9 h-9 rounded-full focus:outline-indigo-400 bg-gray-150 border-2 border-white z-[1] duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[5]"></button>
           </div>
 
-          <button className="ml-6 focus:outline-indigo-400 duration-100 hover:bg-gray-200/50 w-full py-1 px-2.5 rounded text-base text-gray-600">
+          <button className="ml-6 focus:outline-indigo-400 duration-100 hover:bg-gray-150 py-1 px-2.5 rounded text-base text-gray-600">
             Recently Updated
           </button>
 
-          {/* <Priority /> */}
+          <Priority />
 
         </div>
 

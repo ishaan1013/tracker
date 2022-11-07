@@ -10,7 +10,7 @@ export default function Sidebar() {
   const [hidden, setHidden] = useState(false)
     
     return (
-        <div className={`py-8 h-screen ${hidden ? "w-5" : "w-56"} bg-gray-200/50 border-r-[1px] border-gray-300 relative`}>
+        <div className={`py-8 h-screen ${hidden ? "w-5" : "w-56"} bg-gray-150 border-r-[1px] border-gray-300 relative`}>
 
             <button 
             onClick={() => setHidden((prev) => !prev)}
@@ -21,7 +21,7 @@ export default function Sidebar() {
             <div className={`w-full h-full flex flex-col px-4 overflow-hidden ${hidden ? "hidden" : "block"}`}>
 
             <div className="flex items-center justify-start mb-4">
-                    <div className="w-10 h-10 bg-white rounded mr-2 relative overflow-hidden -hue-rotate-[130deg] pointer-events-none select-none">
+                    <div className="w-10 h-10 contrast-125 saturate-150 bg-white rounded mr-2 relative overflow-hidden -hue-rotate-[330deg] pointer-events-none select-none">
                         <Image 
                         src={Icon}
                         alt="Project Icon"

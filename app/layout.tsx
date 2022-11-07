@@ -25,8 +25,6 @@ export default function RootLayout({
               <Image
               src={Logo}
               alt="logo"
-              layout="fill"
-              objectFit="contain"
               />
             </div>
 

@@ -19,3 +19,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.priority-open  {
+  transform: rotate(180deg);
+}
