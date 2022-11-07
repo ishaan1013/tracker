@@ -6,9 +6,10 @@ import {CSS} from '@dnd-kit/utilities'
 
 interface Props {
   id: number
+  col: number
 }
 
-const Preview: React.FC<Props> = ({ id }) => {
+const Preview: React.FC<Props> = ({ id, col }) => {
 
   const {
     attributes,
@@ -34,13 +35,19 @@ const Preview: React.FC<Props> = ({ id }) => {
       <div className="flex items-center justify-between">
         <h3 className="font-medium">Task {id}</h3>
 
-        <div className="flex justify-center text-blue-700 p-0.5 border-[1px] border-blue-700 rounded-full">
-          <button className="rounded-full duration-100 hover:bg-gray-200 focus:outline-blue-500">
-            <FiArrowLeft className="w-5 h-5 p-0.5" />
-          </button>
-          <button className="rounded-full duration-100 hover:bg-gray-200 focus:outline-blue-500">
-            <FiArrowRight className="w-5 h-5 p-0.5" />
-          </button>
+        <div className="flex justify-center p-0.5 border-[1px] border-blue-700 rounded-full">
+          {
+            col !== 0 &&
+            <button className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
+              <FiArrowLeft className="w-5 h-5 p-0.5" />
+            </button>
+          }
+          {
+            col !== 2 &&
+            <button className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
+              <FiArrowRight className="w-5 h-5 p-0.5" />
+            </button>
+          }
         </div>
       </div>
 
