@@ -8,6 +8,7 @@ import {
   TouchSensor,
   useSensor,
   useSensors,
+  PointerActivationConstraint
 } from '@dnd-kit/core';
 import {
   arrayMove,
@@ -28,9 +29,11 @@ const Boards = () => {
 
   const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
 
+  const activationConstraint: PointerActivationConstraint = { delay: 250, tolerance: 5 }
+
   const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(TouchSensor),
+    useSensor(PointerSensor, { activationConstraint } ),
+    useSensor(TouchSensor, { activationConstraint } ),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates,
     })

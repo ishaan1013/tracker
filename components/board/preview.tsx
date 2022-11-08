@@ -1,3 +1,5 @@
+"use client"
+
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { IssueIcons, IssuePpl } from "./issuePreview"
 
@@ -32,7 +34,7 @@ const Preview: React.FC<Props> = ({ id, col, items, setItems }) => {
     style={style}
     {...attributes}
     {...listeners}
-    className="bg-white w-full rounded p-3 mb-1 shadow-lg shadow-blue-900/5 focus:outline-blue-500"
+    className="bg-white w-full rounded p-3 mb-1 shadow-lg shadow-blue-900/5 focus:outline-blue-500 touch-manipulation"
     >
       <div className="flex items-center justify-between">
         <h3 className="font-medium flex-grow whitespace-nowrap overflow-ellipsis overflow-hidden md:mr-4 mr-2">Do something {id}</h3>
@@ -40,13 +42,37 @@ const Preview: React.FC<Props> = ({ id, col, items, setItems }) => {
         <div className="flex justify-center p-0.5 border-[1px] border-blue-700 rounded-full">
           {
             col !== 0 &&
-            <button className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
+            <button
+            onClick={() => {
+              if (col === 1) {
+                setItems([[...items[0], id], items[1].filter((item) => item !== id), items[2]])
+                console.log("bruh")
+              }
+              if (col === 2) {
+                setItems([items[0], [...items[1], id], items[2].filter((item) => item !== id)])
+                console.log("bruh")
+              }
+              console.log("bruh2")
+            }}
+            className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
               <FiArrowLeft className="w-5 h-5 p-0.5" />
             </button>
           }
           {
             col !== 2 &&
-            <button className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
+            <button
+            onClick={() => {
+              // if (col === 0) {
+              //   setItems([items[0].filter((item) => item !== id), [...items[1], id], items[2]])
+              //   console.log("bruh")
+              // }
+              // if (col === 1) {
+              //   setItems([items[0], items[1].filter((item) => item !== id), [...items[2], id]])
+              //   console.log("bruh")
+              // }
+              console.log("bruh2")
+            }}
+            className="rounded-full duration-100 hover:bg-gray-200 text-blue-700 focus:outline-blue-500">
               <FiArrowRight className="w-5 h-5 p-0.5" />
             </button>
           }
