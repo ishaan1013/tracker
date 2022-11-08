@@ -28,6 +28,7 @@ import Preview from './preview';
 const Boards = () => {
 
   const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
+  const [activeId, setActiveId] = useState("")
 
   const activationConstraint: PointerActivationConstraint = { delay: 250, tolerance: 5 }
 
@@ -46,8 +47,13 @@ const Boards = () => {
       <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
+      onDragStart={(event: any) => {
+        const { active } = event
+        setActiveId(active.id)
+      }}
       onDragEnd={(event: any) => {
         const {active, over} = event
+        setActiveId("")
         
         if (active.id !== over.id) {
           setItems((items) => {
@@ -68,7 +74,7 @@ const Boards = () => {
           >
             {
               items[0].map((item, index) => (
-                <Preview id={item} key={index} col={0} items={items} setItems={setItems} />
+                <Preview id={item} key={index} col={0} items={items} setItems={setItems} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -79,8 +85,13 @@ const Boards = () => {
       <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
+      onDragStart={(event: any) => {
+        const { active } = event
+        setActiveId(active.id)
+      }}
       onDragEnd={(event: any) => {
         const {active, over} = event
+        setActiveId("")
         
         if (active.id !== over.id) {
           setItems((items) => {
@@ -101,7 +112,7 @@ const Boards = () => {
           >
             {
               items[1].map((item, index) => (
-                <Preview id={item} key={index} col={1} items={items} setItems={setItems} />
+                <Preview id={item} key={index} col={1} items={items} setItems={setItems} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -112,8 +123,13 @@ const Boards = () => {
       <DndContext
       sensors={sensors}
       collisionDetection={closestCenter}
+      onDragStart={(event: any) => {
+        const { active } = event
+        setActiveId(active.id)
+      }}
       onDragEnd={(event: any) => {
         const {active, over} = event
+        setActiveId("")
         
         if (active.id !== over.id) {
           setItems((items) => {
@@ -134,7 +150,7 @@ const Boards = () => {
           >
             {
               items[2].map((item, index) => (
-                <Preview id={item} key={index} col={2} items={items} setItems={setItems} />
+                <Preview id={item} key={index} col={2} items={items} setItems={setItems} activeId={activeId} />
               ))
             }
           </SortableContext>
