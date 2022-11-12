@@ -1,10 +1,22 @@
+import { PrismaClient } from '@prisma/client'
 import Sidebar from "../components/sidebar"
 import Priority from "../components/board/priority"
 
 import { IoSearch } from "react-icons/io5"
 import Boards from "../components/board/boards"
 
-const Home = () => {
+const getData = async () => {
+  const prisma = new PrismaClient()
+  return await prisma.issue.findMany({
+    include: {
+      category: true,
+    },
+  })
+}
+
+const Home = async () => {
+
+  const data = await getData()
 
   return (
     <main className="max-h-screen flex justify-start items-start">
@@ -20,6 +32,8 @@ const Home = () => {
         <h1 className="text-2xl font-bold whitespace-nowrap">
           Kanban Board
         </h1>
+
+        <p className="text-sm">{data ? JSON.stringify(data) : "no data"}</p>
 
         <div className="flex mt-8">
 

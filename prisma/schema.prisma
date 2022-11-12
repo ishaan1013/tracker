@@ -1,26 +1,26 @@
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["referentialIntegrity"]
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 datasource db {
-    provider             = "mysql"
-    url                  = env("DATABASE_URL")
-    referentialIntegrity = "prisma"
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 model Issue {
-    id          String    @id @default(uuid())
-    name        String
-    description String
-    category    Category? @relation(fields: [category_id], references: [id])
-    category_id Int
+  id          String    @id @default(uuid())
+  name        String
+  description String
+  category    Category? @relation(fields: [category_id], references: [id])
+  category_id Int
 
-    @@index([category_id])
+  @@index([category_id])
 }
 
 model Category {
-    id          Int    @id @default(autoincrement())
-    name        String
-    issues      Issue[]
+  id          Int     @id @default(autoincrement())
+  name        String
+  issues      Issue[]
 }

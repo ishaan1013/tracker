@@ -34,12 +34,12 @@ const Preview: React.FC<Props> = ({ id, col, items, setItems, activeId }) => {
     style={style}
     {...attributes}
     {...listeners}
-    className={`bg-white w-full rounded p-3 mb-1 shadow-lg ${activeId === id ? "shadow-blue-900/20 border-[1px] border-blue-700 z-10" : "shadow-blue-900/5"} focus:outline-blue-500 touch-manipulation `}
+    className={`bg-white w-full rounded p-3 mb-1 shadow-lg ${activeId === id ? "shadow-blue-900/20 border-[1px] border-blue-700 z-10" : "shadow-blue-900/5"} focus:outline-blue-500 touch-manipulation group`}
     >
       <div className="flex items-center justify-between">
         <h3 className="font-medium flex-grow whitespace-nowrap overflow-ellipsis overflow-hidden md:mr-4 mr-2">Do something {id}</h3>
 
-        <div className="flex justify-center p-0.5 border-[1px] border-blue-700 rounded-full">
+        <div className={`opacity-0 ${activeId ? "" : "group-hover:opacity-100"} flex justify-center p-0.5 border-[1px] border-blue-700 rounded-full`}>
           {
             col !== 0 &&
             <button
@@ -52,7 +52,7 @@ const Preview: React.FC<Props> = ({ id, col, items, setItems, activeId }) => {
               }
             }}
             className="rounded-full duration-100 hover:bg-blue-200 text-blue-700 focus:outline-blue-500">
-              <FiArrowLeft className="w-4 h-4 p-[1px]" />
+              <FiArrowLeft className="w-4 h-4 p-[0.5px]" />
             </button>
           }
           {
@@ -67,7 +67,7 @@ const Preview: React.FC<Props> = ({ id, col, items, setItems, activeId }) => {
               }
             }}
             className="rounded-full duration-100 hover:bg-blue-200 text-blue-700 focus:outline-blue-500">
-              <FiArrowRight className="w-4 h-4 p-[1px]" />
+              <FiArrowRight className="w-4 h-4 p-[0.5px]" />
             </button>
           }
         </div>
