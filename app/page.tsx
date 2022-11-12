@@ -18,12 +18,12 @@ const getData = async () => {
 const Home = async () => {
   
   const dataRes = await getData()
-  // const data: IssueType[][] = [[],[],[]]
-  const data: string[][] = [[],[],[]]
+  const data: IssueType[][] = [[],[],[]]
+  // const data: string[][] = [[],[],[]]
   dataRes.map((item) => {
-    item.category_id === 1 ? data[0].push(item.id) 
-    : item.category_id === 2 ? data[1].push(item.id) 
-    : data[2].push(item.id)
+    item.category_id === 1 ? data[0].push(item) 
+    : item.category_id === 2 ? data[1].push(item) 
+    : data[2].push(item)
   })
 
   return (

@@ -1,11 +1,12 @@
 import create from "zustand"
+import { IssueType } from "../prisma/issueType"
 
 export interface ItemsState {
-  items: string[][]
-  setItems: (items: string[][]) => void
+  items: IssueType[][]
+  setItems: (items: IssueType[][]) => void
 }
 
 export const useItemStore = create<ItemsState>()((set) => ({
-  items: [["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]],
+  items: [[],[],[]],
   setItems: (items) => set({ items }),
 }))

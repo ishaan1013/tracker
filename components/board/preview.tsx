@@ -6,18 +6,19 @@ import { useItemStore } from "../../hooks/useItemStore"
 
 import {useSortable} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
+import { IssueType } from "../../prisma/issueType"
 
 interface Props {
-  id: string
+  data: IssueType
   col: number
   activeId: string
 }
 
-const Preview: React.FC<Props> = ({ id, col, activeId }) => {
+const Preview: React.FC<Props> = ({ data, col, activeId }) => {
 
   const items = useItemStore(state => state.items)
   const setItems = useItemStore(state => state.setItems)
-
+  const id = data.id
   const {
     attributes,
     listeners,
@@ -47,10 +48,10 @@ const Preview: React.FC<Props> = ({ id, col, activeId }) => {
             <button
             onClick={() => {
               if (col === 1) {
-                setItems([[...items[0], id], items[1].filter((item) => item !== id), items[2]])
+                setItems([[...items[0], data], items[1].filter((item) => item !== data), items[2]])
               }
               if (col === 2) {
-                setItems([items[0], [...items[1], id], items[2].filter((item) => item !== id)])
+                setItems([items[0], [...items[1], data], items[2].filter((item) => item !== data)])
               }
             }}
             className="rounded-full duration-100 hover:bg-blue-200 text-blue-700 focus:outline-blue-500">
@@ -62,10 +63,10 @@ const Preview: React.FC<Props> = ({ id, col, activeId }) => {
             <button
             onClick={() => {
               if (col === 0) {
-                setItems([items[0].filter((item) => item !== id), [...items[1], id], items[2]])
+                setItems([items[0].filter((item) => item !== data), [...items[1], data], items[2]])
               }
               if (col === 1) {
-                setItems([items[0], items[1].filter((item) => item !== id), [...items[2], id]])
+                setItems([items[0], items[1].filter((item) => item !== data), [...items[2], data]])
               }
             }}
             className="rounded-full duration-100 hover:bg-blue-200 text-blue-700 focus:outline-blue-500">

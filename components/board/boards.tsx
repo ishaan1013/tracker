@@ -27,8 +27,8 @@ import { useItemStore } from '../../hooks/useItemStore';
 
 import Preview from './preview'
 
-const Boards = ({data} : {data: string[][]}) => {
-// const Boards = ({data} : {data: IssueType[][]|null[][]}) => {
+// const Boards = ({data} : {data: string[][]}) => {
+const Boards = ({data} : {data: IssueType[][]}) => {
 
   const itemStore = useItemStore()
   useEffect(() => {
@@ -78,7 +78,7 @@ const Boards = ({data} : {data: string[][]}) => {
           >
             {
               itemStore.items[0].map((item, index) => (
-                <Preview id={item} key={index} col={0} activeId={activeId} />
+                <Preview data={item} key={index} col={0} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -113,7 +113,7 @@ const Boards = ({data} : {data: string[][]}) => {
           >
             {
               itemStore.items[1].map((item, index) => (
-                <Preview id={item} key={index} col={1} activeId={activeId} />
+                <Preview data={item} key={index} col={1} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -148,7 +148,7 @@ const Boards = ({data} : {data: string[][]}) => {
           >
             {
               itemStore.items[2].map((item, index) => (
-                <Preview id={item} key={index} col={2} activeId={activeId} />
+                <Preview data={item} key={index} col={2} activeId={activeId} />
               ))
             }
           </SortableContext>
