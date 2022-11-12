@@ -13,7 +13,7 @@ model Issue {
   id          String    @id @default(uuid())
   name        String
   description String
-  category    Category? @relation(fields: [category_id], references: [id])
+  category    Category @relation(fields: [category_id], references: [id])
   category_id Int
 
   @@index([category_id])

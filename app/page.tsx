@@ -1,8 +1,8 @@
 import { PrismaClient } from '@prisma/client'
 import Sidebar from "../components/sidebar"
 import Priority from "../components/board/priority"
-import create from 'zustand'
 
+import { IssueType } from '../prisma/issueType'
 import { IoSearch } from "react-icons/io5"
 import Boards from "../components/board/boards"
 
@@ -16,8 +16,15 @@ const getData = async () => {
 }
 
 const Home = async () => {
-
-  const data = await getData()
+  
+  const dataRes = await getData()
+  // const data: IssueType[][] = [[],[],[]]
+  const data: string[][] = [[],[],[]]
+  dataRes.map((item) => {
+    item.category_id === 1 ? data[0].push(item.id) 
+    : item.category_id === 2 ? data[1].push(item.id) 
+    : data[2].push(item.id)
+  })
 
   return (
     <main className="max-h-screen flex justify-start items-start">
@@ -34,7 +41,9 @@ const Home = async () => {
           {/* Kanban Board {test ? test : "no test"} */}
         </h1>
 
-        <p className="text-sm">{data ? JSON.stringify(data) : "no data"}</p>
+        {/* <p className="text-sm">{data ? JSON.stringify(
+          data
+        ) : "no data"}</p> */}
 
         <div className="flex mt-8">
 
@@ -58,7 +67,7 @@ const Home = async () => {
 
         </div>
 
-        <Boards />
+        <Boards data={data} />
 
       </div>
 

@@ -21,15 +21,19 @@ import {
   restrictToWindowEdges,
   restrictToFirstScrollableAncestor
 } from '@dnd-kit/modifiers';
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { IssueType } from '../../prisma/issueType';
 import { useItemStore } from '../../hooks/useItemStore';
 
 import Preview from './preview'
 
-const Boards = () => {
+const Boards = ({data} : {data: string[][]}) => {
+// const Boards = ({data} : {data: IssueType[][]|null[][]}) => {
 
   const itemStore = useItemStore()
+  useEffect(() => {
+    itemStore.setItems(data)
+  }, [data])
 
   // const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
   const [activeId, setActiveId] = useState("")
