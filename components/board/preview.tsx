@@ -2,6 +2,7 @@
 
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { IssueIcons, IssuePpl } from "./issuePreview"
+import { useItemStore } from "../../hooks/useItemStore"
 
 import {useSortable} from '@dnd-kit/sortable'
 import {CSS} from '@dnd-kit/utilities'
@@ -9,12 +10,13 @@ import {CSS} from '@dnd-kit/utilities'
 interface Props {
   id: string
   col: number
-  items: string[][]
-  setItems: (items: string[][]) => void
   activeId: string
 }
 
-const Preview: React.FC<Props> = ({ id, col, items, setItems, activeId }) => {
+const Preview: React.FC<Props> = ({ id, col, activeId }) => {
+
+  const items = useItemStore(state => state.items)
+  const setItems = useItemStore(state => state.setItems)
 
   const {
     attributes,

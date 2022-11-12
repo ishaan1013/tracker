@@ -1,6 +1,7 @@
 import { PrismaClient } from '@prisma/client'
 import Sidebar from "../components/sidebar"
 import Priority from "../components/board/priority"
+import create from 'zustand'
 
 import { IoSearch } from "react-icons/io5"
 import Boards from "../components/board/boards"
@@ -30,7 +31,7 @@ const Home = async () => {
         </div>
 
         <h1 className="text-2xl font-bold whitespace-nowrap">
-          Kanban Board
+          {/* Kanban Board {test ? test : "no test"} */}
         </h1>
 
         <p className="text-sm">{data ? JSON.stringify(data) : "no data"}</p>

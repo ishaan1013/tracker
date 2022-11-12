@@ -21,13 +21,17 @@ import {
   restrictToWindowEdges,
   restrictToFirstScrollableAncestor
 } from '@dnd-kit/modifiers';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-import Preview from './preview';
+import { useItemStore } from '../../hooks/useItemStore';
+
+import Preview from './preview'
 
 const Boards = () => {
 
-  const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
+  const itemStore = useItemStore()
+
+  // const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
   const [activeId, setActiveId] = useState("")
 
   const activationConstraint: PointerActivationConstraint = { delay: 250, tolerance: 5 }
@@ -42,7 +46,6 @@ const Boards = () => {
 
   return (
     <div className="flex mt-12 md:space-x-4 space-x-2 text-sm">
-
       {/* col 1 */}
       <DndContext
       sensors={sensors}
@@ -56,12 +59,9 @@ const Boards = () => {
         setActiveId("")
         
         if (active.id !== over.id) {
-          setItems((items) => {
-            const oldIndex = items[0].indexOf(active.id)
-            const newIndex = items[0].indexOf(over.id)
-            
-            return [arrayMove(items[0], oldIndex, newIndex), items[1], items[2]]
-          })
+          const oldIndex = itemStore.items[0].indexOf(active.id)
+          const newIndex = itemStore.items[0].indexOf(over.id)
+          itemStore.setItems([arrayMove(itemStore.items[0], oldIndex, newIndex), itemStore.items[1], itemStore.items[2]])
         }
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
@@ -69,12 +69,12 @@ const Boards = () => {
         <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
           <h2 className="px-2 text-start text-gray-600 mb-3">TO-DO</h2>
           <SortableContext
-          items={items[0]}
+          items={itemStore.items[0]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items[0].map((item, index) => (
-                <Preview id={item} key={index} col={0} items={items} setItems={setItems} activeId={activeId} />
+              itemStore.items[0].map((item, index) => (
+                <Preview id={item} key={index} col={0} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -94,12 +94,9 @@ const Boards = () => {
         setActiveId("")
         
         if (active.id !== over.id) {
-          setItems((items) => {
-            const oldIndex = items[1].indexOf(active.id)
-            const newIndex = items[1].indexOf(over.id)
-            
-            return [items[0], arrayMove(items[1], oldIndex, newIndex), items[2]]
-          })
+          const oldIndex = itemStore.items[1].indexOf(active.id)
+          const newIndex = itemStore.items[1].indexOf(over.id)
+          itemStore.setItems([itemStore.items[0], arrayMove(itemStore.items[1], oldIndex, newIndex), itemStore.items[2]])
         }
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
@@ -107,12 +104,12 @@ const Boards = () => {
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">IN PROGRESS</h2>
           <SortableContext
-          items={items[1]}
+          items={itemStore.items[1]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items[1].map((item, index) => (
-                <Preview id={item} key={index} col={1} items={items} setItems={setItems} activeId={activeId} />
+              itemStore.items[1].map((item, index) => (
+                <Preview id={item} key={index} col={1} activeId={activeId} />
               ))
             }
           </SortableContext>
@@ -132,12 +129,9 @@ const Boards = () => {
         setActiveId("")
         
         if (active.id !== over.id) {
-          setItems((items) => {
-            const oldIndex = items[2].indexOf(active.id)
-            const newIndex = items[2].indexOf(over.id)
-            
-            return [items[0], items[1], arrayMove(items[2], oldIndex, newIndex)]
-          })
+          const oldIndex = itemStore.items[2].indexOf(active.id)
+          const newIndex = itemStore.items[2].indexOf(over.id)
+          itemStore.setItems([itemStore.items[0], itemStore.items[1], arrayMove(itemStore.items[2], oldIndex, newIndex)])
         }
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
@@ -145,12 +139,12 @@ const Boards = () => {
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">COMPLETE</h2>
           <SortableContext
-          items={items[2]}
+          items={itemStore.items[2]}
           strategy={verticalListSortingStrategy}
           >
             {
-              items[2].map((item, index) => (
-                <Preview id={item} key={index} col={2} items={items} setItems={setItems} activeId={activeId} />
+              itemStore.items[2].map((item, index) => (
+                <Preview id={item} key={index} col={2} activeId={activeId} />
               ))
             }
           </SortableContext>
