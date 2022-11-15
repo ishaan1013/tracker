@@ -19,7 +19,7 @@ import {
 import {
   restrictToVerticalAxis,
   restrictToWindowEdges,
-  restrictToFirstScrollableAncestor
+  restrictToParentElement
 } from '@dnd-kit/modifiers';
 import { useState, useEffect } from 'react'
 import { IssueType } from '../../prisma/issueType';
@@ -68,7 +68,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
           itemStore.setItems([arrayMove(itemStore.items[0], oldIndex, newIndex), itemStore.items[1], itemStore.items[2]])
         }
       }}
-      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
+      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
         <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
           <h2 className="px-2 text-start text-gray-600 mb-3">TO-DO</h2>
@@ -103,7 +103,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
           itemStore.setItems([itemStore.items[0], arrayMove(itemStore.items[1], oldIndex, newIndex), itemStore.items[2]])
         }
       }}
-      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
+      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">IN PROGRESS</h2>
@@ -138,7 +138,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
           itemStore.setItems([itemStore.items[0], itemStore.items[1], arrayMove(itemStore.items[2], oldIndex, newIndex)])
         }
       }}
-      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToFirstScrollableAncestor]}
+      modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
         <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">COMPLETE</h2>
