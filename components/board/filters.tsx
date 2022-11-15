@@ -1,19 +1,25 @@
 "use client"
 
 import { useState } from "react"
-import { IoSearch } from "react-icons/io5"
 import Priority from "./priority"
+import { useSearchStore } from '../../hooks/useSearchStore'
+
+import { IoSearch } from "react-icons/io5"
 
 const Filters = () => {
 
   const [users, setUsers] = useState([false, false, false, false])
+  const searchStore = useSearchStore()
 
   return (
     <div className="flex mt-8">
 
       <div className="min-w-[14rem] relative flex items-center justify-start">
-        <IoSearch className="absolute left-2 text-gray-600" />
-        <input className="focus:outline-blue-500 bg-gray-150 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm text-gray-600" />
+        <IoSearch className="absolute left-2 text-gray-600 pointer-events-none" />
+        <input 
+        value={searchStore.query}
+        onChange={(e) => searchStore.setQuery(e.target.value)}
+        className="focus:outline-blue-500 bg-gray-150 w-full p-2 pl-8 border-[1px] border-gray-300 rounded text-sm text-gray-600" />
       </div>
 
       <div className="ml-6 flex flex-row-reverse items-center z-0">

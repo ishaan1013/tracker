@@ -37,7 +37,7 @@ const Board = async () => {
         </div>
 
         <h1 className="text-2xl font-bold whitespace-nowrap">
-          {/* Kanban Board {test ? test : "no test"} */}
+          Kanban Board
         </h1>
 
         {/* <p className="text-sm">{data ? JSON.stringify(

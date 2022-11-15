@@ -23,7 +23,7 @@ import {
 } from '@dnd-kit/modifiers';
 import { useState, useEffect } from 'react'
 import { IssueType } from '../../prisma/issueType';
-import { useItemStore } from '../../hooks/useItemStore';
+import { useItemStore } from '../../hooks';
 
 import Preview from './preview'
 
