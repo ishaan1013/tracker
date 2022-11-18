@@ -1,8 +1,7 @@
 "use client"
 
-import { useState } from "react"
 import Priority from "./priority"
-import { useSearchStore, useUsersFilterStore } from '../../hooks/filterStores'
+import { useSearchStore, useUsersFilterStore, useRecentStore } from '../../hooks/filterStores'
 
 import { IoSearch } from "react-icons/io5"
 
@@ -11,6 +10,7 @@ const Filters = () => {
   // const [users, setUsers] = useState([false, false, false, false])
   const searchStore = useSearchStore()
   const usersFilterStore = useUsersFilterStore()
+  const recentStore = useRecentStore()
   
 
   return (
@@ -36,7 +36,9 @@ const Filters = () => {
         ))}
       </div>
 
-      <button className="ml-6 focus:outline-blue-500 duration-100 hover:bg-gray-150 py-1 px-2.5 rounded text-base text-gray-600">
+      <button 
+      onClick={() => recentStore.setRecent(!recentStore.recent)}
+      className={`ml-6 focus:outline-blue-500 duration-100 ${recentStore.recent ? "bg-gray-150 hover:bg-gray-200 text-blue-700" : "hover:bg-gray-150 text-gray-600"} py-1 px-2.5 rounded text-base`}>
         Recently Updated
       </button>
 

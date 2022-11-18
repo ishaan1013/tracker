@@ -12,8 +12,6 @@ export const useSearchStore = create<SearchState>()((set) => ({
 
 
 
-
-
 export interface UsersFilterState {
   users: [boolean, boolean, boolean, boolean]
   setUsers: (users: [boolean, boolean, boolean, boolean], index:number) => void
@@ -26,4 +24,16 @@ export const useUsersFilterStore = create<UsersFilterState>()((set) => ({
     newUsers[index] = !newUsers[index]
     set({ users: newUsers })
   },
+}))
+
+
+
+export interface RecentState {
+  recent: boolean
+  setRecent: (recent: boolean) => void
+}
+
+export const useRecentStore = create<RecentState>()((set) => ({
+  recent: false,
+  setRecent: (recent) => set({ recent }),
 }))
