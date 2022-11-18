@@ -49,7 +49,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
   )
 
   return (
-    <div className="flex mt-12 md:space-x-4 space-x-2 text-sm">
+    <div className="flex flex-grow mt-12 md:space-x-4 space-x-2 text-sm">
       {/* col 1 */}
       <DndContext
       sensors={sensors}

@@ -12,10 +12,10 @@ const Priority:React.FC = () => {
 
   useEffect(() => {
     if (val === "Priority") {
-      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base "+"hover:bg-gray-150 text-gray-600")
+      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"hover:bg-gray-150 text-gray-600 border-gray-300")
     }
     else {
-      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base "+"bg-gray-150 hover:bg-gray-200 text-blue-700")
+      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"bg-gray-150 hover:bg-gray-200 text-blue-700 border-blue-700")
     }
   }, [val])
 
@@ -31,11 +31,11 @@ const Priority:React.FC = () => {
 
       <Select.Portal>
 
-        <Select.Content className="focus:outline-blue-500 duration-100 bg-gray-150 p-1.5 rounded text-base text-gray-600">
+        <Select.Content className="focus:outline-blue-500 duration-100 border-[1px] bg-gray-150 p-1.5 rounded border-gray-300 text-base text-gray-600">
           <Select.ScrollUpButton />
           <Select.Viewport>
 
-            <Select.Item value="Priority" className="focus:outline-blue-500 rounded flex items-center mb-1 px-2 opacity-70 hover:opacity-50 duration-100 cursor-pointer">
+            <Select.Item value="Priority" className="focus:outline-blue-500 rounded flex items-center mb-1 px-2 opacity-80 hover:opacity-40 duration-100 cursor-pointer">
               <Select.ItemText>Priority</Select.ItemText>
             </Select.Item>
             <Select.Separator className="my-1 h-[1px] w-full bg-gray-300" />

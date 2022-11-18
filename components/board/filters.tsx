@@ -38,7 +38,7 @@ const Filters = () => {
 
       <button 
       onClick={() => recentStore.setRecent(!recentStore.recent)}
-      className={`ml-6 focus:outline-blue-500 duration-100 ${recentStore.recent ? "bg-gray-150 hover:bg-gray-200 text-blue-700" : "hover:bg-gray-150 text-gray-600"} py-1 px-2.5 rounded text-base`}>
+      className={`ml-6 focus:outline-blue-500 duration-100 border-[1px] rounded ${recentStore.recent ? "bg-gray-150 hover:bg-gray-200 text-blue-700 border-blue-700" : "hover:bg-gray-150 text-gray-600 border-gray-300"} py-1 px-2.5 rounded text-base`}>
         Recently Updated
       </button>
 
