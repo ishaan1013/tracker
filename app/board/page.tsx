@@ -18,7 +18,6 @@ const Board = async () => {
   
   const dataRes = await getData()
   const data: IssueType[][] = [[],[],[]]
-  // const data: string[][] = [[],[],[]]
   dataRes.map((item) => {
     item.category_id === 1 ? data[0].push(item) 
     : item.category_id === 2 ? data[1].push(item) 
@@ -35,6 +34,7 @@ const Board = async () => {
         <div className="flex items-center justify-start mb-2 space-x-2 cursor-default text-gray-600 whitespace-nowrap">
           <p>Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;&nbsp;<span className="font-medium">Kanban Board</span></p>
         </div>
+        {/* <div className="text-xs">{JSON.stringify(data)}</div> */}
 
         <h1 className="text-2xl font-bold whitespace-nowrap">
           Kanban Board

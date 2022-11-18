@@ -27,15 +27,14 @@ import { useItemStore } from '../../hooks';
 
 import Preview from './preview'
 
-// const Boards = ({data} : {data: string[][]}) => {
 const Boards = ({data} : {data: IssueType[][]}) => {
 
   const itemStore = useItemStore()
   useEffect(() => {
     itemStore.setItems(data)
+    console.log("itemStore", itemStore)
   }, [data])
 
-  // const [items, setItems] = useState([["9", "5", "3"],["4", "2", "6"],["7", "8", "1"]])
   const [activeId, setActiveId] = useState("")
 
   const activationConstraint: PointerActivationConstraint = { delay: 250, tolerance: 5 }
@@ -50,6 +49,8 @@ const Boards = ({data} : {data: IssueType[][]}) => {
 
   return (
     <div className="flex flex-grow mt-12 md:space-x-4 space-x-2 text-sm">
+      <div className="text-xs max-w-[200px]">{JSON.stringify(itemStore.items)}</div>
+
       {/* col 1 */}
       <DndContext
       sensors={sensors}
@@ -63,8 +64,13 @@ const Boards = ({data} : {data: IssueType[][]}) => {
         setActiveId("")
         
         if (active.id !== over.id) {
-          const oldIndex = itemStore.items[0].indexOf(active.id)
-          const newIndex = itemStore.items[0].indexOf(over.id)
+          const oldIndex = itemStore.items[0].map(function(e) {return e.id}).indexOf(active.id)
+          const newIndex = itemStore.items[0].map(function(e) {return e.id}).indexOf(over.id)
+          console.log("arraymove:",arrayMove(itemStore.items[0], oldIndex, newIndex))
+          console.log("active.id", active.id)
+          console.log("over.id", over.id)
+          console.log("oldIndex:",oldIndex)
+          console.log("newIndex:",newIndex)
           itemStore.setItems([arrayMove(itemStore.items[0], oldIndex, newIndex), itemStore.items[1], itemStore.items[2]])
         }
       }}
