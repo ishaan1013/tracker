@@ -2,14 +2,16 @@
 
 import { useState } from "react"
 import Priority from "./priority"
-import { useSearchStore } from '../../hooks/useSearchStore'
+import { useSearchStore, useUsersFilterStore } from '../../hooks/filterStores'
 
 import { IoSearch } from "react-icons/io5"
 
 const Filters = () => {
 
-  const [users, setUsers] = useState([false, false, false, false])
+  // const [users, setUsers] = useState([false, false, false, false])
   const searchStore = useSearchStore()
+  const usersFilterStore = useUsersFilterStore()
+  
 
   return (
     <div className="flex mt-8">
@@ -23,16 +25,12 @@ const Filters = () => {
       </div>
 
       <div className="ml-6 flex flex-row-reverse items-center z-0">
-        {users.map((user, index) => (
+        {usersFilterStore.users.map((user, index) => (
           <button
           key={index}
           onClick={() => {
             console.log("updated")
-            setUsers((users) => {
-              const newUsers = [...users]
-              newUsers[index] = !newUsers[index]
-              return newUsers
-            })
+            usersFilterStore.setUsers(usersFilterStore.users, index)
           }}
           className={`w-9 h-9 rounded-full ${index === 3 ? "" : "-ml-1.5"} focus:outline-blue-500 bg-gray-150 border-2 ${user ? "border-blue-700 z-[2] hover:z-[2]" : "border-white"} duration-100 translate-y-0 hover:-translate-y-1.5 hover:z-[1]`}></button>
         ))}

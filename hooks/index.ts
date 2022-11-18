@@ -1,4 +1,4 @@
 import { useItemStore } from "./useItemStore";
-import { useSearchStore } from "./useSearchStore";
+import { useSearchStore, useUsersFilterStore } from "./filterStores";
 
-export { useItemStore, useSearchStore };
+export { useItemStore, useSearchStore, useUsersFilterStore };
