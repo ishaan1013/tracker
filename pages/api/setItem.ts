@@ -1,7 +1,7 @@
 import { PrismaClient } from '.prisma/client'
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-const moveItems = async (
+const setItem = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
@@ -21,6 +21,8 @@ const moveItems = async (
         id: id,
       },
       data: {
+        name: name,
+        description: description,
         category_id: category_id
       }
     })
@@ -30,4 +32,4 @@ const moveItems = async (
 
 }
 
-export default moveItems
+export default setItem
