@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Icon from "../../assets/icon.jpg"
 import { useState, useEffect } from "react"
-import { FiChevronLeft, FiTrello, FiSettings } from 'react-icons/fi'
+import { FiChevronLeft, FiTrello, FiSettings, FiTruck } from 'react-icons/fi'
 
 export default function Sidebar() {
     
@@ -32,8 +32,9 @@ export default function Sidebar() {
               <p className="text-sm -mt-1 text-gray-600">Project Description</p>
             </div>
           </div>
-          <button className="focus:outline-blue-500 p-1.5 mt-4 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTrello className="mr-2" /> Kanban Board</button>
-          <button className="focus:outline-blue-500 p-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiSettings className="mr-2" /> Project Settings</button>
+          <button className="focus:outline-blue-500 py-2 px-1.5 mt-4 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTrello className="mr-2" /> Kanban Board</button>
+          <button className="focus:outline-blue-500 py-2 px-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTruck className="mr-2" /> Roadmap</button>
+          <button className="focus:outline-blue-500 py-2 px-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiSettings className="mr-2" /> Project Settings</button>
       
           </div>
         </div>

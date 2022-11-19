@@ -56,7 +56,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId }) => {
               {
                 col !== 0 &&
                 <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   if (col === 1) {
                     setItems([[...items[0], data], items[1].filter((item) => item !== data), items[2]])
                   }
@@ -71,7 +72,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId }) => {
               {
                 col !== 2 &&
                 <button
-                onClick={() => {
+                onClick={(e) => {
+                  e.stopPropagation()
                   if (col === 0) {
                     setItems([items[0].filter((item) => item !== data), [...items[1], data], items[2]])
                   }

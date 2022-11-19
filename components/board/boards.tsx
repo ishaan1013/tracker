@@ -48,7 +48,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
   )
 
   return (
-    <div className="flex flex-grow mt-12 md:space-x-4 space-x-2 text-sm">
+    <div className="flex flex-grow mt-12 pr-6 md:space-x-4 space-x-2 text-sm">
 
       {/* col 1 */}
       <DndContext
@@ -70,7 +70,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
-        <div className="w-72 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
+        <div className="w-80 min-w-[200px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded">
           <h2 className="px-2 text-start text-gray-600 mb-3">TO-DO</h2>
           <SortableContext
           items={itemStore.items[0]}
@@ -115,7 +115,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
-        <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-80 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">IN PROGRESS</h2>
           <SortableContext
           items={itemStore.items[1]}
@@ -150,7 +150,7 @@ const Boards = ({data} : {data: IssueType[][]}) => {
       }}
       modifiers={[restrictToVerticalAxis, restrictToWindowEdges, restrictToParentElement]}
       >
-        <div className="w-72 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
+        <div className="w-80 min-w-[220px] min-h-[300px] h-full py-3 px-1 flex flex-col items-start justify-start bg-gray-150 rounded overflow-visible">
           <h2 className="px-2 text-start text-gray-600 mb-3">COMPLETE</h2>
           <SortableContext
           items={itemStore.items[2]}
