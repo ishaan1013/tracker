@@ -3,7 +3,7 @@ const issues = [
     name: 'Cool helmet.',
     description: 'A nice helmet to wear on your head',
     category: 0,
-    issueType: 0,
+    issueType: 2,
     priority: 1
   },
   {
@@ -11,7 +11,7 @@ const issues = [
     description: 'A nice helmet to wear on your head',
     category: 0,
     issueType: 0,
-    priority: 0
+    priority: 2
   },
   {
     name: 'Cool helmet 2.',
@@ -24,8 +24,8 @@ const issues = [
     name: 'Cool jacket.',
     description: 'A nice jacket to wear on your head',
     category: 1,
-    issueType: 0,
-    priority: 0
+    issueType: 2,
+    priority: 2
   },
   {
     name: 'Cool jacket 1.',

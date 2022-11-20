@@ -14,9 +14,10 @@ interface Props {
   data: IssueType
   col: number
   activeId: string
+  index: number
 }
 
-const Preview: React.FC<Props> = ({ data, col, activeId }) => {
+const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
 
   const search = useSearchStore(state => state.query)
 
@@ -41,7 +42,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId }) => {
   if (search === "" || data.name.includes(search)) {  
     return (
       <>
-        <Popup opened={pop} setOpened={setPop} />
+        <Popup opened={pop} setOpened={setPop} data={data} />
         <div
         ref={setNodeRef}
         style={style}
@@ -88,7 +89,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId }) => {
             </div>
           </div>
           <div className="flex justify-between items-center mt-4">
-            <IssueIcons type={2} priority={1} />
+            <IssueIcons type={data.issueType} priority={data.priority} />
             <IssuePpl qty={3} />
           </div>
         </div>

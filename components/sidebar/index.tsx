@@ -15,8 +15,8 @@ export default function Sidebar() {
         <div className={`py-8 h-full ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"} bg-gray-150 border-r-[1px] border-gray-300 right-inset relative`}>
           <button
           onClick={() => setHidden((prev) => !prev)}
-          className="focus:outline-blue-500 top-1/2 -translate-y-1/2 -right-3 w-6 h-6 absolute flex items-center justify-center rounded-full bg-white hover:bg-blue-50 hover:border-blue-700 group backdrop-blur-md border-[1px] border-gray-300">
-            <FiChevronLeft className={`w-4 h-4 group-hover:text-blue-700 text-gray-600 ${hidden ? "rotate-180" : ""}`} />
+          className="focus:outline-blue-500 top-1/2 -translate-y-1/2 -right-3 absolute flex items-center justify-center rounded-full bg-white p-0.5 group backdrop-blur-md border-[1px] border-blue-700">
+            <FiChevronLeft className={`w-4 h-4 p-[0.5px] group-hover:bg-blue-200 rounded-full text-blue-700 ${hidden ? "rotate-180" : ""}`} />
           </button>
       
           <div className={`w-full h-full flex flex-col px-4 overflow-hidden ${hidden ? "hidden" : "block"}`}>

@@ -1,4 +1,4 @@
-import { FiArrowUp, FiBookmark, FiCheck, FiDisc } from "react-icons/fi"
+import { FiArrowDown, FiArrowUp, FiBookmark, FiCheck, FiDisc } from "react-icons/fi"
 
 export const IssuePpl = (props: {qty: 0 | 1 | 2 | 3 | 4}) => {
     return (
@@ -11,26 +11,32 @@ export const IssuePpl = (props: {qty: 0 | 1 | 2 | 3 | 4}) => {
     )
 }
 
-export const IssueIcons = (props: {type: 0 | 1 | 2, priority: 0 | 1 | 2}) => {
+export const IssueIcons = (props: {type:number, priority:number}) => {
     return (
         <div className="flex items-center space-x-1.5">
         {
             props.type === 0 ?
-            <FiCheck className="text-white p-0.5 w-5 h-5 bg-blue-400 rounded" />
+            <FiDisc className="text-white p-0.5 w-5 h-5 bg-red-500/90 rounded" />
             :
             props.type === 1 ?
+            <FiCheck className="text-white p-0.5 w-5 h-5 bg-blue-400 rounded" />
+            :
+            props.type === 2 ?
             <FiBookmark className="text-white p-0.5 w-5 h-5 bg-green-500 rounded" />
             :
-            <FiDisc className="text-white p-0.5 w-5 h-5 bg-red-500/90 rounded" />
+            null
         }
         {
             props.priority === 0 ?
-            <FiArrowUp className="text-green-600 w-5 h-5" />
+            <FiArrowDown className="text-green-600 w-5 h-5" />
             :
             props.priority === 1 ?
             <FiArrowUp className="text-yellow-500 w-5 h-5" />
             :
+            props.priority === 2 ?
             <FiArrowUp className="text-red-500 w-5 h-5" />
+            :
+            null
         }
         </div>
     )

@@ -15,7 +15,7 @@ export default function RootLayout({
         
         <div className="space-y-4 flex flex-col items-center justify-start">
           
-          <div className="mb-4 h-8 w-8 relative">
+          <div className="mb-4 h-8 w-8 relative -hue-rotate-15">
             <Image
             src={Logo}
             alt="logo"
