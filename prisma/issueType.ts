@@ -1,12 +1,9 @@
-interface CategoryType {
-  id: number
-  name: string
-}
-
 export interface IssueType {
   id: string
   name: string
   description: string
-  category: CategoryType | null
-  category_id: number
+  category: number
+  issueType: number
+  priority: number
+  createdAt: string | Date
 }

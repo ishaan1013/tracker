@@ -3,7 +3,7 @@
 import Image from "next/image"
 import Icon from "../../assets/icon.jpg"
 import { useState, useEffect } from "react"
-import { FiChevronLeft, FiTrello, FiSettings, FiTruck } from 'react-icons/fi'
+import { FiChevronLeft, FiTrello, FiSettings, FiTruck, FiGitCommit, FiGitMerge } from 'react-icons/fi'
 
 export default function Sidebar() {
     
@@ -12,7 +12,7 @@ export default function Sidebar() {
   return (
     <div className={`h-full ml-16 md:mr-4 mr-2 ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"}`}>
       <div className="fixed h-full z-40">
-        <div className={`py-8 h-full ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"} bg-gray-150 border-r-[1px] border-gray-300 relative`}>
+        <div className={`py-8 h-full ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"} bg-gray-150 border-r-[1px] border-gray-300 right-inset relative`}>
           <button
           onClick={() => setHidden((prev) => !prev)}
           className="focus:outline-blue-500 top-1/2 -translate-y-1/2 -right-3 w-6 h-6 absolute flex items-center justify-center rounded-full bg-white hover:bg-blue-50 hover:border-blue-700 group backdrop-blur-md border-[1px] border-gray-300">
@@ -33,7 +33,7 @@ export default function Sidebar() {
             </div>
           </div>
           <button className="focus:outline-blue-500 py-2 px-1.5 mt-4 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTrello className="mr-2" /> Kanban Board</button>
-          <button className="focus:outline-blue-500 py-2 px-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiTruck className="mr-2" /> Roadmap</button>
+          <button className="focus:outline-blue-500 py-2 px-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiGitCommit className="mr-2" /> Roadmap</button>
           <button className="focus:outline-blue-500 py-2 px-1.5 mt-1 rounded  font-medium bg-transparent hover:bg-gray-200 text-start flex items-center justify-start"><FiSettings className="mr-2" /> Project Settings</button>
       
           </div>

@@ -1,7 +1,7 @@
 "use client"
 
 import * as Dialog from '@radix-ui/react-dialog';
-import Image from 'next/image';
+import { useItemStore } from '../../hooks';
 import { FiX, FiTrash } from "react-icons/fi"
 
 interface Props {
@@ -10,6 +10,9 @@ interface Props {
 }
 
 const Popup:React.FC<Props> = ({opened, setOpened}) => {
+
+  const items = useItemStore(state => state.items)
+  const setItems = useItemStore(state => state.setItems)
 
   return (
     <Dialog.Root

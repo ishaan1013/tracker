@@ -7,11 +7,7 @@ import Filters from '../../components/board/filters'
 
 const getData = async () => {
   const prisma = new PrismaClient()
-  return await prisma.issue.findMany({
-    include: {
-      category: true,
-    },
-  })
+  return await prisma.issue.findMany()
 }
 
 const Board = async () => {
@@ -19,9 +15,11 @@ const Board = async () => {
   const dataRes = await getData()
   const data: IssueType[][] = [[],[],[]]
   dataRes.map((item) => {
-    item.category_id === 1 ? data[0].push(item) 
-    : item.category_id === 2 ? data[1].push(item) 
-    : data[2].push(item)
+    const newItem:IssueType = item
+    newItem.createdAt = newItem.createdAt.toString()
+    newItem.category === 0 ? data[0].push(newItem) 
+    : newItem.category === 1 ? data[1].push(newItem) 
+    : data[2].push(newItem)
   })
 
   return (
