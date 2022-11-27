@@ -16,8 +16,9 @@ const Board = async () => {
   const dataRes: Issue[] = await getData()
   const data: IssueType[][] = [[],[],[]]
   dataRes.map((item) => {
+    const newCreatedAt = item.createdAt.toString()
     const newItem:IssueType = item
-    newItem.createdAt = newItem.createdAt.toString()
+    newItem.createdAt = newCreatedAt
     newItem.category === 0 ? data[0].push(newItem) 
     : newItem.category === 1 ? data[1].push(newItem) 
     : data[2].push(newItem)
