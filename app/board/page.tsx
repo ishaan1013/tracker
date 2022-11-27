@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client'
 import Sidebar from "../../components/sidebar"
+import { Issue } from '@prisma/client'
 
 import { IssueType } from '../../prisma/issueType'
 import Boards from "../../components/board/boards"
@@ -12,7 +13,7 @@ const getData = async () => {
 
 const Board = async () => {
   
-  const dataRes = await getData()
+  const dataRes: Issue[] = await getData()
   const data: IssueType[][] = [[],[],[]]
   dataRes.map((item) => {
     const newItem:IssueType = item
