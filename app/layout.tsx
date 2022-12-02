@@ -1,7 +1,7 @@
 import './globals.css'
 import { Albert_Sans } from '@next/font/google';
 
-const font = Albert_Sans();
+const font = Albert_Sans({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,

@@ -10,7 +10,7 @@ export default function Sidebar() {
   const [hidden, setHidden] = useState(false)
     
   return (
-    <div className={`h-full ml-16 md:mr-4 mr-2 ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"}`}>
+    <div className={`h-full ml-16 md:mr-4 mr-2 transition-all ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"}`}>
       <div className="fixed h-full z-40">
         <div className={`py-8 h-full ${hidden ? "min-w-[1.5rem]" : "min-w-[14rem]"} bg-gray-150 border-r-[1px] border-gray-300 right-inset relative`}>
           <button

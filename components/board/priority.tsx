@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import * as Select from '@radix-ui/react-select'
 import { FiCheck, FiChevronDown } from "react-icons/fi"
 
-const Priority:React.FC = () => {
+const Priority = ({popup}:{popup?:boolean}) => {
 
   const [val, setVal] = useState<string>("Priority")
 
@@ -12,10 +12,10 @@ const Priority:React.FC = () => {
 
   useEffect(() => {
     if (val === "Priority") {
-      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"hover:bg-gray-150 text-gray-600 border-gray-300")
+      setTriggerClass(`${popup?"mb-3":"ml-6"} flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"hover:bg-gray-150 text-gray-600 border-gray-300`)
     }
     else {
-      setTriggerClass("ml-6 flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"bg-gray-150 hover:bg-gray-200 text-blue-700 border-blue-700")
+      setTriggerClass(`${popup?"mb-3":"ml-6"} flex items-center focus:outline-blue-500 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"bg-gray-150 hover:bg-gray-200 text-blue-700 border-blue-700`)
     }
   }, [val])
 
@@ -31,7 +31,7 @@ const Priority:React.FC = () => {
 
       <Select.Portal>
 
-        <Select.Content className="focus:outline-blue-500 duration-100 border-[1px] bg-gray-150 p-1.5 rounded border-gray-300 text-base text-gray-600">
+        <Select.Content className="z-50 focus:outline-blue-500 duration-100 border-[1px] bg-gray-150 p-1.5 rounded border-gray-300 text-base text-gray-600">
           <Select.ScrollUpButton />
           <Select.Viewport>
 
