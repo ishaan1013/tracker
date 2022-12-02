@@ -1,10 +1,6 @@
 {
   "extends": [
     "next/core-web-vitals",
-    "prettier",
-  ],
-  "rules": {
-    "quotes": ["warn", "double"],
-    "semi": ["error", "never"]
-  }
+    "prettier"
+  ]
 }

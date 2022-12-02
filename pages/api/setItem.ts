@@ -6,13 +6,15 @@ const setItem = async (
   res: NextApiResponse
 ) => {
 
-  const {query: { id, category_id, name, description }, method} = req
+  const {query: { id, category, name, description, issueType, priority }, method} = req
 
   if (
     typeof id === 'string' 
     && typeof name === 'string' 
     && typeof description === 'string' 
-    && typeof category_id === 'number' 
+    && typeof category === 'number' 
+    && typeof issueType === 'number' 
+    && typeof priority === 'number' 
     && method === 'POST'
   ) {
     const prisma = new PrismaClient()
@@ -23,7 +25,9 @@ const setItem = async (
       data: {
         name: name,
         description: description,
-        category_id: category_id
+        category: category,
+        issueType: issueType,
+        priority: priority
       }
     })
     res.status(200).json({ success: true })
