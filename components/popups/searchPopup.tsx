@@ -29,7 +29,7 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
         <Dialog.Overlay className="fixed inset-0 z-50 bg-[#011242]/50" />
         <Dialog.Content className="dialog xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[40rem]">
           <div className="flex w-full items-center justify-between">
-            <p className="text-start text-2xl font-semibold sm:text-3xl">
+            <p className="text-start text-xl font-semibold sm:text-2xl">
               Search Issues
             </p>
             <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-gray-300 hover:bg-gray-150 focus:outline-blue-500">
