@@ -14,6 +14,8 @@ import {
   FiRefreshCw,
 } from "react-icons/fi"
 import { IoSearch } from "react-icons/io5"
+import { IssueIcons, IssuePpl } from "../board/issuePreview"
+import SearchPreview from "./searchPreview"
 // import { IssueType } from '../../prisma/issueType';
 
 interface Props {
@@ -22,6 +24,10 @@ interface Props {
 }
 
 const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
+  const items = useItemStore((state) => state.items)
+  const [search, setSearch] = useState("")
+  const [displayed, setDisplayed] = useState(0)
+
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
       {/* <Dialog.Trigger /> */}
@@ -40,9 +46,24 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
           <div className="relative mt-4 flex w-full items-center">
             <IoSearch className="absolute left-2.5 text-gray-600" />
             <input
-              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base focus:outline-blue-500 xl:text-lg"
-              defaultValue={"test"}
+              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:opacity-40 focus:outline-blue-500 xl:text-lg"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Type to search..."
             />
+          </div>
+
+          <div className="my-5 flex h-[1px] w-full bg-gray-300" />
+
+          <div className="searchResultsPopup h-auto max-h-96 w-full overflow-y-auto overflow-x-hidden rounded bg-gray-150 p-2">
+            {items.map((category, i) => (
+              <SearchPreview
+                issues={category}
+                search={search}
+                index={i}
+                key={i}
+              />
+            ))}
           </div>
         </Dialog.Content>
       </Dialog.Portal>

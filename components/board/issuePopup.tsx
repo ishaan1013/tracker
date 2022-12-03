@@ -104,12 +104,12 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
           <div className="mt-8 flex items-center self-start">
             <button
-              className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+              className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-2 pl-4 pr-5 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
               <FiSave className="mr-1.5" />
               Save
             </button>
             <button
-              className={`ml-3 flex items-center whitespace-nowrap rounded border-[1px] border-gray-300 py-1 px-3 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
+              className={`ml-3 flex items-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-5 pl-4 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
               <FiRefreshCw className="mr-1.5" />
               Reset
             </button>

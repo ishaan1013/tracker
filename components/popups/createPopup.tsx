@@ -55,6 +55,8 @@ const IssueSelect = ({
 
 const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
   const [type, setType] = useState(0)
+  const [name, setName] = useState("")
+  const [desc, setDesc] = useState("")
 
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
@@ -62,35 +64,41 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-[#011242]/50" />
         <Dialog.Content className="dialog xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[40rem]">
-          <div className="flex w-full items-center justify-between">
-            <p className="text-start text-xl font-semibold sm:text-2xl">
-              Create Issue
-            </p>
-            <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-gray-300 hover:bg-gray-150 focus:outline-blue-500">
-              <FiX className="" />
-            </Dialog.Close>
-          </div>
+          <p className="text-start text-xl font-semibold sm:text-2xl">
+            Create Issue
+          </p>
           <div className="mt-4 w-full">
-            <div className="flex items-center">
+            <input
+              className="mr-4 w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-xl font-medium placeholder:opacity-40 focus:outline-blue-500 sm:text-2xl"
+              placeholder={"Issue Title"}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+
+            <div className="mt-3 flex items-center">
               <IssueSelect type={type} setType={setType} />
               <Priority popup />
             </div>
 
-            <input
-              className="mr-4 w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-xl font-semibold focus:outline-blue-500 sm:text-2xl"
-              placeholder={"Issue Title"}
-            />
+            <div className="mb-3 flex h-[1px] w-full bg-gray-300" />
 
             <textarea
-              className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y  rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-blue-500 xl:text-base"
-              placeholder={"Issue Content"}
+              className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded  border-[1px] border-gray-300 bg-gray-150 p-2 text-sm placeholder:opacity-40 focus:outline-blue-500 xl:text-base"
+              placeholder={"Issue Description"}
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
 
-            <button
-              className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500 xl:text-lg`}>
-              <FiPlus className="mr-1.5" />
-              Create
-            </button>
+            <div className="flex w-full items-center justify-between space-x-2">
+              <button
+                className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500 xl:text-lg`}>
+                <FiPlus className="mr-1.5" />
+                Create
+              </button>
+              <Dialog.Close className="mt-4 flex w-full items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-1 text-base font-medium text-gray-600 duration-100 hover:border-gray-400 hover:bg-gray-150 focus:outline-blue-500 xl:text-lg">
+                Cancel
+              </Dialog.Close>
+            </div>
           </div>
         </Dialog.Content>
       </Dialog.Portal>

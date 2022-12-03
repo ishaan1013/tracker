@@ -12,18 +12,18 @@ const getData = async () => {
 }
 
 const Board = async () => {
-  // const dataRes: Issue[] = await getData()
-  // const data: IssueType[][] = [[], [], []]
-  // dataRes.map((item) => {
-  //   const newCreatedAt = item.createdAt.toString()
-  //   const newItem: IssueType = item
-  //   newItem.createdAt = newCreatedAt
-  //   newItem.category === 0
-  //     ? data[0].push(newItem)
-  //     : newItem.category === 1
-  //     ? data[1].push(newItem)
-  //     : data[2].push(newItem)
-  // })
+  const dataRes: Issue[] = await getData()
+  const data: IssueType[][] = [[], [], []]
+  dataRes.map((item) => {
+    const newCreatedAt = item.createdAt.toString()
+    const newItem: IssueType = item
+    newItem.createdAt = newCreatedAt
+    newItem.category === 0
+      ? data[0].push(newItem)
+      : newItem.category === 1
+      ? data[1].push(newItem)
+      : data[2].push(newItem)
+  })
 
   return (
     <main className="flex max-h-screen items-start justify-start">
@@ -47,7 +47,7 @@ const Board = async () => {
 
         <Filters />
 
-        {/* <Boards data={data} /> */}
+        <Boards data={data} />
       </div>
     </main>
   )
