@@ -2,6 +2,8 @@
 
 import { FiPlus, FiHelpCircle } from "react-icons/fi"
 import { IoSearch } from "react-icons/io5"
+import { IoMdLogOut } from "react-icons/io"
+import { signOut } from "next-auth/react"
 import Image from "next/image"
 import Logo from "../../../assets/logo.png"
 
@@ -47,14 +49,24 @@ const SidebarButtons = () => {
         </button>
       </div>
 
-      <button
-        onClick={() => setAboutOpened(true)}
-        className="group relative flex items-center rounded-full focus:outline-gray-50/50">
-        <FiHelpCircle className="h-8 w-8 rounded-full p-1 text-white hover:bg-white/20" />
-        <div className="absolute left-10 z-10 hidden whitespace-nowrap rounded bg-gray-800/75 px-2 py-0.5 font-medium text-white backdrop-blur-sm group-hover:block">
-          About This Project
-        </div>
-      </button>
+      <div className="flex flex-col items-center justify-start space-y-4">
+        <button
+          onClick={() => setAboutOpened(true)}
+          className="group relative flex items-center rounded-full focus:outline-gray-50/50">
+          <FiHelpCircle className="h-8 w-8 rounded-full p-1 text-white hover:bg-white/20" />
+          <div className="absolute left-10 z-10 hidden whitespace-nowrap rounded bg-gray-800/75 px-2 py-0.5 font-medium text-white backdrop-blur-sm group-hover:block">
+            About This Project
+          </div>
+        </button>
+        <button
+          onClick={() => signOut()}
+          className="group relative flex items-center rounded-full focus:outline-gray-50/50">
+          <IoMdLogOut className="h-8 w-8 rounded-full p-1 text-white hover:bg-white/20" />
+          <div className="absolute left-10 z-10 hidden whitespace-nowrap rounded bg-gray-800/75 px-2 py-0.5 font-medium text-white backdrop-blur-sm group-hover:block">
+            Log Out
+          </div>
+        </button>
+      </div>
     </>
   )
 }

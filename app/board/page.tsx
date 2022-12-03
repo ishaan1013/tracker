@@ -1,8 +1,12 @@
-import { PrismaClient } from "@prisma/client"
-import Sidebar from "../../components/board/sidebar"
-import { Issue } from "@prisma/client"
+import { redirect } from "next/navigation"
 
+import { PrismaClient, Issue } from "@prisma/client"
 import { IssueType } from "../../prisma/issueType"
+import { unstable_getServerSession } from "next-auth/next"
+import { authOptions } from "../../pages/api/auth/[...nextauth]"
+// import { useSession } from "next-auth/react"
+
+import Sidebar from "../../components/board/sidebar"
 import Boards from "../../components/board/boards"
 import Filters from "../../components/board/filters"
 
@@ -12,6 +16,9 @@ const getData = async () => {
 }
 
 const Board = async () => {
+  const session = await unstable_getServerSession(authOptions)
+  if (!session) redirect("/")
+
   const dataRes: Issue[] = await getData()
   const data: IssueType[][] = [[], [], []]
   dataRes.map((item) => {
@@ -37,9 +44,9 @@ const Board = async () => {
             <span className="font-medium">Kanban Board</span>
           </p>
         </div>
-        {/* <div className="text-xs">{JSON.stringify(data)}</div> */}
 
         <h1 className="whitespace-nowrap text-2xl font-bold">Kanban Board</h1>
+        <p>signed in as {JSON.stringify(session)}</p>
 
         {/* <p className="text-sm">{data ? JSON.stringify(
           data

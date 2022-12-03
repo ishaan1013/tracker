@@ -82,8 +82,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-blue-500 sm:text-3xl"
                 defaultValue={data.name}
               />
-              <input
-                className="mt-4 w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-blue-500 xl:text-base"
+              <textarea
+                className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-blue-500 xl:text-base"
                 defaultValue={data.description}
               />
             </div>

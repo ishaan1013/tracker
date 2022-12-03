@@ -89,13 +89,13 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
               onChange={(e) => setDesc(e.target.value)}
             />
 
-            <div className="flex w-full items-center justify-between space-x-2">
+            <div className="flex w-full items-center justify-between space-x-4">
               <button
                 className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500 xl:text-lg`}>
                 <FiPlus className="mr-1.5" />
                 Create
               </button>
-              <Dialog.Close className="mt-4 flex w-full items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-1 text-base font-medium text-gray-600 duration-100 hover:border-gray-400 hover:bg-gray-150 focus:outline-blue-500 xl:text-lg">
+              <Dialog.Close className="mt-4 flex w-full items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-1 text-base font-medium text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500 xl:text-lg">
                 Cancel
               </Dialog.Close>
             </div>
