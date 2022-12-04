@@ -1,3 +1,4 @@
+import Image from "next/image"
 import {
   FiArrowDown,
   FiArrowUp,
@@ -5,6 +6,10 @@ import {
   FiCheck,
   FiDisc,
 } from "react-icons/fi"
+
+import High from "../../assets/icons/p-high.svg"
+import Low from "../../assets/icons/p-low.svg"
+import Mid from "../../assets/icons/p-mid.svg"
 
 export const IssuePpl = ({
   qty,
@@ -52,11 +57,11 @@ export const IssueIcons = ({
         <FiBookmark className="h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
       ) : null}
       {priority === 0 ? (
-        <FiArrowDown className="h-5 w-5 text-green-600" />
+        <Image src={Low} alt="Low Priority" width={20} height={20} />
       ) : priority === 1 ? (
-        <FiArrowUp className="h-5 w-5 text-yellow-500" />
+        <Image src={Mid} alt="Medium Priority" width={20} height={20} />
       ) : priority === 2 ? (
-        <FiArrowUp className="h-5 w-5 text-red-500" />
+        <Image src={High} alt="High Priority" width={20} height={20} />
       ) : null}
     </div>
   )

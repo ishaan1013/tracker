@@ -9,12 +9,14 @@ import {
 
 import { IoSearch } from "react-icons/io5"
 import { FiPlus } from "react-icons/fi"
+import { useCreatePopupStore } from "../../hooks"
 
 const Filters = () => {
   // const [users, setUsers] = useState([false, false, false, false])
   const searchStore = useSearchStore()
   const usersFilterStore = useUsersFilterStore()
   const recentStore = useRecentStore()
+  const setCreateOpened = useCreatePopupStore((state) => state.setOpened)
 
   return (
     <div className="mt-8 flex">
@@ -57,6 +59,7 @@ const Filters = () => {
       <Priority />
 
       <button
+        onClick={() => setCreateOpened(true)}
         className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
         <FiPlus className="mr-1" />
         Create Issue

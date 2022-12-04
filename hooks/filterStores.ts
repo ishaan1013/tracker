@@ -37,3 +37,13 @@ export const useRecentStore = create<RecentState>()((set) => ({
   recent: false,
   setRecent: (recent) => set({ recent }),
 }))
+
+export interface PriorityState {
+  priority: string
+  setPriority: (recent: string) => void
+}
+
+export const usePriorityStore = create<PriorityState>()((set) => ({
+  priority: "Priority",
+  setPriority: (priority) => set({ priority }),
+}))

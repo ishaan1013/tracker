@@ -9,6 +9,7 @@ import { useItemStore, useSearchStore } from "../../hooks"
 import IssuePopup from "./issuePopup"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { IssueIcons, IssuePpl } from "./issuePreview"
+import { usePriorityStore } from "../../hooks/filterStores"
 
 interface Props {
   data: IssueType
@@ -19,6 +20,7 @@ interface Props {
 
 const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
   const search = useSearchStore((state) => state.query)
+  const priority = usePriorityStore((state) => state.priority)
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -33,7 +35,11 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
     // transition,
   }
 
-  if (search === "" || data.name.includes(search)) {
+  const priorities = ["Low", "Medium", "High"]
+  const priorityMatch =
+    priority !== "Priority" ? priorities[data.priority] === priority : true
+
+  if ((search === "" || data.name.includes(search)) && priorityMatch) {
     return (
       <>
         <IssuePopup opened={pop} setOpened={setPop} data={data} />
@@ -45,9 +51,9 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
           onClick={() => {
             setPop(true)
           }}
-          className={`mb-1 w-full rounded bg-white p-3 shadow-lg ${
+          className={`mb-1 w-full cursor-default rounded bg-white p-3 shadow-lg hover:bg-gradient-to-r hover:from-blue-50 hover:via-white hover:to-white ${
             activeId === id
-              ? "z-10 border-[1px] border-blue-700 shadow-blue-900/20"
+              ? "z-10 !cursor-grabbing border-[1px] border-blue-700 shadow-blue-900/20"
               : "shadow-blue-900/5"
           } group touch-manipulation focus:outline-blue-500`}>
           <div className="flex items-center justify-between">
