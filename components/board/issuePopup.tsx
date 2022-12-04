@@ -27,21 +27,21 @@ const IssueSelect = ({
   return type === 0 ? (
     <button
       onClick={() => setType(1)}
-      className="flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      className="select-none flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
       <FiDisc className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
       ISSUE
     </button>
   ) : type === 1 ? (
     <button
       onClick={() => setType(2)}
-      className="flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      className="select-none flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
       <FiCheck className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
       BUG
     </button>
   ) : type === 2 ? (
     <button
       onClick={() => setType(0)}
-      className="flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      className="select-none flex items-center rounded border-[1px] border-blue-600 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
       <FiBookmark className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
       STORY
     </button>

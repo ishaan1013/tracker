@@ -23,7 +23,7 @@ const SidebarButtons = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center justify-start space-y-4">
+      <div className="flex select-none flex-col items-center justify-start space-y-4">
         <div className="relative mb-4 h-8 w-8 -hue-rotate-15">
           <Image src={Logo} alt="logo" />
         </div>

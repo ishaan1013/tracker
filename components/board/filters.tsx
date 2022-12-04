@@ -24,7 +24,7 @@ const Filters = () => {
           value={searchStore.query}
           placeholder="Type to search..."
           onChange={(e) => searchStore.setQuery(e.target.value)}
-          className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-sm text-gray-600 placeholder:opacity-40 focus:outline-blue-500"
+          className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-sm text-gray-600 placeholder:select-none placeholder:opacity-40 focus:outline-blue-500"
         />
       </div>
 
@@ -46,7 +46,7 @@ const Filters = () => {
 
       <button
         onClick={() => recentStore.setRecent(!recentStore.recent)}
-        className={`ml-6 whitespace-nowrap rounded border-[1px] duration-100 focus:outline-blue-500 ${
+        className={`ml-6 select-none whitespace-nowrap rounded border-[1px] duration-100 focus:outline-blue-500 ${
           recentStore.recent
             ? "border-blue-700 bg-gray-150 text-blue-700 hover:bg-gray-200"
             : "border-gray-300 text-gray-600 hover:bg-gray-150"
@@ -57,7 +57,7 @@ const Filters = () => {
       <Priority />
 
       <button
-        className={`ml-6 flex items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+        className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
         <FiPlus className="mr-1" />
         Create Issue
       </button>

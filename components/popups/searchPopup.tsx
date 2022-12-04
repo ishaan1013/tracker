@@ -46,7 +46,7 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
           <div className="relative mt-4 flex w-full items-center">
             <IoSearch className="absolute left-2.5 text-gray-600" />
             <input
-              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:opacity-40 focus:outline-blue-500 xl:text-lg"
+              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:select-none placeholder:opacity-40 focus:outline-blue-500 xl:text-lg"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Type to search..."

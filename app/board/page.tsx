@@ -9,7 +9,6 @@ import { authOptions } from "../../pages/api/auth/[...nextauth]"
 import Sidebar from "../../components/board/sidebar"
 import Boards from "../../components/board/boards"
 import Filters from "../../components/board/filters"
-import { FiMoreHorizontal } from "react-icons/fi"
 
 const getData = async () => {
   const prisma = new PrismaClient()
@@ -37,13 +36,12 @@ const Board = async () => {
     <main className="flex max-h-screen items-start justify-start">
       <Sidebar />
 
-      <div className="flex h-screen flex-grow flex-col overflow-auto p-8">
-        <div className="mb-2 flex cursor-default items-center justify-start space-x-2 whitespace-nowrap text-gray-600">
+      <div className="flex h-screen flex-grow flex-col overflow-auto p-8 ">
+        <div className="mb-2 flex cursor-default select-none items-center justify-start space-x-2 whitespace-nowrap text-gray-600">
           <div className="flex items-center">
             Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;
-            <div className="group z-10 flex items-center rounded px-1.5 py-0.5 font-medium  hover:bg-gray-150">
+            <div className="z-10 flex items-center rounded px-1.5 font-medium  hover:bg-gray-150">
               Kanban Board
-              <FiMoreHorizontal className="ml-1.5 mr-0.5 cursor-pointer opacity-0 duration-100 group-hover:opacity-100" />
             </div>
           </div>
         </div>

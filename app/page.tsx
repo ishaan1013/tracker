@@ -32,13 +32,13 @@ const Home = async () => {
           href="https://github.com/ishaan1013/tracker"
           target="_blank"
           rel="noreferrer"
-          className="mt-2 flex items-center rounded py-1 px-2.5 font-medium text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500">
+          className="mt-2 flex items-center rounded py-1 px-2.5 font-medium text-gray-600 duration-100 hover:bg-gray-300 focus:outline-blue-500">
           <FaGithub className="mr-1" />
           Repo
         </a>
 
         <div className="absolute top-0 -z-10 h-full w-full rounded bg-white" />
-        <div className="absolute -bottom-[5.75rem] left-2 -z-20 duration-1000 ease-in-out peer-hover:-translate-x-2 peer-hover:translate-y-2 peer-hover:rotate-6 peer-hover:scale-110">
+        <div className="pointer-events-none absolute -bottom-[5.75rem] left-2 -z-20 select-none duration-1000 ease-in-out peer-hover:-translate-x-2 peer-hover:translate-y-2 peer-hover:rotate-6 peer-hover:scale-110">
           <Image
             src={Block}
             alt="arbitrary shape graphic"
@@ -46,7 +46,7 @@ const Home = async () => {
             height={190}
           />
         </div>
-        <div className="absolute -right-[5.75rem] bottom-8 -z-20 -rotate-3 duration-1000 ease-in-out peer-hover:translate-x-2 peer-hover:rotate-12 peer-hover:scale-110">
+        <div className="pointer-events-none absolute -right-[5.75rem] bottom-8 -z-20 -rotate-3 select-none duration-1000 ease-in-out peer-hover:translate-x-2 peer-hover:rotate-12 peer-hover:scale-110">
           <Image
             src={Cone}
             alt="arbitrary shape graphic"
@@ -54,7 +54,7 @@ const Home = async () => {
             height={170}
           />
         </div>
-        <div className="absolute -top-[5.25rem] -z-20 rotate-45 duration-1000 ease-in-out peer-hover:-translate-y-2 peer-hover:rotate-[12deg] peer-hover:scale-110">
+        <div className="pointer-events-none absolute -top-[5.25rem] -z-20 rotate-45 select-none duration-1000 ease-in-out peer-hover:-translate-y-2 peer-hover:rotate-[12deg] peer-hover:scale-110">
           <Image
             src={Sphere}
             alt="arbitrary shape graphic"
@@ -63,31 +63,67 @@ const Home = async () => {
           />
         </div>
 
-        <div className="absolute bottom-3 flex items-center space-x-1.5 opacity-30">
-          <Image src={Next} alt="Next Logo" width={25} height={25} />
-          <Image
-            src={Tailwind}
-            alt="Tailwind Logo"
-            width={27}
-            height={27}
-            className="brightness-[0.1]"
-          />
-          <Image
-            src={NextAuth}
-            alt="NextAuth Logo"
-            width={21}
-            height={24}
-            className="brightness-50 grayscale"
-          />
-          <Image
-            src={Zustand}
-            alt="Zustand Logo"
-            width={32}
-            height={32}
-            className="brightness-50 grayscale"
-          />
-          <Image src={PScale} alt="PScale Logo" width={25} height={25} />
-          <Image src={Prisma} alt="Prisma Logo" width={20} height={24} />
+        <div className="absolute bottom-3 flex select-none items-center space-x-1.5">
+          <a
+            href="https://nextjs.org/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image src={Next} alt="Next Logo" width={25} height={25} />
+          </a>
+          <a
+            href="https://tailwindcss.com/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image
+              src={Tailwind}
+              alt="Tailwind Logo"
+              width={27}
+              height={27}
+              className="brightness-[0.1]"
+            />
+          </a>
+          <a
+            href="https://next-auth.js.org/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image
+              src={NextAuth}
+              alt="NextAuth Logo"
+              width={21}
+              height={24}
+              className="brightness-50 grayscale"
+            />
+          </a>
+          <a
+            href="https://github.com/pmndrs/zustand"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image
+              src={Zustand}
+              alt="Zustand Logo"
+              width={32}
+              height={32}
+              className="brightness-50 grayscale"
+            />
+          </a>
+          <a
+            href="https://planetscale.com/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image src={PScale} alt="PScale Logo" width={25} height={25} />
+          </a>
+          <a
+            href="https://www.prisma.io/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image src={Prisma} alt="Prisma Logo" width={20} height={24} />
+          </a>
         </div>
       </div>
     </div>
