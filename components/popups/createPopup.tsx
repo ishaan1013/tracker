@@ -63,8 +63,8 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
     <Dialog.Root open={opened} onOpenChange={setOpened}>
       {/* <Dialog.Trigger /> */}
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-[#011242]/50" />
-        <Dialog.Content className="dialog xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[40rem]">
+        <Dialog.Overlay className="DialogOverlay fixed inset-0 z-50 bg-[#011242]/50" />
+        <Dialog.Content className="DialogContent xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[40rem]">
           <p className="text-start text-xl font-semibold sm:text-2xl">
             Create Issue
           </p>
