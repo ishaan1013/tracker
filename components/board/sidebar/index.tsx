@@ -11,9 +11,12 @@ import {
   FiGitCommit,
   FiGitMerge,
 } from "react-icons/fi"
+import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 export default function Sidebar() {
   const [hidden, setHidden] = useState(false)
+  const path = usePathname()
 
   return (
     <div
@@ -50,15 +53,33 @@ export default function Sidebar() {
                 </p>
               </div>
             </div>
-            <button className="mt-4 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium hover:bg-gray-200 focus:outline-blue-500">
-              <FiTrello className="mr-2" /> Kanban Board
-            </button>
-            <button className="mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium hover:bg-gray-200 focus:outline-blue-500">
+            <Link
+              href="/board"
+              className={`${
+                path === "/board"
+                  ? "bg-gray-200 hover:bg-gray-300"
+                  : "hover:bg-gray-200"
+              } mt-4 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+              <FiTrello className="mr-2" /> Board
+            </Link>
+            <Link
+              href="/roadmap"
+              className={`${
+                path === "/roadmap"
+                  ? "bg-gray-200 hover:bg-gray-300"
+                  : "hover:bg-gray-200"
+              } mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
               <FiGitCommit className="mr-2" /> Roadmap
-            </button>
-            <button className="mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium hover:bg-gray-200 focus:outline-blue-500">
+            </Link>
+            <Link
+              href="/settings"
+              className={`${
+                path === "/settings"
+                  ? "bg-gray-200 hover:bg-gray-300"
+                  : "hover:bg-gray-200"
+              } mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
               <FiSettings className="mr-2" /> Project Settings
-            </button>
+            </Link>
           </div>
         </div>
       </div>

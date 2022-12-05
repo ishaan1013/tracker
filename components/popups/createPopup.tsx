@@ -14,7 +14,8 @@ import {
   FiRefreshCw,
 } from "react-icons/fi"
 import { IoSearch } from "react-icons/io5"
-import Priority from "../board/priority"
+import Priority from "../board/prioritySelect"
+import Status from "../board/statusSelect"
 // import { IssueType } from '../../prisma/issueType';
 
 interface Props {
@@ -77,7 +78,8 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
 
             <div className="mt-3 flex items-center">
               <IssueSelect type={type} setType={setType} />
-              <Priority popup />
+              <Priority popup initial={0} />
+              <Status />
             </div>
 
             <div className="mb-3 flex h-[1px] w-full bg-gray-300" />

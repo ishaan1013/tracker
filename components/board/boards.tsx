@@ -49,7 +49,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   )
 
   return (
-    <div className="mt-12 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
+    <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

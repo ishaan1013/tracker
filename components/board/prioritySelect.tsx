@@ -5,20 +5,30 @@ import * as Select from "@radix-ui/react-select"
 import { FiCheck, FiChevronDown } from "react-icons/fi"
 import { usePriorityStore } from "../../hooks/filterStores"
 
-const Priority = ({ popup }: { popup?: boolean }) => {
+const Priority = ({
+  popup,
+  initial,
+}: {
+  popup?: boolean
+  initial?: number
+}) => {
   const [val, setVal] = useState<string>("Priority")
-
   const setPriority = usePriorityStore((state) => state.setPriority)
+  const [triggerClass, setTriggerClass] = useState<string>("")
+
+  const validInitial = initial === 0 || initial === 1 || initial === 2
+
+  useEffect(() => {
+    if (validInitial) {
+      setVal(["Low", "Medium", "High"][initial])
+    }
+  }, [])
 
   useEffect(() => {
     if (!popup) {
       setPriority(val)
     }
-  }, [val])
 
-  const [triggerClass, setTriggerClass] = useState<string>("")
-
-  useEffect(() => {
     if (val === "Priority") {
       setTriggerClass(
         `${
@@ -47,26 +57,31 @@ const Priority = ({ popup }: { popup?: boolean }) => {
         <Select.Content className=" z-50 select-none rounded border-[1px] border-gray-300 bg-gray-150 p-1.5 text-base text-gray-600 duration-100 focus:outline-blue-500">
           <Select.ScrollUpButton />
           <Select.Viewport>
+            {validInitial ? null : (
+              <>
+                <Select.Item
+                  value="Priority"
+                  className="mb-1 flex cursor-pointer items-center rounded px-2 opacity-80 duration-100 hover:opacity-40 focus:outline-blue-500">
+                  <Select.ItemText>Priority</Select.ItemText>
+                </Select.Item>
+                <Select.Separator className="my-1 h-[1px] w-full bg-gray-300" />
+              </>
+            )}
             <Select.Item
-              value="Priority"
-              className="mb-1 flex cursor-pointer items-center rounded px-2 opacity-80 duration-100 hover:opacity-40 focus:outline-blue-500">
-              <Select.ItemText>Priority</Select.ItemText>
+              value="Low"
+              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              <Select.ItemText>Low</Select.ItemText>
             </Select.Item>
-            <Select.Separator className="my-1 h-[1px] w-full bg-gray-300" />
-            <Select.Item
-              value="High"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
-              <Select.ItemText>High</Select.ItemText>
-            </Select.Item>
+
             <Select.Item
               value="Medium"
               className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>Medium</Select.ItemText>
             </Select.Item>
             <Select.Item
-              value="Low"
-              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
-              <Select.ItemText>Low</Select.ItemText>
+              value="High"
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              <Select.ItemText>High</Select.ItemText>
             </Select.Item>
           </Select.Viewport>
           <Select.ScrollDownButton />

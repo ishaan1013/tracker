@@ -55,3 +55,17 @@ a {
   border-radius: 3px;
   background: #b4bac2;
 }
+
+.roadmapScroll::-webkit-scrollbar {
+  height: 12px;
+  z-index: 100;
+}
+
+.roadmapScroll::-webkit-scrollbar-track {
+  background: #d1d5db;
+}
+
+.roadmapScroll::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: #b4bac2;
+}

@@ -1,6 +1,6 @@
 const { PrismaClient } = require('@prisma/client');
 const { issues } = require('./data.js');
-const prisma = new PrismaClient();
+const prisma = require('./db.js');
 
 const load = async () => {
   try {
