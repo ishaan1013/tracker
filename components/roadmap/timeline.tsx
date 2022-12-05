@@ -5,7 +5,7 @@ import { PrismaClient, Issue } from "@prisma/client"
 import { prisma } from "../../prisma/db"
 import { IssueType } from "../../prisma/issueType"
 
-import { FiPlus } from "react-icons/fi"
+import { FiLoader, FiPlus, FiZap } from "react-icons/fi"
 
 const Timeline = () => {
   const monthRef = useRef<HTMLDivElement>(null)
@@ -23,7 +23,17 @@ const Timeline = () => {
         </div>
         <div className="mt-2 flex flex-col items-center justify-start px-2">
           <button
-            className={`flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-1.5 px-3 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
+            className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+            <FiZap className="mr-1" />
+            Project 1
+          </button>
+          <button
+            className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+            <FiLoader className="mr-1" />
+            Project 2
+          </button>
+          <button
+            className={`flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-1.5 pr-1 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
             <FiPlus className="mr-1" />
             Create Epic
           </button>
@@ -67,22 +77,22 @@ const Timeline = () => {
               Nov
             </div>
           </div>
-          <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+          <div
+            className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300"
+            ref={monthRef}
+            tabIndex={0}
+            id="focus">
             <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
               Dec
             </div>
-            <div className="z-10 mb-2 w-[120%] translate-x-16 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3">
+            <button className="z-10 mb-3 w-[120%] translate-x-16 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3 text-left duration-100 hover:bg-gray-200">
               Test
-            </div>
-            <div className="z-10 mb-2 w-[120%] -translate-x-4 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3">
+            </button>
+            <button className="z-10 mb-3 w-[120%] -translate-x-4 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3 text-left duration-100 hover:bg-gray-200">
               Test
-            </div>
+            </button>
           </div>
-          <div
-            ref={monthRef}
-            tabIndex={0}
-            id="focus"
-            className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+          <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
             <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
               Jan 23
             </div>
