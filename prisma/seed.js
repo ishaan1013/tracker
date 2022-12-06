@@ -1,17 +1,14 @@
-const { PrismaClient } = require('@prisma/client');
 const { issues } = require('./data.js');
-const prisma = require('./db.js');
+const { PrismaClient } = require('@prisma/client')
 
 const load = async () => {
+  const prisma =  new PrismaClient()
+
   try {
-
     await prisma.issue.deleteMany()
-    console.log('Deleted issue records')
-
     await prisma.issue.createMany({
       data: issues,
     })
-    console.log('Added issue data')
   } catch (e) {
     console.error(e)
     process.exit(1)

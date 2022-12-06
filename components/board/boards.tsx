@@ -31,8 +31,35 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
   useEffect(() => {
-    setItems(data)
+    if (data && data !== items) {
+      setItems(data)
+    }
   }, [data])
+
+  const updateItems = async ({
+    id,
+    category,
+    name,
+    description,
+    issueType,
+    priority,
+  }: {
+    id: string
+    category: number
+    name: string
+    description: string
+    issueType: number
+    priority: number
+  }) => {
+    const res = await fetch(
+      `/api/setItem?id=${id}&category=${category}&name=${name}&description=${description}&issueType=${issueType}&priority=${priority}`,
+      {
+        method: "POST",
+      }
+    )
+    const data = await res.json()
+    console.log(data)
+  }
 
   const [activeId, setActiveId] = useState("")
 
