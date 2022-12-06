@@ -49,11 +49,11 @@ const IssueSelect = ({
 interface Props {
   opened: boolean
   setOpened: (opened: boolean) => void
-  data: IssueType
+  data?: IssueType
 }
 
 const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
-  const [type, setType] = useState(data.issueType)
+  // const [type, setType] = useState(data.issueType)
 
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
@@ -62,7 +62,7 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
         <Dialog.Overlay className="DialogOverlay fixed inset-0 z-50 bg-[#011242]/50" />
         <Dialog.Content className="DialogContent xs:w-[90%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[60rem]">
           <div className="flex w-full items-center justify-between">
-            <IssueSelect type={type} setType={setType} />
+            {/* <IssueSelect type={type} setType={setType} /> */}
 
             <div className="flex space-x-2">
               <button className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-red-600 hover:bg-red-50 hover:text-red-600 focus:outline-red-400">
@@ -78,11 +78,11 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
             <div className="flex-grow">
               <input
                 className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-blue-500 sm:text-3xl"
-                defaultValue={data.name}
+                defaultValue={""}
               />
               <textarea
                 className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-blue-500 xl:text-base"
-                defaultValue={data.description}
+                defaultValue={""}
               />
             </div>
             <div className="flex w-60 flex-col items-start">
@@ -90,12 +90,7 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 Priority: <IssueIcons className="ml-1.5 -translate-y-[1px]" priority={data.priority} />
               </div> */}
               <div className="h-[1px] w-full bg-gray-300" />
-              <div className="mt-3 text-sm">
-                Created{" "}
-                <span className="font-semibold">
-                  {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
-                </span>
-              </div>
+              <div className="mt-3 text-sm">Created at Date</div>
             </div>
           </div>
 
