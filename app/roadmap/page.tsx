@@ -14,7 +14,7 @@ import { FiPlus } from "react-icons/fi"
 
 const Roadmap = async () => {
   const session = await unstable_getServerSession(authOptions)
-  if (!session) redirect("/")
+  // if (!session) redirect("/")
 
   return (
     <main className="flex max-h-screen items-start justify-start">

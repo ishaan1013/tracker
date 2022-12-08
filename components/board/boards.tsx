@@ -43,7 +43,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   const updateItems = async (items: IssueType[][]) => {
     for (const item of items[0]) {
-      const res = await fetch(`/api/setItem`, {
+      const res = await fetch(`/api/upsertItem`, {
         method: "POST",
         body: JSON.stringify({
           id: item.id,
@@ -64,7 +64,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
       console.log("sent", data)
     }
     for (const item of items[1]) {
-      const res = await fetch(`/api/setItem`, {
+      const res = await fetch(`/api/upsertItem`, {
         method: "POST",
         body: JSON.stringify({
           id: item.id,
@@ -85,7 +85,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
       console.log("sent", data)
     }
     for (const item of items[2]) {
-      const res = await fetch(`/api/setItem`, {
+      const res = await fetch(`/api/upsertItem`, {
         method: "POST",
         body: JSON.stringify({
           id: item.id,
