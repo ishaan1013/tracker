@@ -15,7 +15,11 @@ const Board = async () => {
   const session = await unstable_getServerSession(authOptions)
   if (!session) redirect("/")
 
-  const dataRes: Issue[] = await prisma.issue.findMany()
+  const dataRes: Issue[] = await prisma.issue.findMany({
+    orderBy: {
+      index: "asc",
+    },
+  })
   const data: IssueType[][] = [[], [], []]
   dataRes.map((item) => {
     const newCreatedAt = item.createdAt.toString()
@@ -49,9 +53,7 @@ const Board = async () => {
         </h1>
         {/* <p>signed in as {JSON.stringify(session)}</p> */}
 
-        {/* <p className="text-sm">{data ? JSON.stringify(
-          data
-        ) : "no data"}</p> */}
+        {/* <p className="text-sm">{data ? JSON.stringify(data) : "no data"}</p> */}
 
         <Filters />
 

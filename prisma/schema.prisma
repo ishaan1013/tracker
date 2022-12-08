@@ -68,6 +68,7 @@ model Issue {
   category    Int
   issueType   Int
   priority    Int
+  index       Int      @unique @default(autoincrement())
   createdAt   DateTime @default(now())
 
   @@index([userId])

@@ -36,29 +36,75 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
     }
   }, [data])
 
-  const updateItems = async ({
-    id,
-    category,
-    name,
-    description,
-    issueType,
-    priority,
-  }: {
-    id: string
-    category: number
-    name: string
-    description: string
-    issueType: number
-    priority: number
-  }) => {
-    const res = await fetch(
-      `/api/setItem?id=${id}&category=${category}&name=${name}&description=${description}&issueType=${issueType}&priority=${priority}`,
-      {
+  useEffect(() => {
+    updateItems(items)
+    console.log("sent in useEffect")
+  }, [items])
+
+  const updateItems = async (items: IssueType[][]) => {
+    for (const item of items[0]) {
+      const res = await fetch(`/api/setItem`, {
         method: "POST",
-      }
-    )
-    const data = await res.json()
-    console.log(data)
+        body: JSON.stringify({
+          id: item.id,
+          name: item.name,
+          userId: item.userId,
+          description: item.description,
+          category: item.category,
+          issueType: item.issueType,
+          priority: item.priority,
+          index: items[0].indexOf(item),
+          createdAt: item.createdAt,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const data = await res.json()
+      console.log("sent", data)
+    }
+    for (const item of items[1]) {
+      const res = await fetch(`/api/setItem`, {
+        method: "POST",
+        body: JSON.stringify({
+          id: item.id,
+          name: item.name,
+          userId: item.userId,
+          description: item.description,
+          category: item.category,
+          issueType: item.issueType,
+          priority: item.priority,
+          index: items[1].indexOf(item),
+          createdAt: item.createdAt,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const data = await res.json()
+      console.log("sent", data)
+    }
+    for (const item of items[2]) {
+      const res = await fetch(`/api/setItem`, {
+        method: "POST",
+        body: JSON.stringify({
+          id: item.id,
+          name: item.name,
+          userId: item.userId,
+          description: item.description,
+          category: item.category,
+          issueType: item.issueType,
+          priority: item.priority,
+          index: items[2].indexOf(item),
+          createdAt: item.createdAt,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      const data = await res.json()
+      console.log("sent", data)
+    }
   }
 
   const [activeId, setActiveId] = useState("")
@@ -77,6 +123,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
+      <p className="whitespace-pre text-xs text-gray-600">
+        {JSON.stringify(items, null, "\t")}
+      </p>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
