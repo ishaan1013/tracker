@@ -14,7 +14,7 @@ import {
   FiRefreshCw,
 } from "react-icons/fi"
 import { IoSearch } from "react-icons/io5"
-import { IssueIcons, IssuePpl } from "../board/issuePreview"
+import { IssueIcons, IssuePpl } from "../board/previewInfo"
 import SearchPreview from "./searchPreview"
 // import { IssueType } from '../../prisma/issueType';
 

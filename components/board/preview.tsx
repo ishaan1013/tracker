@@ -8,7 +8,7 @@ import { useItemStore, useSearchStore } from "../../hooks"
 
 import IssuePopup from "./issuePopup"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
-import { IssueIcons, IssuePpl } from "./issuePreview"
+import { IssueIcons, IssuePpl } from "./previewInfo"
 import { usePriorityStore } from "../../hooks/filterStores"
 
 interface Props {

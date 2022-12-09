@@ -1,5 +1,5 @@
 import { IssueType } from "../../prisma/issueType"
-import { IssueIcons, IssuePpl } from "../board/issuePreview"
+import { IssueIcons, IssuePpl } from "../board/previewInfo"
 
 const SearchPreview = ({
   issues,

@@ -14,7 +14,7 @@ import {
 } from "react-icons/fi"
 import { IssueType } from "../../prisma/issueType"
 import { data } from "autoprefixer"
-import { IssueIcons } from "./issuePreview"
+import { IssueIcons } from "./previewInfo"
 import Priority from "./prioritySelect"
 
 const IssueSelect = ({
@@ -91,11 +91,13 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               {/* <div className="mb-3 py-1 px-2 rounded border-[1px] border-gray-300 duration-100 hover:bg-gray-150 font-semibold flex items-center">
                 Priority: <IssueIcons className="ml-1.5 -translate-y-[1px]" priority={data.priority} />
               </div> */}
+              <div className="mb-1 text-sm font-semibold">Priority:</div>
               <Priority popup initial={data.priority} />
-              <div className="h-[1px] w-full bg-gray-300" />
+              <div className="mb-1 text-sm font-semibold">Assignees:</div>
+              <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
               <div className="mt-3 text-sm">
                 Created{" "}
-                <span className="font-semibold">
+                <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
               </div>
