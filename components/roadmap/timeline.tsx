@@ -7,11 +7,16 @@ import { IssueType } from "../../prisma/issueType"
 
 import { FiChevronLeft, FiLoader, FiPlus, FiZap } from "react-icons/fi"
 import EpicPopup from "./epicPopup"
+import CreatePopup from "./createEpicPopup"
+import { useCreateEpicPopupStore } from "../../hooks"
 
 const Timeline = () => {
   const monthRef = useRef<HTMLDivElement>(null)
   const [collapsed, setCollapsed] = useState(false)
   const [opened, setOpened] = useState(false)
+
+  const openedCreate = useCreateEpicPopupStore((state) => state.opened)
+  const setOpenedCreate = useCreateEpicPopupStore((state) => state.setOpened)
 
   useEffect(() => {
     const monthTo = monthRef.current
@@ -20,6 +25,7 @@ const Timeline = () => {
 
   return (
     <>
+      <CreatePopup opened={openedCreate} setOpened={setOpenedCreate} />
       <EpicPopup opened={opened} setOpened={setOpened} />
       <div className="mt-8 flex h-full w-full items-center rounded border-[1px] border-gray-300">
         <div
@@ -43,7 +49,9 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
+                collapsed ? "py-2.5" : "py-1.5"
+              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
               <FiZap className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 1"}
             </button>
@@ -51,12 +59,19 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
+                collapsed ? "py-2.5" : "py-1.5"
+              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
               <FiLoader className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 2"}
             </button>
             <button
-              className={`flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-1.5 pr-1 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
+              onClick={() => {
+                setOpenedCreate(true)
+              }}
+              className={`flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 ${
+                collapsed ? "py-2.5" : "py-1.5"
+              } pr-1 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-blue-500`}>
               <FiPlus className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Create Epic"}
             </button>

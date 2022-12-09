@@ -69,18 +69,18 @@ const Priority = ({
             )}
             <Select.Item
               value="Low"
-              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>Low</Select.ItemText>
             </Select.Item>
 
             <Select.Item
               value="Medium"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>Medium</Select.ItemText>
             </Select.Item>
             <Select.Item
               value="High"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>High</Select.ItemText>
             </Select.Item>
           </Select.Viewport>

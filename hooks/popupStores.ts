@@ -6,16 +6,21 @@ export interface PopupStoreState {
 }
 
 export const useCreatePopupStore = create<PopupStoreState>()((set) => ({
-    opened: false,
-    setOpened: (opened) => set({ opened }),
+  opened: false,
+  setOpened: (opened) => set({ opened }),
 }))
 
 export const useSearchPopupStore = create<PopupStoreState>()((set) => ({
-    opened: false,
-    setOpened: (opened) => set({ opened }),
+  opened: false,
+  setOpened: (opened) => set({ opened }),
 }))
 
 export const useAboutPopupStore = create<PopupStoreState>()((set) => ({
-    opened: false,
-    setOpened: (opened) => set({ opened }),
+  opened: false,
+  setOpened: (opened) => set({ opened }),
+}))
+
+export const useCreateEpicPopupStore = create<PopupStoreState>()((set) => ({
+  opened: false,
+  setOpened: (opened) => set({ opened }),
 }))

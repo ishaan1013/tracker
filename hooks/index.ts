@@ -1,6 +1,6 @@
 import { useItemStore } from "./useItemStore";
 import { useSearchStore, useUsersFilterStore, useRecentStore } from "./filterStores";
-import { useSearchPopupStore, useCreatePopupStore, useAboutPopupStore } from "./popupStores";
+import { useSearchPopupStore, useCreatePopupStore, useAboutPopupStore, useCreateEpicPopupStore } from "./popupStores";
 import { useSaveStore } from "./useSaveStore";
 
 export { 
@@ -11,5 +11,6 @@ export {
   useSearchPopupStore, 
   useCreatePopupStore,
   useAboutPopupStore, 
+  useCreateEpicPopupStore,
   useSaveStore 
 };

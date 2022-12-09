@@ -23,17 +23,17 @@ const Status = () => {
           <Select.Viewport>
             <Select.Item
               value="To-Do"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>To-Do</Select.ItemText>
             </Select.Item>
             <Select.Item
               value="In Progress"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>In Progress</Select.ItemText>
             </Select.Item>
             <Select.Item
               value="Complete"
-              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-700 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-blue-500 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
               <Select.ItemText>Complete</Select.ItemText>
             </Select.Item>
           </Select.Viewport>

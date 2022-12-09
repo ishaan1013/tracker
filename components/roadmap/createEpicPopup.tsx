@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { useItemStore } from "../../hooks"
+// import { useCreateEpicPopupStore } from "../../hooks"
 import {
   FiX,
   FiTrash,
@@ -13,10 +13,8 @@ import {
   FiSave,
   FiRefreshCw,
 } from "react-icons/fi"
-import { IoSearch } from "react-icons/io5"
 import Priority from "../board/prioritySelect"
 import Status from "../board/statusSelect"
-// import { IssueType } from '../../prisma/issueType';
 
 interface Props {
   opened: boolean
@@ -66,18 +64,18 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
         <Dialog.Overlay className="DialogOverlay fixed inset-0 z-50 bg-[#011242]/50" />
         <Dialog.Content className="DialogContent xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-blue-500 lg:w-[40rem]">
           <p className="text-start text-xl font-semibold sm:text-2xl">
-            Create Issue
+            Create Epic
           </p>
           <div className="mt-4 w-full">
             <input
               className="mr-4 w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-xl font-medium placeholder:select-none placeholder:opacity-40 focus:outline-blue-500 sm:text-2xl"
-              placeholder={"Issue Title"}
+              placeholder={"Title"}
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
 
             <div className="mt-3 flex items-center">
-              <IssueSelect type={type} setType={setType} />
+              {/* <IssueSelect type={type} setType={setType} /> */}
               <Priority popup initial={0} />
               <Status />
             </div>
@@ -86,7 +84,7 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
 
             <textarea
               className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px]  border-gray-300 bg-gray-150 p-2 text-sm placeholder:select-none placeholder:opacity-40 focus:outline-blue-500 xl:text-base"
-              placeholder={"Issue Description"}
+              placeholder={"Description"}
               value={desc}
               onChange={(e) => setDesc(e.target.value)}
             />

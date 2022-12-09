@@ -96,7 +96,7 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
           <div className="mt-8 flex items-center self-start">
             <button
-              className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-2 pl-4 pr-5 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
+              className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-2 pl-4 pr-5 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
               <FiSave className="mr-1.5" />
               Save
             </button>

@@ -60,7 +60,7 @@ const Filters = () => {
 
       <button
         onClick={() => setCreateOpened(true)}
-        className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
+        className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
         <FiPlus className="mr-1" />
         Create Issue
       </button>
