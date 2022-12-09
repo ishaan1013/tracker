@@ -22,7 +22,7 @@ const Home = async () => {
   if (session) redirect("/board")
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-tr from-blue-600 to-[#061236]">
+    <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-tr from-blue-700 to-[#061236]">
       <div className="relative z-10 flex w-[450px] flex-col items-center justify-center rounded bg-white px-8 pt-14 pb-20">
         <h1 className="text-3xl font-bold">Project & Issue Tracker</h1>
 

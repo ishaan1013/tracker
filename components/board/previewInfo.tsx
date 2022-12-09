@@ -50,11 +50,11 @@ export const IssueIcons = ({
     <div
       className={`flex items-center space-x-1.5 ${className ? className : ""}`}>
       {type === 0 ? (
-        <FiDisc className="h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+        <FiDisc className="h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       ) : type === 1 ? (
-        <FiCheck className="h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+        <FiCheck className="h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       ) : type === 2 ? (
-        <FiBookmark className="h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+        <FiBookmark className="h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       ) : null}
       {priority === 0 ? (
         <Image src={Low} alt="Low Priority" width={20} height={20} />

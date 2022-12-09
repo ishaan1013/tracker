@@ -10,6 +10,7 @@ import { authOptions } from "../../pages/api/auth/[...nextauth]"
 import Sidebar from "../../components/board/sidebar"
 import Boards from "../../components/board/boards"
 import Filters from "../../components/board/filters"
+import Header from "../../components/board/header"
 
 const Board = async () => {
   const session = await unstable_getServerSession(authOptions)
@@ -48,9 +49,7 @@ const Board = async () => {
           </div>
         </div> */}
 
-        <h1 className="mb-6 whitespace-nowrap text-2xl font-bold">
-          Kanban Board
-        </h1>
+        <Header />
         {/* <p>signed in as {JSON.stringify(session)}</p> */}
 
         {/* <p className="text-sm">{data ? JSON.stringify(data) : "no data"}</p> */}

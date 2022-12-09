@@ -2,7 +2,7 @@
 
 import "../globals.css"
 import SidebarButtons from "../../components/board/sidebar/sidebarButtons"
-import SidebarPopups from "../../components/popups/sidebarPopups"
+import SidebarPopups from "../../components/issuePopups/sidebarPopups"
 // import { useSession } from "next-auth/react"
 
 export default function RootLayout({

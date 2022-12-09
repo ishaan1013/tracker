@@ -23,7 +23,7 @@ const Timeline = () => {
       <EpicPopup opened={opened} setOpened={setOpened} />
       <div className="mt-8 flex h-full w-full items-center rounded border-[1px] border-gray-300">
         <div
-          className={`relative h-full rounded-l border-r-2 border-gray-300 ${
+          className={`relative h-full rounded-l border-r-2 border-blue-700 ${
             collapsed ? "w-20" : "w-48 min-w-[192px] lg:w-60 lg:min-w-[240px]"
           }`}>
           <button
@@ -43,7 +43,7 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
               <FiZap className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 1"}
             </button>
@@ -51,7 +51,7 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 py-1.5 pr-1 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500`}>
               <FiLoader className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 2"}
             </button>

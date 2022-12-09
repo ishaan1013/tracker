@@ -23,7 +23,7 @@ import {
 } from "@dnd-kit/modifiers"
 import { useState, useEffect } from "react"
 import { IssueType } from "../../prisma/issueType"
-import { useItemStore } from "../../hooks"
+import { useItemStore, useSaveStore } from "../../hooks"
 
 import Preview from "./preview"
 
@@ -38,22 +38,24 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   useEffect(() => {
     updateItems(items)
-    console.log("sent in useEffect")
   }, [items])
 
-  const [saving, setSaving] = useState(0)
+  const save = useSaveStore((state) => state.save)
+  const incSave = useSaveStore((state) => state.incSave)
+  const decSave = useSaveStore((state) => state.decSave)
+
   useEffect(() => {
-    if (saving === 0) {
-      console.log("done saving")
-    } else if (saving > 0) {
-      console.log("saving")
+    if (save === 0) {
+      console.log("done save")
+    } else if (save > 0) {
+      console.log("save")
     } else {
-      console.log("saving is less than 0???")
+      console.log("save is less than 0???")
     }
-  }, [saving])
+  }, [save])
 
   const updateItems = async (items: IssueType[][]) => {
-    setSaving((prev) => prev + 1)
+    incSave()
     for (const item of items[0]) {
       const res = await fetch(`/api/upsertItem`, {
         method: "POST",
@@ -117,7 +119,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
       const data = await res.json()
       console.log("sent", data)
     }
-    setSaving((prev) => prev - 1)
+    decSave()
   }
 
   const [activeId, setActiveId] = useState("")
@@ -136,9 +138,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
-      <p className="whitespace-pre text-xs text-gray-600">
+      {/* <p className="whitespace-pre text-xs text-gray-600">
         {JSON.stringify(items, null, "\t")}
-      </p>
+      </p> */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

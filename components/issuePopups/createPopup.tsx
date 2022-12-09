@@ -33,22 +33,22 @@ const IssueSelect = ({
   return type === 0 ? (
     <button
       onClick={() => setType(1)}
-      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-600 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
-      <FiDisc className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      <FiDisc className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       ISSUE
     </button>
   ) : type === 1 ? (
     <button
       onClick={() => setType(2)}
-      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-600 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
-      <FiCheck className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      <FiCheck className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       BUG
     </button>
   ) : type === 2 ? (
     <button
       onClick={() => setType(0)}
-      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-600 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-600 duration-100 hover:bg-blue-100 focus:outline-blue-500">
-      <FiBookmark className="mr-2 h-5 w-5 rounded bg-blue-600 p-0.5 text-white" />
+      className="mb-3 mr-3 flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-1 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-blue-500">
+      <FiBookmark className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
       STORY
     </button>
   ) : null
@@ -93,7 +93,7 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
 
             <div className="flex w-full select-none items-center justify-between space-x-4">
               <button
-                className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500 xl:text-lg`}>
+                className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-700 focus:outline-blue-500 xl:text-lg`}>
                 <FiPlus className="mr-1.5" />
                 Create
               </button>

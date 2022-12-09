@@ -51,7 +51,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
           onClick={() => {
             setPop(true)
           }}
-          className={`mb-1 w-full cursor-default rounded bg-white p-3 shadow-lg hover:bg-gradient-to-r hover:from-blue-100 hover:via-white hover:to-white ${
+          className={`mb-1 w-full cursor-default rounded bg-white p-3 shadow-lg hover:bg-gradient-to-br hover:from-blue-50 hover:via-white hover:to-white ${
             activeId === id
               ? "z-10 !cursor-grabbing border-[1px] border-blue-700 shadow-blue-900/20"
               : "shadow-blue-900/5"
