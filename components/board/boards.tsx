@@ -41,7 +41,19 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
     console.log("sent in useEffect")
   }, [items])
 
+  const [saving, setSaving] = useState(0)
+  useEffect(() => {
+    if (saving === 0) {
+      console.log("done saving")
+    } else if (saving > 0) {
+      console.log("saving")
+    } else {
+      console.log("saving is less than 0???")
+    }
+  }, [saving])
+
   const updateItems = async (items: IssueType[][]) => {
+    setSaving((prev) => prev + 1)
     for (const item of items[0]) {
       const res = await fetch(`/api/upsertItem`, {
         method: "POST",
@@ -105,6 +117,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
       const data = await res.json()
       console.log("sent", data)
     }
+    setSaving((prev) => prev - 1)
   }
 
   const [activeId, setActiveId] = useState("")

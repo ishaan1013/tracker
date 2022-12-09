@@ -69,6 +69,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                   onClick={(e) => {
                     e.stopPropagation()
                     if (col === 1) {
+                      data.category = 0
+                      data.index = items[0].length
                       setItems([
                         [...items[0], data],
                         items[1].filter((item) => item !== data),
@@ -76,6 +78,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                       ])
                     }
                     if (col === 2) {
+                      data.category = 1
+                      data.index = items[1].length
                       setItems([
                         items[0],
                         [...items[1], data],
@@ -92,6 +96,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                   onClick={(e) => {
                     e.stopPropagation()
                     if (col === 0) {
+                      data.category = 1
+                      data.index = items[1].length
                       setItems([
                         items[0].filter((item) => item !== data),
                         [...items[1], data],
@@ -99,6 +105,8 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                       ])
                     }
                     if (col === 1) {
+                      data.category = 2
+                      data.index = items[2].length
                       setItems([
                         items[0],
                         items[1].filter((item) => item !== data),
