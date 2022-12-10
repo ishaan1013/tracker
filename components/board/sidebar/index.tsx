@@ -58,8 +58,8 @@ export default function Sidebar() {
               className={`${
                 path === "/board"
                   ? "bg-gray-200 hover:bg-gray-300"
-                  : "hover:bg-gray-200"
-              } mt-4 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+                  : "bg-transparent hover:bg-gray-200"
+              } mt-4 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
               <FiTrello className="mr-2" /> Board
             </Link>
             <Link
@@ -67,8 +67,8 @@ export default function Sidebar() {
               className={`${
                 path === "/roadmap"
                   ? "bg-gray-200 hover:bg-gray-300"
-                  : "hover:bg-gray-200"
-              } mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+                  : "bg-transparent hover:bg-gray-200"
+              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
               <FiGitCommit className="mr-2" /> Roadmap
             </Link>
             <Link
@@ -76,8 +76,8 @@ export default function Sidebar() {
               className={`${
                 path === "/settings"
                   ? "bg-gray-200 hover:bg-gray-300"
-                  : "hover:bg-gray-200"
-              } mt-1 flex items-center justify-start rounded  bg-transparent py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+                  : "bg-transparent hover:bg-gray-200"
+              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
               <FiSettings className="mr-2" /> Project Settings
             </Link>
           </div>
