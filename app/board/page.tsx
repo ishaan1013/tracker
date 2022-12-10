@@ -18,6 +18,7 @@ const Board = async () => {
 
   const dataRes: Issue[] = await prisma.issue.findMany({
     orderBy: {
+      // @ts-ignore: Production build bug?
       index: "asc",
     },
   })
