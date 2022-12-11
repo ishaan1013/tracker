@@ -30,7 +30,7 @@ const Filters = () => {
             value={searchStore.query}
             placeholder="Type to search..."
             onChange={(e) => searchStore.setQuery(e.target.value)}
-            className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-sm text-gray-600 placeholder:select-none placeholder:opacity-40 focus:outline-blue-500"
+            className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-sm text-gray-600 placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0"
           />
         </div>
         <div className="z-0 ml-6 flex flex-row-reverse items-center">
@@ -43,14 +43,14 @@ const Filters = () => {
               }}
               className={`h-9 w-9 rounded-full ${
                 index === 3 ? "" : "-ml-1.5"
-              } border-2 bg-gray-150 focus:outline-blue-500 ${
+              } border-2 bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0 ${
                 user ? "z-[2] border-blue-700 hover:z-[2]" : "border-white"
               } translate-y-0 duration-100 hover:z-[1] hover:-translate-y-1.5`}></button>
           ))}
         </div>
         <button
           onClick={() => setOpenedCreate(true)}
-          className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-blue-500`}>
+          className={`ml-6 flex select-none items-center whitespace-nowrap rounded bg-blue-700 py-1 pl-2 pr-3 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
           <FiPlus className="mr-1" />
           Create Epic
         </button>

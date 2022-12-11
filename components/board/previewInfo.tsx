@@ -26,13 +26,13 @@ export const IssuePpl = ({
             key={i}
             className={`-ml-1.5 ${
               bigger ? "h-9 w-9" : "h-7 w-7"
-            } rounded-full border-2 border-white bg-gray-150 focus:outline-blue-500`}></div>
+            } rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}></div>
         )
       })}
-      {/* <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-blue-500"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-blue-500"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-blue-500"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-blue-500"></div> */}
+      {/* <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0"></div>
+      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0"></div>
+      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0"></div>
+      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0"></div> */}
     </div>
   )
 }

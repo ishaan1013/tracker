@@ -22,9 +22,11 @@ const Home = async () => {
   if (session) redirect("/board")
 
   return (
-    <div className="flex h-screen w-screen items-center justify-center bg-gradient-to-tr from-blue-700 to-[#061236]">
-      <div className="relative z-10 flex w-[450px] flex-col items-center justify-center rounded bg-white px-8 pt-14 pb-20">
-        <h1 className="text-3xl font-bold">Project & Issue Tracker</h1>
+    <div className="flex h-screen w-screen items-center justify-between bg-gradient-to-tr from-blue-700 to-[#061236]">
+      <div className="relative z-10 flex h-full w-full flex-col items-center justify-center bg-white px-8 md:w-[45%] md:px-12 lg:w-[40%] xl:px-24">
+        <h1 className="text-center text-3xl font-bold">
+          Project & Issue Tracker
+        </h1>
 
         <AuthButton session={session} />
 
@@ -32,12 +34,12 @@ const Home = async () => {
           href="https://github.com/ishaan1013/tracker"
           target="_blank"
           rel="noreferrer"
-          className="mt-2 flex items-center rounded py-1 px-2.5 font-medium text-gray-600 duration-100 hover:bg-gray-300 focus:outline-blue-500">
-          <FaGithub className="mr-1" />
+          className="mt-3 flex w-full items-center justify-center rounded border-[1px] border-gray-300 py-3 font-semibold text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+          <FaGithub className="mr-2" />
           Repo
         </a>
 
-        <div className="absolute top-0 -z-10 h-full w-full rounded bg-white" />
+        {/* <div className="absolute top-0 -z-10 h-full w-full rounded bg-white" />
         <div className="pointer-events-none absolute -bottom-[5.75rem] left-2 -z-20 select-none duration-1000 ease-in-out peer-hover:-translate-x-2 peer-hover:translate-y-2 peer-hover:rotate-6 peer-hover:scale-110">
           <Image
             src={Block}
@@ -61,9 +63,9 @@ const Home = async () => {
             width={170}
             height={170}
           />
-        </div>
+        </div> */}
 
-        <div className="absolute bottom-3 flex select-none items-center space-x-1.5">
+        <div className="absolute bottom-5 flex select-none items-center space-x-2">
           <a
             href="https://nextjs.org/"
             className="cursor-pointer opacity-30 duration-100 hover:opacity-70"

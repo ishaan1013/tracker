@@ -30,7 +30,7 @@ export default function Sidebar() {
           } right-inset relative border-r-[1px] border-gray-300 bg-gray-150`}>
           <button
             onClick={() => setHidden((prev) => !prev)}
-            className="group absolute top-1/2 -right-3 flex -translate-y-1/2 items-center justify-center rounded-full border-[1px] border-blue-700 bg-white p-0.5 backdrop-blur-md focus:outline-blue-500">
+            className="group absolute top-1/2 -right-3 flex -translate-y-1/2 items-center justify-center rounded-full border-[1px] border-blue-700 bg-white p-0.5 backdrop-blur-md focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
             <FiChevronLeft
               className={`h-4 w-4 rounded-full p-[0.5px] text-blue-700 group-hover:bg-blue-200 ${
                 hidden ? "rotate-180" : ""
@@ -59,7 +59,7 @@ export default function Sidebar() {
                 path === "/board"
                   ? "bg-gray-200 hover:bg-gray-300"
                   : "bg-transparent hover:bg-gray-200"
-              } mt-4 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+              } mt-4 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiTrello className="mr-2" /> Board
             </Link>
             <Link
@@ -68,7 +68,7 @@ export default function Sidebar() {
                 path === "/roadmap"
                   ? "bg-gray-200 hover:bg-gray-300"
                   : "bg-transparent hover:bg-gray-200"
-              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiGitCommit className="mr-2" /> Roadmap
             </Link>
             <Link
@@ -77,7 +77,7 @@ export default function Sidebar() {
                 path === "/settings"
                   ? "bg-gray-200 hover:bg-gray-300"
                   : "bg-transparent hover:bg-gray-200"
-              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-blue-500`}>
+              } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiSettings className="mr-2" /> Project Settings
             </Link>
           </div>
