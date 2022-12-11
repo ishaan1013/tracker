@@ -1,13 +1,10 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { PrismaClient, Issue } from "@prisma/client"
 import { prisma } from "../../prisma/db"
-import { IssueType } from "../../prisma/issueType"
 
 import { FiChevronLeft, FiLoader, FiPlus, FiZap } from "react-icons/fi"
 import EpicPopup from "./epicPopup"
-import CreatePopup from "./createEpicPopup"
 import { useCreateEpicPopupStore } from "../../hooks"
 
 const Timeline = () => {
@@ -15,7 +12,6 @@ const Timeline = () => {
   const [collapsed, setCollapsed] = useState(false)
   const [opened, setOpened] = useState(false)
 
-  const openedCreate = useCreateEpicPopupStore((state) => state.opened)
   const setOpenedCreate = useCreateEpicPopupStore((state) => state.setOpened)
 
   useEffect(() => {
@@ -25,7 +21,6 @@ const Timeline = () => {
 
   return (
     <>
-      <CreatePopup opened={openedCreate} setOpened={setOpenedCreate} />
       <EpicPopup opened={opened} setOpened={setOpened} />
       <div className="mt-8 flex h-full w-full items-center rounded border-[1px] border-gray-300">
         <div
