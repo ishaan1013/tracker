@@ -29,7 +29,7 @@ const Timeline = () => {
           }`}>
           <button
             onClick={() => setCollapsed((prev) => !prev)}
-            className="group absolute top-1/2 -right-3 z-20 flex -translate-y-1/2 items-center justify-center rounded-full border-[1px] border-blue-700 bg-white p-0.5 backdrop-blur-md focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+            className="group absolute top-1/2 -right-3 z-20 flex -translate-y-1/2 items-center justify-center rounded-full border-[1px] border-blue-700 bg-white p-0.5 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
             <FiChevronLeft
               className={`h-4 w-4 rounded-full p-[0.5px] text-blue-700 group-hover:bg-blue-200 ${
                 collapsed ? "translate-x-[1px] rotate-180" : ""
@@ -46,7 +46,7 @@ const Timeline = () => {
               }}
               className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
-              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
+              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiZap className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 1"}
             </button>
@@ -56,7 +56,7 @@ const Timeline = () => {
               }}
               className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
-              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
+              } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiLoader className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Project 2"}
             </button>
@@ -66,7 +66,7 @@ const Timeline = () => {
               }}
               className={`flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 ${
                 collapsed ? "py-2.5" : "py-1.5"
-              } pr-1 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
+              } pr-1 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiPlus className={collapsed ? "" : "mr-1"} />
               {collapsed ? null : "Create Epic"}
             </button>

@@ -20,7 +20,7 @@ const AuthButton = ({ session }: { session: Session | null }) => {
                 : "http://localhost:3000/",
             })
           }
-          className="peer mt-8 flex w-full items-center justify-center rounded bg-blue-700 py-3 font-semibold text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+          className="peer mt-8 flex w-full items-center justify-center rounded bg-blue-700 py-3 font-semibold text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
           <FaGoogle className="mr-2 -translate-y-[1px]" />
           Continue with Google
         </button>

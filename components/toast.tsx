@@ -19,7 +19,7 @@ const ToastComponent = () => {
   return (
     <Toast.Provider swipeDirection="right">
       <Toast.Root
-        duration={5000}
+        duration={4000}
         className="ToastRoot flex items-center justify-start rounded border-[1px] border-gray-300 bg-white px-5 py-3 shadow-lg shadow-blue-900/50"
         open={open}
         onOpenChange={setOpen}>

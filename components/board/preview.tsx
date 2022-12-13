@@ -55,7 +55,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
             activeId === id
               ? "z-10 !cursor-grabbing border-[1px] border-blue-700 shadow-blue-900/20"
               : "shadow-blue-900/5"
-          } group touch-manipulation focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
+          } group touch-manipulation focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
           <div className="flex items-center justify-between">
             <h3 className="mr-2 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-left font-medium md:mr-4">
               {data.name}
@@ -87,7 +87,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                       ])
                     }
                   }}
-                  className="rounded-full text-blue-700 duration-100 hover:bg-blue-200 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+                  className="rounded-full text-blue-700 duration-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
                   <FiArrowLeft className="h-4 w-4 p-[0.5px]" />
                 </button>
               )}
@@ -114,7 +114,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
                       ])
                     }
                   }}
-                  className="rounded-full text-blue-700 duration-100 hover:bg-blue-200 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+                  className="rounded-full text-blue-700 duration-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
                   <FiArrowRight className="h-4 w-4 p-[0.5px]" />
                 </button>
               )}

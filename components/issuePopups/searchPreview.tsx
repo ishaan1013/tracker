@@ -23,7 +23,7 @@ const SearchPreview = ({
                 onClick={() => {
                   // setPop(true)
                 }}
-                className="mb-2 w-full rounded border-[1px] border-gray-300 bg-white p-3 duration-100 hover:border-blue-700 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+                className="mb-2 w-full rounded border-[1px] border-gray-300 bg-white p-3 duration-100 hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
                 <div className="flex w-full items-center justify-between">
                   <div>
                     <h3 className="mr-2 mb-3 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-left text-base font-medium md:mr-4">

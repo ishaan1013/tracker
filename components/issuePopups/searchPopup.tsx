@@ -33,12 +33,12 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
       {/* <Dialog.Trigger /> */}
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay fixed inset-0 z-50 bg-[#011242]/50" />
-        <Dialog.Content className="DialogContent xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0 lg:w-[40rem]">
+        <Dialog.Content className="DialogContent xs:w-[85%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 lg:w-[40rem]">
           <div className="flex w-full items-center justify-between">
             <p className="text-start text-xl font-semibold sm:text-2xl">
               Search Issues
             </p>
-            <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-gray-300 hover:bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+            <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-gray-300 hover:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
               <FiX className="" />
             </Dialog.Close>
           </div>
@@ -46,7 +46,7 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
           <div className="relative mt-4 flex w-full items-center">
             <IoSearch className="absolute left-2.5 text-gray-600" />
             <input
-              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0 xl:text-lg"
+              className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-lg"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Type to search..."

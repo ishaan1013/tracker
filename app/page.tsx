@@ -35,7 +35,7 @@ const Home = async () => {
           href="https://github.com/ishaan1013/tracker"
           target="_blank"
           rel="noreferrer"
-          className="mt-3 flex w-full items-center justify-center rounded border-[1px] border-gray-300 py-3 font-semibold text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0">
+          className="mt-3 flex w-full items-center justify-center rounded border-[1px] border-gray-300 py-3 font-semibold text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
           <FaGithub className="mr-2" />
           Repo
         </a>
