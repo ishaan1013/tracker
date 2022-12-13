@@ -13,9 +13,8 @@ import {
   FiRefreshCw,
 } from "react-icons/fi"
 import { IssueType } from "../../prisma/issueType"
-import { data } from "autoprefixer"
-import { IssueIcons } from "./previewInfo"
 import Priority from "./prioritySelect"
+import { useToastStore } from "../../hooks/useToastStore"
 
 const IssueSelect = ({
   type,
@@ -55,7 +54,16 @@ interface Props {
 }
 
 const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
+  const initial = data
+
+  const [name, setName] = useState(data.name)
+  const [desc, setDesc] = useState(data.description)
+  const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
+
+  const setOpenToast = useToastStore((state) => state.setOpen)
+  const setTitleToast = useToastStore((state) => state.setTitle)
+  const setMessageToast = useToastStore((state) => state.setMessage)
 
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
@@ -80,11 +88,13 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
             <div className="flex-grow">
               <input
                 className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
-                defaultValue={data.name}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
               <textarea
                 className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
-                defaultValue={data.description}
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
               />
             </div>
             <div className="flex w-60 flex-col items-start">
@@ -111,6 +121,15 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               Save
             </button>
             <button
+              onClick={() => {
+                setName(initial.name)
+                setDesc(initial.description)
+                setPriority(initial.priority)
+                setType(initial.issueType)
+                setOpenToast(true)
+                setTitleToast("Reset Successful")
+                setMessageToast("Changes reset to intitial data.")
+              }}
               className={`ml-3 flex items-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-5 pl-4 text-base text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-[3px] focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiRefreshCw className="mr-1.5" />
               Reset

@@ -11,6 +11,7 @@ import Sidebar from "../../components/board/sidebar"
 import Boards from "../../components/board/boards"
 import Filters from "../../components/board/filters"
 import Header from "../../components/board/header"
+import ToastComponent from "../../components/toast"
 
 const Board = async () => {
   const session = await unstable_getServerSession(authOptions)
@@ -37,6 +38,7 @@ const Board = async () => {
   return (
     <main className="flex max-h-screen items-start justify-start">
       <Sidebar />
+      <ToastComponent />
 
       <div className="flex h-screen flex-grow flex-col overflow-auto p-8 ">
         {/* Breadcrumbs: */}

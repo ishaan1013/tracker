@@ -5,6 +5,7 @@ import { redirect } from "next/navigation"
 
 import Next from "../assets/tools/next.webp"
 import Tailwind from "../assets/tools/tailwind.webp"
+import Radix from "../assets/tools/radix.webp"
 import NextAuth from "../assets/tools/nextAuth.webp"
 import Zustand from "../assets/tools/zustand.webp"
 import PScale from "../assets/tools/pscale.webp"
@@ -85,6 +86,13 @@ const Home = async () => {
               height={27}
               className="brightness-[0.1]"
             />
+          </a>
+          <a
+            href="https://www.radix-ui.com/"
+            className="cursor-pointer opacity-30 duration-100 hover:opacity-70"
+            target="_blank"
+            rel="noreferrer">
+            <Image src={Radix} alt="Radix UI Logo" width={23} height={23} />
           </a>
           <a
             href="https://next-auth.js.org/"
