@@ -44,7 +44,7 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
               } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiZap className={collapsed ? "" : "mr-1"} />
@@ -54,7 +54,7 @@ const Timeline = () => {
               onClick={() => {
                 setOpened(true)
               }}
-              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded border-[1px] border-transparent bg-blue-700 ${
+              className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
               } pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiLoader className={collapsed ? "" : "mr-1"} />
@@ -122,16 +122,12 @@ const Timeline = () => {
                 onClick={() => {
                   setOpened(true)
                 }}
-                className="z-10 mb-3 w-[120%] translate-x-16 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3 text-left duration-100 hover:bg-gray-200">
-                Test
-              </button>
+                className="z-10 mb-3 h-9 w-[120%] translate-x-16 rounded bg-blue-700 duration-100 hover:bg-blue-600"></button>
               <button
                 onClick={() => {
                   setOpened(true)
                 }}
-                className="z-10 mb-3 w-[120%] -translate-x-4 rounded border-[1px] border-gray-300 bg-gray-150 py-1.5 px-3 text-left duration-100 hover:bg-gray-200">
-                Test
-              </button>
+                className="z-10 mb-3 h-9 w-[120%] -translate-x-4 rounded bg-blue-700 duration-100 hover:bg-blue-600"></button>
             </div>
             <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
               <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">

@@ -70,6 +70,11 @@ a {
   background: #b4bac2;
 }
 
+.roadmapScroll::-webkit-scrollbar-thumb:hover {
+  background: #979fa8;
+}
+
+
 .DialogOverlay[data-state='open'],
 .DialogContent[data-state='open'] {
   animation: fadeIn 100ms ease-out;
