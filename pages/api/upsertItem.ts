@@ -32,9 +32,9 @@ const setItem = async (
   const body = req.body
 
 
-  if (!isValidBody<ReqBody>(body, ['id', 'name', 'description', 'category', 'issueType', 'priority', 'index'])) {
-    res.status(400)
-  }
+  // if (!isValidBody<ReqBody>(body, ['id', 'name', 'description', 'category', 'issueType', 'priority', 'index'])) {
+  //   res.status(400).json({ success: false, message: "not valid body" })
+  // }
 
   // if (
   //   typeof body.id === 'string' 

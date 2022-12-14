@@ -48,6 +48,28 @@ const IssueSelect = ({
   ) : null
 }
 
+const updateIssue = async (item: IssueType) => {
+  const res = await fetch(`/api/upsertItem`, {
+    method: "POST",
+    body: JSON.stringify({
+      id: item.id,
+      name: item.name,
+      userId: item.userId,
+      description: item.description,
+      category: item.category,
+      issueType: item.issueType,
+      priority: item.priority,
+      index: items[1].indexOf(item),
+      createdAt: item.createdAt,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  const data = await res.json()
+  console.log("sent", data)
+}
+
 interface Props {
   opened: boolean
   setOpened: (opened: boolean) => void
@@ -127,7 +149,10 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
           <div className="mt-8 flex items-center self-start">
             <button
-              onClick={() => {
+              onClick={async () => {
+                console.log("updateRes starting")
+                const updateRes = await updateIssue(data)
+                console.log("updateRes:", updateRes)
                 setOpenToast(true)
                 setTitleToast("Save Successful")
                 setMessageToast("Changes saved to " + name + ".")
