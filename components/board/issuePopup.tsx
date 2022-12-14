@@ -79,14 +79,14 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
           <div className="flex w-full items-center justify-between">
             <IssueSelect type={type} setType={setType} />
 
-            <div
-              onClick={() => {
-                setOpenAlert(true)
-                setActionAlert("Delete " + name)
-                setDescAlert("This action cannot be undone.")
-              }}
-              className="flex space-x-2">
-              <button className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-red-600 hover:bg-red-50 hover:text-red-600 focus:outline-red-400">
+            <div className="flex space-x-2">
+              <button
+                onClick={() => {
+                  setOpenAlert(true)
+                  setActionAlert("Delete " + name)
+                  setDescAlert("This action cannot be undone.")
+                }}
+                className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-red-600 hover:bg-red-50 hover:text-red-600 focus:outline-red-400">
                 <FiTrash className="" />
               </button>
               <Dialog.Close className="flex h-10 w-10 items-center justify-center rounded border-[1px] border-gray-200 text-lg duration-100 hover:border-gray-300 hover:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">

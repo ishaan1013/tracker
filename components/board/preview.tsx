@@ -39,7 +39,10 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
   const priorityMatch =
     priority !== "Priority" ? priorities[data.priority] === priority : true
 
-  if ((search === "" || data.name.includes(search)) && priorityMatch) {
+  if (
+    (search === "" || data.name.toLowerCase().includes(search.toLowerCase())) &&
+    priorityMatch
+  ) {
     return (
       <>
         <IssuePopup opened={pop} setOpened={setPop} data={data} />

@@ -1,4 +1,8 @@
+"use client"
+
+import { useRef, useState } from "react"
 import { IssueType } from "../../prisma/issueType"
+import IssuePopup from "../board/issuePopup"
 import { IssueIcons, IssuePpl } from "../board/previewInfo"
 
 const SearchPreview = ({
@@ -11,17 +15,22 @@ const SearchPreview = ({
   index: number
 }) => {
   const statuses = ["TO-DO", "IN PROGRESS", "DONE"]
+  const [pop, setPop] = useState(false)
+  const [data, setData] = useState<IssueType>(issues[0])
 
   return (
     <>
+      <IssuePopup data={data} opened={pop} setOpened={setPop} />
       {issues.map((issue) => {
         return (
           <>
-            {search === "" || issue.name.includes(search) ? (
+            {search === "" ||
+            issue.name.toLowerCase().includes(search.toLowerCase()) ? (
               <button
                 key={issue.id}
                 onClick={() => {
-                  // setPop(true)
+                  setPop(true)
+                  setData(issue)
                 }}
                 className="mb-2 w-full rounded border-[1px] border-gray-300 bg-white p-3 duration-100 hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
                 <div className="flex w-full items-center justify-between">
