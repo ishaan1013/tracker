@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
 import {
@@ -48,27 +48,34 @@ const IssueSelect = ({
   ) : null
 }
 
-const updateIssue = async (item: IssueType) => {
-  const res = await fetch(`/api/upsertItem`, {
-    method: "POST",
-    body: JSON.stringify({
-      id: item.id,
-      name: item.name,
-      userId: item.userId,
-      description: item.description,
-      category: item.category,
-      issueType: item.issueType,
-      priority: item.priority,
-      index: items[1].indexOf(item),
-      createdAt: item.createdAt,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-  const data = await res.json()
-  console.log("sent", data)
-}
+// const updateIssue = async ({
+//   item,
+//   items,
+// }: {
+//   item: IssueType
+//   items: IssueType[][]
+// }) => {
+//   const res = await fetch(`/api/upsertItem`, {
+//     method: "POST",
+//     body: JSON.stringify({
+//       id: item.id,
+//       name: item.name,
+//       userId: item.userId,
+//       description: item.description,
+//       category: item.category,
+//       issueType: item.issueType,
+//       priority: item.priority,
+//       index: items[item.category].indexOf(item),
+//       createdAt: item.createdAt,
+//     }),
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//   })
+//   const data = await res.json()
+//   console.log("sent", data)
+//   return data
+// }
 
 interface Props {
   opened: boolean
@@ -83,6 +90,13 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [desc, setDesc] = useState(data.description)
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
+
+  const items = useItemStore((state) => state.items)
+  const setItems = useItemStore((state) => state.setItems)
+
+  useEffect(() => {
+    console.log("issue popup -- items: ", items)
+  }, [items])
 
   const setOpenToast = useToastStore((state) => state.setOpen)
   const setTitleToast = useToastStore((state) => state.setTitle)
@@ -138,21 +152,40 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               <Priority popup initial={data.priority} />
               <div className="mb-1 text-sm font-semibold">Assignees:</div>
               <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
-              <div className="mt-3 text-sm">
+              <div className="mt-3 text-xs">{JSON.stringify(items)}</div>
+              {/* <div className="mt-3 text-sm">
                 Created{" "}
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 
           <div className="mt-8 flex items-center self-start">
             <button
-              onClick={async () => {
-                console.log("updateRes starting")
-                const updateRes = await updateIssue(data)
-                console.log("updateRes:", updateRes)
+              onClick={() => {
+                // console.log("updateRes starting")
+                // const updateRes = await updateIssue({ item: data, items })
+                // console.log("updateRes:", updateRes)
+
+                const newItems = items
+
+                const updatedItem = {
+                  ...data,
+                  name,
+                  description: desc,
+                  priority,
+                  issueType: type,
+                }
+                const id1 = data.category
+                const id2 = items[data.category].indexOf(data)
+                newItems[id1][id2] = updatedItem
+
+                console.log("newItems:", newItems)
+
+                setItems(newItems)
+
                 setOpenToast(true)
                 setTitleToast("Save Successful")
                 setMessageToast("Changes saved to " + name + ".")
