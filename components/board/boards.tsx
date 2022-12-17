@@ -23,13 +23,16 @@ import {
 } from "@dnd-kit/modifiers"
 import { useState, useEffect } from "react"
 import { IssueType } from "../../prisma/issueType"
-import { useItemStore, useSaveStore } from "../../hooks"
+import { useItemStore, useSaveStore, useToastStore } from "../../hooks"
 
 import Preview from "./preview"
 
 const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
+  const titleToast = useToastStore((state) => state.title)
+  const openToast = useToastStore((state) => state.open)
+
   useEffect(() => {
     if (data && data !== items) {
       setItems(data)
@@ -37,8 +40,13 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   }, [data])
 
   useEffect(() => {
+    console.log("items changed")
     updateItems(items)
   }, [items])
+
+  useEffect(() => {
+    console.log("titleToast is:", titleToast)
+  }, [openToast])
 
   const save = useSaveStore((state) => state.save)
   const incSave = useSaveStore((state) => state.incSave)

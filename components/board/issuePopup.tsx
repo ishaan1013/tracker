@@ -1,4 +1,5 @@
 "use client"
+
 import { useEffect, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
@@ -14,8 +15,7 @@ import {
 } from "react-icons/fi"
 import { IssueType } from "../../prisma/issueType"
 import Priority from "./prioritySelect"
-import { useToastStore } from "../../hooks/useToastStore"
-import { useAlertStore } from "../../hooks/useAlertStore"
+import { useToastStore, useAlertStore } from "../../hooks"
 
 const IssueSelect = ({
   type,
@@ -101,10 +101,36 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const setOpenToast = useToastStore((state) => state.setOpen)
   const setTitleToast = useToastStore((state) => state.setTitle)
   const setMessageToast = useToastStore((state) => state.setMessage)
-
   const setOpenAlert = useAlertStore((state) => state.setOpen)
   const setActionAlert = useAlertStore((state) => state.setAction)
   const setDescAlert = useAlertStore((state) => state.setDesc)
+
+  const handleSave = () => {
+    const newItems = items
+
+    const updatedItem = {
+      ...data,
+      name,
+      description: desc,
+      priority,
+      issueType: type,
+    }
+    const cat = data.category
+    const pos = items[data.category].map((obj) => obj.id).indexOf(data.id)
+    console.log("items:", items)
+    console.log("data:", data)
+    console.log("cat:", cat, "pos:", pos)
+    newItems[cat][pos] = updatedItem
+
+    console.log("newItems:", newItems)
+
+    setItems(newItems)
+    setOpenToast(true)
+    setTitleToast("Save Successful")
+    setMessageToast("Changes saved to " + name + ".")
+    console.log("saved", items)
+    setOpened(false)
+  }
 
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
@@ -164,32 +190,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
           <div className="mt-8 flex items-center self-start">
             <button
-              onClick={() => {
-                // console.log("updateRes starting")
-                // const updateRes = await updateIssue({ item: data, items })
-                // console.log("updateRes:", updateRes)
-
-                const newItems = items
-
-                const updatedItem = {
-                  ...data,
-                  name,
-                  description: desc,
-                  priority,
-                  issueType: type,
-                }
-                const id1 = data.category
-                const id2 = items[data.category].indexOf(data)
-                newItems[id1][id2] = updatedItem
-
-                console.log("newItems:", newItems)
-
-                setItems(newItems)
-
-                setOpenToast(true)
-                setTitleToast("Save Successful")
-                setMessageToast("Changes saved to " + name + ".")
-              }}
+              onClick={handleSave}
               className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-2 pl-4 pr-5 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiSave className="mr-1.5" />
               Save
