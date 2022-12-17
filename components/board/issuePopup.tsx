@@ -86,13 +86,28 @@ interface Props {
 const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const initial = data
 
+  const [enabled, setEnabled] = useState(false)
+
   const [name, setName] = useState(data.name)
   const [desc, setDesc] = useState(data.description)
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
+  useEffect(() => {
+    if (
+      initial.name === name &&
+      initial.description === desc &&
+      initial.priority === priority &&
+      initial.issueType === type
+    ) {
+      setEnabled(false)
+    } else {
+      setEnabled(true)
+    }
+  }, [name, desc, priority, type])
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
+  const setSaved = useItemStore((state) => state.setSaved)
 
   useEffect(() => {
     console.log("issue popup -- items: ", items)
@@ -125,6 +140,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     console.log("newItems:", newItems)
 
     setItems(newItems)
+    setSaved(true)
     setOpenToast(true)
     setTitleToast("Save Successful")
     setMessageToast("Changes saved to " + name + ".")
@@ -191,7 +207,12 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
           <div className="mt-8 flex items-center self-start">
             <button
               onClick={handleSave}
-              className={`flex items-center whitespace-nowrap rounded bg-blue-700 py-2 pl-4 pr-5 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
+              disabled={!enabled}
+              className={`${
+                enabled
+                  ? "bg-blue-700 text-white hover:bg-blue-600"
+                  : " cursor-not-allowed bg-gray-800 text-white/50"
+              } flex items-center whitespace-nowrap rounded py-2 pl-4 pr-5 text-base text-white duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiSave className="mr-1.5" />
               Save
             </button>

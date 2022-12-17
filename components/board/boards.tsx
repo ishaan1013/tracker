@@ -30,6 +30,8 @@ import Preview from "./preview"
 const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
+  const saved = useItemStore((state) => state.saved)
+  const setSaved = useItemStore((state) => state.setSaved)
   const titleToast = useToastStore((state) => state.title)
   const openToast = useToastStore((state) => state.open)
 
@@ -40,13 +42,16 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   }, [data])
 
   useEffect(() => {
-    console.log("items changed")
     updateItems(items)
   }, [items])
 
   useEffect(() => {
-    console.log("titleToast is:", titleToast)
-  }, [openToast])
+    if (saved) {
+      console.log("saved:", items)
+      updateItems(items)
+      setSaved(false)
+    }
+  }, [saved])
 
   const save = useSaveStore((state) => state.save)
   const incSave = useSaveStore((state) => state.incSave)
