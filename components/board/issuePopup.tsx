@@ -86,24 +86,10 @@ interface Props {
 const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const initial = data
 
-  const [enabled, setEnabled] = useState(false)
-
   const [name, setName] = useState(data.name)
   const [desc, setDesc] = useState(data.description)
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
-  useEffect(() => {
-    if (
-      initial.name === name &&
-      initial.description === desc &&
-      initial.priority === priority &&
-      initial.issueType === type
-    ) {
-      setEnabled(false)
-    } else {
-      setEnabled(true)
-    }
-  }, [name, desc, priority, type])
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -194,23 +180,51 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               <Priority popup initial={data.priority} />
               <div className="mb-1 text-sm font-semibold">Assignees:</div>
               <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
-              <div className="mt-3 text-sm">
+              <div className="mt-3 text-xs">{JSON.stringify(initial)}</div>
+
+              <div className="mt-3 text-xs">
+                {initial.name} === {name} is{" "}
+                {JSON.stringify(initial.name === name)}
+              </div>
+              <div className="mt-3 text-xs">
+                {initial.description} === {desc} is{" "}
+                {JSON.stringify(initial.description === desc)}
+              </div>
+              <div className="mt-3 text-xs">
+                {initial.priority} === {priority} is{" "}
+                {JSON.stringify(initial.priority === priority)}
+              </div>
+              <div className="mt-3 text-xs">
+                {initial.issueType} === {type} is{" "}
+                {JSON.stringify(initial.issueType === type)}
+              </div>
+              {/* <div className="mt-3 text-sm">
                 Created{" "}
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
-              </div>
+              </div> */}
             </div>
           </div>
 
           <div className="mt-8 flex items-center self-start">
             <button
               onClick={handleSave}
-              disabled={!enabled}
+              disabled={
+                initial.name === name &&
+                initial.description === desc &&
+                initial.priority === priority &&
+                initial.issueType === type
+              }
               className={`${
-                enabled
+                !(
+                  initial.name === name &&
+                  initial.description === desc &&
+                  initial.priority === priority &&
+                  initial.issueType === type
+                )
                   ? "bg-blue-700 text-white hover:bg-blue-600"
-                  : " cursor-not-allowed bg-gray-800 text-white/50"
+                  : " cursor-not-allowed bg-gray-700 text-white/50"
               } flex items-center whitespace-nowrap rounded py-2 pl-4 pr-5 text-base text-white duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
               <FiSave className="mr-1.5" />
               Save
