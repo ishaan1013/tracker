@@ -194,13 +194,12 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               <Priority popup initial={data.priority} />
               <div className="mb-1 text-sm font-semibold">Assignees:</div>
               <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
-              <div className="mt-3 text-xs">{JSON.stringify(items)}</div>
-              {/* <div className="mt-3 text-sm">
+              <div className="mt-3 text-sm">
                 Created{" "}
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
-              </div> */}
+              </div>
             </div>
           </div>
 
