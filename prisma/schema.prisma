@@ -21,8 +21,7 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([provider, providerAccountId])
   @@index([userId])
@@ -47,7 +46,6 @@ model User {
   accounts      Account[]
   sessions      Session[]
   issues        Issue[]
-  // assigned      Assigned[]
 }
 
 model VerificationToken {
@@ -59,25 +57,23 @@ model VerificationToken {
 }
 
 model Issue {
-  id          String   @id @default(uuid())
+  id          String     @id @default(uuid())
   name        String
   userId      String?
-  user        User?    @relation(fields: [userId], references: [id])
-  // assigned    Assigned[]
+  user        User?      @relation(fields: [userId], references: [id])
+  assignees   Assignee[]
   description String
   category    Int
   issueType   Int
   priority    Int
-  index       Int  
-  createdAt   DateTime @default(now())
+  index       Int
+  createdAt   DateTime   @default(now())
 
   @@index([userId])
 }
 
-// model Assigned {
-//   id          String    @id @default(uuid())
-//   issueId     String
-//   issue       Issue     @relation(fields: [issueId], references: [id])
-//   userId      String
-//   user        User      @relation(fields: [userId], references: [id])
-// }
+model Assignee {
+  id     String  @id @default(uuid())
+  name   String  @unique
+  issues Issue[]
+}
