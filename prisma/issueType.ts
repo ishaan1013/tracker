@@ -2,7 +2,7 @@ export type IssueType = {
   id: string
   name: string
   userId: string | null
-  assignees: AssigneeType[]
+  assignees?: AssigneeType[]
   description: string
   category: number
   issueType: number
@@ -14,5 +14,5 @@ export type IssueType = {
 export type AssigneeType = {
   id: number
   name: string
-  issues: IssueType[]
+  issues?: IssueType[]
 }

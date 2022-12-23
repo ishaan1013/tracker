@@ -51,7 +51,7 @@ const SearchPreview = ({
                       />
                     </div>
                   </div>
-                  <IssuePpl bigger qty={3} />
+                  <IssuePpl bigger data={issue?.assignees} />
                 </div>
               </button>
             ) : null}

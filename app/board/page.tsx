@@ -23,6 +23,9 @@ const Board = async () => {
       // @ts-ignore: Production build bug?
       index: "asc",
     },
+    include: {
+      assignees: true,
+    },
   })
   const data: IssueType[][] = [[], [], []]
   dataRes.map((item) => {

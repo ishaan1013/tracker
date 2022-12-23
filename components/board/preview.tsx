@@ -9,7 +9,7 @@ import { useItemStore, useSearchStore } from "../../hooks"
 import IssuePopup from "./issuePopup"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import { IssueIcons, IssuePpl } from "./previewInfo"
-import { usePriorityStore } from "../../hooks/filterStores"
+import { usePriorityStore, useUsersFilterStore } from "../../hooks/filterStores"
 
 interface Props {
   data: IssueType
@@ -21,6 +21,7 @@ interface Props {
 const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
   const search = useSearchStore((state) => state.query)
   const priority = usePriorityStore((state) => state.priority)
+  const users = useUsersFilterStore((state) => state.users)
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -39,8 +40,19 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
   const priorityMatch =
     priority !== "Priority" ? priorities[data.priority] === priority : true
 
+  const ppl = ["You", "Software Engineer", "Head of Marketing", "The CEO"]
+  const assignees = users.map((user, i) =>
+    user
+      ? data?.assignees?.find((e) => e.name === ppl[i])
+        ? true
+        : false
+      : true
+  )
+  const assigneeMatch = assignees.every(Boolean)
+
   if (
     (search === "" || data.name.toLowerCase().includes(search.toLowerCase())) &&
+    assigneeMatch &&
     priorityMatch
   ) {
     return (
@@ -61,6 +73,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
           } group touch-manipulation focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
           <div className="flex items-center justify-between">
             <h3 className="mr-2 flex-grow overflow-hidden overflow-ellipsis whitespace-nowrap text-left font-medium md:mr-4">
+              {/* {JSON.stringify(assignees)} */}
               {data.name}
             </h3>
             <div
@@ -125,7 +138,7 @@ const Preview: React.FC<Props> = ({ data, col, activeId, index }) => {
           </div>
           <div className="mt-4 flex items-center justify-between">
             <IssueIcons type={data.issueType} priority={data.priority} />
-            <IssuePpl qty={3} />
+            <IssuePpl data={data?.assignees} />
           </div>
         </div>
       </>

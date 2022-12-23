@@ -32,8 +32,8 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const setItems = useItemStore((state) => state.setItems)
   const saved = useItemStore((state) => state.saved)
   const setSaved = useItemStore((state) => state.setSaved)
-  const titleToast = useToastStore((state) => state.title)
-  const openToast = useToastStore((state) => state.open)
+  // const titleToast = useToastStore((state) => state.title)
+  // const openToast = useToastStore((state) => state.open)
 
   useEffect(() => {
     if (data && data !== items) {
