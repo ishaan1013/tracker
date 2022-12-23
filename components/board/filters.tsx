@@ -43,11 +43,10 @@ const Filters = () => {
 
       <div className="z-0 ml-6 flex flex-row-reverse items-center">
         {users.map((user, index) => (
-          <Tooltip.Provider delayDuration={200}>
+          <Tooltip.Provider key={index} delayDuration={200}>
             <Tooltip.Root>
               <Tooltip.Trigger asChild>
                 <button
-                  key={index}
                   onClick={() => {
                     console.log("updated")
                     setUsers(users, index)
