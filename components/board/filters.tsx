@@ -1,11 +1,7 @@
 "use client"
 
 import Priority from "./prioritySelect"
-import {
-  useSearchStore,
-  useUsersFilterStore,
-  useRecentStore,
-} from "../../hooks/filterStores"
+import { useSearchStore, useUsersFilterStore } from "../../hooks/filterStores"
 
 import { IoSearch } from "react-icons/io5"
 import { FiPlus } from "react-icons/fi"
@@ -26,7 +22,6 @@ const Filters = () => {
   const searchStore = useSearchStore()
   const users = useUsersFilterStore((state) => state.users)
   const setUsers = useUsersFilterStore((state) => state.setUsers)
-  const recentStore = useRecentStore()
   const setCreateOpened = useCreatePopupStore((state) => state.setOpened)
 
   return (
@@ -76,16 +71,6 @@ const Filters = () => {
           </Tooltip.Provider>
         ))}
       </div>
-
-      <button
-        onClick={() => recentStore.setRecent(!recentStore.recent)}
-        className={`ml-6 select-none whitespace-nowrap rounded border-[1px] duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 ${
-          recentStore.recent
-            ? "border-blue-700 bg-gray-150 text-blue-700 hover:bg-gray-200"
-            : "border-gray-300 text-gray-600 hover:bg-gray-150"
-        } py-1 px-3 text-base`}>
-        Recently Updated
-      </button>
 
       <Priority />
 

@@ -1,5 +1,5 @@
 import { useItemStore } from "./useItemStore";
-import { useSearchStore, useUsersFilterStore, useRecentStore } from "./filterStores";
+import { useSearchStore, useUsersFilterStore } from "./filterStores";
 import { useSearchPopupStore, useCreatePopupStore, useAboutPopupStore, useCreateEpicPopupStore } from "./popupStores";
 import { useSaveStore } from "./useSaveStore";
 import { useAlertStore } from "./useAlertStore";
@@ -9,7 +9,6 @@ export {
   useItemStore, 
   useSearchStore, 
   useUsersFilterStore, 
-  useRecentStore, 
   useSearchPopupStore, 
   useCreatePopupStore,
   useAboutPopupStore, 

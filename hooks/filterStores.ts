@@ -26,18 +26,6 @@ export const useUsersFilterStore = create<UsersFilterState>()((set) => ({
   },
 }))
 
-
-
-export interface RecentState {
-  recent: boolean
-  setRecent: (recent: boolean) => void
-}
-
-export const useRecentStore = create<RecentState>()((set) => ({
-  recent: false,
-  setRecent: (recent) => set({ recent }),
-}))
-
 export interface PriorityState {
   priority: string
   setPriority: (recent: string) => void

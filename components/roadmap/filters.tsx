@@ -1,10 +1,6 @@
 "use client"
 
-import {
-  useSearchStore,
-  useUsersFilterStore,
-  useRecentStore,
-} from "../../hooks/filterStores"
+import { useSearchStore, useUsersFilterStore } from "../../hooks/filterStores"
 
 import { IoSearch } from "react-icons/io5"
 import { FiPlus } from "react-icons/fi"

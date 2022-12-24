@@ -1,5 +1,6 @@
 import "./globals.css"
 import { Albert_Sans } from "@next/font/google"
+// import localFont from "@next/font/local"
 import Providers from "../components/providers"
 
 const font = Albert_Sans({ subsets: ["latin"] })
