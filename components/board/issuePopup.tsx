@@ -176,6 +176,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 const on = assignees?.includes(option)
                 return (
                   <button
+                    key={i}
                     onClick={() => {
                       // const newAssignees = assignees
                       // newAssignees.includes(assignee)
