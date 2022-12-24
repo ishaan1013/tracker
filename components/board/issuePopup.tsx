@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
 import Image from "next/image"
@@ -60,7 +60,8 @@ interface Props {
 }
 
 const processAssignees = (assignees: AssigneeType[] | undefined) => {
-  return assignees ? assignees.map((assignee) => assignee.name) : undefined
+  if (assignees) return assignees.map((assignee) => assignee.name)
+  return undefined
 }
 
 const ppl = {
@@ -79,7 +80,9 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [desc, setDesc] = useState(data.description)
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
+
   const [assignees, setAssignees] = useState(processAssignees(data.assignees))
+  const [_, forceUpdate] = useReducer((x) => x + 1, 0)
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -173,23 +176,37 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
               {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
               {options.map((option, i) => {
-                const on = assignees?.includes(option)
+                // const on = assignees?.find((e) => e.name === option)
+                // const on = assignees?.indexOf(option)
                 return (
                   <button
+                    key={
+                      assignees?.indexOf(option) !== undefined &&
+                      assignees?.indexOf(option) > -1
+                        ? option + "yes"
+                        : option + "no"
+                    }
                     onClick={() => {
-                      // const newAssignees = assignees
-                      // newAssignees.includes(assignee)
-                      //   ? newAssignees.splice(i, 1)
-                      //   : newAssignees.push(assignee)
-                      // setAssignees(newAssignees)
+                      const newAssignees = assignees
+                      if (newAssignees) {
+                        console.log("newAssignees before:", newAssignees)
+                        assignees?.indexOf(option) !== undefined &&
+                        assignees?.indexOf(option) > -1
+                          ? newAssignees.splice(newAssignees.indexOf(option), 1)
+                          : newAssignees.push(option)
+                        console.log("newAssignees after:", newAssignees)
+
+                        setAssignees(newAssignees)
+                        forceUpdate()
+                      }
                     }}
                     className={`mt-1 flex h-9 cursor-pointer select-none items-center justify-start rounded-full border-[1px] ${
-                      on
+                      assignees?.indexOf(option) !== undefined &&
+                      assignees?.indexOf(option) > -1
                         ? "border-blue-700 bg-blue-50 text-blue-700"
                         : "border-gray-300 text-gray-600"
                     } p-1 pr-2.5 text-sm`}>
                     <Image
-                      key={i}
                       alt={`Avatar of ${option}`}
                       className={`mr-1.5 h-7 w-7 rounded-full object-contain`}
                       src={option in ppl ? ppl[option as keyof typeof ppl] : ""}
