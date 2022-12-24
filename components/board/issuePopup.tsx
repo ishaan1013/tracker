@@ -3,19 +3,24 @@
 import { useEffect, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
+import Image from "next/image"
 import {
   FiX,
   FiTrash,
   FiDisc,
   FiCheck,
   FiBookmark,
-  FiPlus,
   FiSave,
   FiRefreshCw,
 } from "react-icons/fi"
-import { IssueType } from "../../prisma/issueType"
+import { AssigneeType, IssueType } from "../../prisma/issueType"
 import Priority from "./prioritySelect"
 import { useToastStore, useAlertStore } from "../../hooks"
+
+import CEO from "../../assets/avatars/ceo.webp"
+import Marketing from "../../assets/avatars/marketing.webp"
+import Engineer from "../../assets/avatars/engineer.webp"
+import You from "../../assets/avatars/you.webp"
 
 const IssueSelect = ({
   type,
@@ -48,40 +53,24 @@ const IssueSelect = ({
   ) : null
 }
 
-// const updateIssue = async ({
-//   item,
-//   items,
-// }: {
-//   item: IssueType
-//   items: IssueType[][]
-// }) => {
-//   const res = await fetch(`/api/upsertItem`, {
-//     method: "POST",
-//     body: JSON.stringify({
-//       id: item.id,
-//       name: item.name,
-//       userId: item.userId,
-//       description: item.description,
-//       category: item.category,
-//       issueType: item.issueType,
-//       priority: item.priority,
-//       index: items[item.category].indexOf(item),
-//       createdAt: item.createdAt,
-//     }),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//   const data = await res.json()
-//   console.log("sent", data)
-//   return data
-// }
-
 interface Props {
   opened: boolean
   setOpened: (opened: boolean) => void
   data: IssueType
 }
+
+const processAssignees = (assignees: AssigneeType[] | undefined) => {
+  return assignees ? assignees.map((assignee) => assignee.name) : undefined
+}
+
+const ppl = {
+  "The CEO": CEO,
+  "Head of Marketing": Marketing,
+  "Software Engineer": Engineer,
+  You: You,
+}
+
+const options = ["You", "Software Engineer", "Head of Marketing", "The CEO"]
 
 const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const initial = data
@@ -90,6 +79,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [desc, setDesc] = useState(data.description)
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
+  const [assignees, setAssignees] = useState(processAssignees(data.assignees))
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -162,12 +152,12 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
           <div className="mt-4 flex w-full justify-between space-x-6">
             <div className="flex-grow">
               <input
-                className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
+                className="w-full rounded border-[1px] border-gray-300 p-2 text-start text-2xl font-semibold focus:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <textarea
-                className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
+                className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 p-2 text-sm focus:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
               />
@@ -181,7 +171,33 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               <div className="mb-1 text-sm font-semibold">Assignees:</div>
               <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
 
-              <div className="mt-3 text-xs">{JSON.stringify(initial)}</div>
+              {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
+              {options.map((option, i) => {
+                const on = assignees?.includes(option)
+                return (
+                  <button
+                    onClick={() => {
+                      // const newAssignees = assignees
+                      // newAssignees.includes(assignee)
+                      //   ? newAssignees.splice(i, 1)
+                      //   : newAssignees.push(assignee)
+                      // setAssignees(newAssignees)
+                    }}
+                    className={`mt-1 flex h-9 cursor-pointer select-none items-center justify-start rounded-full border-[1px] ${
+                      on
+                        ? "border-blue-700 bg-blue-50 text-blue-700"
+                        : "border-gray-300 text-gray-600"
+                    } p-1 pr-2.5 text-sm`}>
+                    <Image
+                      key={i}
+                      alt={`Avatar of ${option}`}
+                      className={`mr-1.5 h-7 w-7 rounded-full object-contain`}
+                      src={option in ppl ? ppl[option as keyof typeof ppl] : ""}
+                    />
+                    {option}
+                  </button>
+                )
+              })}
 
               <div className="mt-3 text-sm">
                 Created{" "}
@@ -206,7 +222,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                   initial.name === name &&
                   initial.description === desc &&
                   initial.priority === priority &&
-                  initial.issueType === type
+                  initial.issueType === type &&
+                  initial.assignees === assignees
                 )
                   ? "bg-blue-700 text-white hover:bg-blue-600"
                   : " cursor-not-allowed bg-gray-700 text-white/50"
