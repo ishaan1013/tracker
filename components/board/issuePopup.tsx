@@ -84,13 +84,26 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [assignees, setAssignees] = useState(processAssignees(data.assignees))
   const [_, forceUpdate] = useReducer((x) => x + 1, 0)
 
+  useEffect(() => {
+    console.log("assignees changed:", assignees)
+    const added = []
+    const removed = []
+    if (assignees) {
+      for (const assignee of assignees) {
+        if (!initial.assignees?.map((a) => a.name).includes(assignee))
+          added.push(assignee)
+      }
+      for (const assignee of initial.assignees?.map((a) => a.name) || []) {
+        if (!assignees.includes(assignee)) removed.push(assignee)
+      }
+    }
+    console.log("added:", added)
+    console.log("removed:", removed)
+  }, [assignees])
+
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
   const setSaved = useItemStore((state) => state.setSaved)
-
-  useEffect(() => {
-    console.log("issue popup -- items: ", items)
-  }, [items])
 
   const setOpenToast = useToastStore((state) => state.setOpen)
   const setTitleToast = useToastStore((state) => state.setTitle)
@@ -187,15 +200,14 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                         : option + "no"
                     }
                     onClick={() => {
-                      const newAssignees = assignees
-                      if (newAssignees) {
-                        console.log("newAssignees before:", newAssignees)
+                      if (assignees) {
+                        const newAssignees = [...assignees]
                         assignees?.indexOf(option) !== undefined &&
                         assignees?.indexOf(option) > -1
                           ? newAssignees.splice(newAssignees.indexOf(option), 1)
                           : newAssignees.push(option)
-                        console.log("newAssignees after:", newAssignees)
 
+                        console.log("newAssignees after:", newAssignees)
                         setAssignees(newAssignees)
                         forceUpdate()
                       }

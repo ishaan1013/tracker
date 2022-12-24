@@ -18,7 +18,7 @@ function isValidBody<T extends Record<string, unknown>>(
   return Object.keys(body).every((key) => fields.includes(key))
 }
 
-const upsertItem = async (
+const updateAssignees = async (
   req: NextApiRequest,
   res: NextApiResponse
 ) => {
@@ -75,4 +75,4 @@ const upsertItem = async (
 
 }
 
-export default upsertItem
+export default updateAssignees
