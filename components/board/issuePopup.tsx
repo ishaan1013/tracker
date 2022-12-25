@@ -145,6 +145,10 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     setOpened(false)
   }
 
+  const saveAssignees = () => {
+    
+  }
+
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
       {/* <Dialog.Trigger /> */}
