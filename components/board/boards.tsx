@@ -27,6 +27,33 @@ import { useItemStore, useSaveStore, useToastStore } from "../../hooks"
 
 import Preview from "./preview"
 
+const postData = async ({
+  items,
+  item,
+}: {
+  items: IssueType[]
+  item: IssueType
+}) => {
+  const res = await fetch(`/api/upsertItem`, {
+    method: "POST",
+    body: JSON.stringify({
+      id: item.id,
+      name: item.name,
+      userId: item.userId,
+      description: item.description,
+      category: item.category,
+      issueType: item.issueType,
+      priority: item.priority,
+      index: items.indexOf(item),
+      createdAt: item.createdAt,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+  return await res.json()
+}
+
 const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -70,66 +97,15 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const updateItems = async (items: IssueType[][]) => {
     incSave()
     for (const item of items[0]) {
-      const res = await fetch(`/api/upsertItem`, {
-        method: "POST",
-        body: JSON.stringify({
-          id: item.id,
-          name: item.name,
-          userId: item.userId,
-          description: item.description,
-          category: item.category,
-          issueType: item.issueType,
-          priority: item.priority,
-          index: items[0].indexOf(item),
-          createdAt: item.createdAt,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const data = await res.json()
+      const data = await postData({ items: items[0], item })
       console.log("sent", data)
     }
     for (const item of items[1]) {
-      const res = await fetch(`/api/upsertItem`, {
-        method: "POST",
-        body: JSON.stringify({
-          id: item.id,
-          name: item.name,
-          userId: item.userId,
-          description: item.description,
-          category: item.category,
-          issueType: item.issueType,
-          priority: item.priority,
-          index: items[1].indexOf(item),
-          createdAt: item.createdAt,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const data = await res.json()
+      const data = await postData({ items: items[1], item })
       console.log("sent", data)
     }
     for (const item of items[2]) {
-      const res = await fetch(`/api/upsertItem`, {
-        method: "POST",
-        body: JSON.stringify({
-          id: item.id,
-          name: item.name,
-          userId: item.userId,
-          description: item.description,
-          category: item.category,
-          issueType: item.issueType,
-          priority: item.priority,
-          index: items[2].indexOf(item),
-          createdAt: item.createdAt,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      const data = await res.json()
+      const data = await postData({ items: items[2], item })
       console.log("sent", data)
     }
     decSave()

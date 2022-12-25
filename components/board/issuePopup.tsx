@@ -82,23 +82,28 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [type, setType] = useState(data.issueType)
 
   const [assignees, setAssignees] = useState(processAssignees(data.assignees))
-  const [_, forceUpdate] = useReducer((x) => x + 1, 0)
+  // const [_, forceUpdate] = useReducer((x) => x + 1, 0)
+
+  const [added, setAdded] = useState<string[]>([])
+  const [removed, setRemoved] = useState<string[]>([])
 
   useEffect(() => {
     console.log("assignees changed:", assignees)
-    const added = []
-    const removed = []
+    const add = []
+    const remove = []
     if (assignees) {
       for (const assignee of assignees) {
         if (!initial.assignees?.map((a) => a.name).includes(assignee))
-          added.push(assignee)
+          add.push(assignee)
       }
       for (const assignee of initial.assignees?.map((a) => a.name) || []) {
-        if (!assignees.includes(assignee)) removed.push(assignee)
+        if (!assignees.includes(assignee)) remove.push(assignee)
       }
     }
-    console.log("added:", added)
-    console.log("removed:", removed)
+    console.log("added:", add)
+    setAdded(added)
+    console.log("removed:", remove)
+    setRemoved(removed)
   }, [assignees])
 
   const items = useItemStore((state) => state.items)
@@ -184,8 +189,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               </div> */}
               <div className="mb-1 text-sm font-semibold">Priority:</div>
               <Priority popup initial={data.priority} />
-              <div className="mb-1 text-sm font-semibold">Assignees:</div>
-              <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
+              <div className="text-sm font-semibold">Assignees:</div>
 
               {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
               {options.map((option, i) => {
@@ -193,12 +197,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 // const on = assignees?.indexOf(option)
                 return (
                   <button
-                    key={
-                      assignees?.indexOf(option) !== undefined &&
-                      assignees?.indexOf(option) > -1
-                        ? option + "yes"
-                        : option + "no"
-                    }
+                    key={i}
                     onClick={() => {
                       if (assignees) {
                         const newAssignees = [...assignees]
@@ -209,7 +208,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
                         console.log("newAssignees after:", newAssignees)
                         setAssignees(newAssignees)
-                        forceUpdate()
+                        // forceUpdate()
                       }
                     }}
                     className={`mt-1 flex h-9 cursor-pointer select-none items-center justify-start rounded-full border-[1px] ${
@@ -228,11 +227,16 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 )
               })}
 
+              <div className="mt-4 h-[1px] w-full bg-gray-300 text-gray-600" />
+
               <div className="mt-3 text-sm">
                 Created{" "}
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
+                {/* {JSON.stringify(processAssignees(initial.assignees)?.sort()) +
+                  "===" +
+                  JSON.stringify(assignees?.sort())} */}
               </div>
             </div>
           </div>
@@ -244,7 +248,9 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 initial.name === name &&
                 initial.description === desc &&
                 initial.priority === priority &&
-                initial.issueType === type
+                initial.issueType === type &&
+                JSON.stringify(processAssignees(initial.assignees)?.sort()) ===
+                  JSON.stringify(assignees?.sort())
               }
               className={`${
                 !(
@@ -252,7 +258,9 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                   initial.description === desc &&
                   initial.priority === priority &&
                   initial.issueType === type &&
-                  initial.assignees === assignees
+                  JSON.stringify(
+                    processAssignees(initial.assignees?.sort())
+                  ) === JSON.stringify(assignees?.sort())
                 )
                   ? "bg-blue-700 text-white hover:bg-blue-600"
                   : " cursor-not-allowed bg-gray-700 text-white/50"
