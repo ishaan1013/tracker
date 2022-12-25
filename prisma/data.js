@@ -95,10 +95,10 @@ const issues = [
         },
         {
           where: {
-            name: "Head of Marketing",
+            name: "You",
           },
           create: {
-            name: "Head of Marketing",
+            name: "You",
           },
         },
       ],

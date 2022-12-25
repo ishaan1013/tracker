@@ -101,9 +101,9 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
       }
     }
     console.log("added:", add)
-    setAdded(added)
+    setAdded(add)
     console.log("removed:", remove)
-    setRemoved(removed)
+    setRemoved(remove)
   }, [assignees])
 
   const items = useItemStore((state) => state.items)
@@ -117,8 +117,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const setActionAlert = useAlertStore((state) => state.setAction)
   const setDescAlert = useAlertStore((state) => state.setDesc)
 
-  const handleSave = () => {
-    const newItems = items
+  const handleSave = async () => {
+    const newItems = [...items]
 
     const updatedItem = {
       ...data,
@@ -136,6 +136,11 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
     console.log("newItems:", newItems)
 
+    console.log("added", added)
+    console.log("removed", removed)
+    const dataRes = await saveAssignees()
+    console.log("🚀 ~ file: issuePopup.tsx:140 ~ handleSave ~ dataRes", dataRes)
+
     setItems(newItems)
     setSaved(true)
     setOpenToast(true)
@@ -145,8 +150,19 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     setOpened(false)
   }
 
-  const saveAssignees = () => {
-    
+  const saveAssignees = async () => {
+    const res = await fetch(`/api/updateAssignees`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: data.id,
+        connection: added,
+        disconnection: removed,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    return await res.json()
   }
 
   return (

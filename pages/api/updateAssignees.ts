@@ -16,10 +16,13 @@ const updateAssignees = async (
   try {
 
     // const { id, name, description, category, issueType, priority, index } = body
-    const { connect, disconnect }: {
-      connect: {name: string}[]
-      disconnect: {name: string}[]
+    const { connection, disconnection }: {
+      connection: string[]
+      disconnection: string[]
     } = body
+
+    const connect = connection.map((item) => {return {name: item}})
+    const disconnect = disconnection.map((item) => {return {name: item}})
 
     await prisma.issue.update({
       where: {id: body.id},
@@ -43,9 +46,10 @@ const updateAssignees = async (
         assignees: true
       }
     })
+
     res.status(200).json({ success: true, message: body })
   } catch (e) {
-      res.status(400).json({ success: false, message: body })
+      res.status(400).json({ success: false, message: {"connection":body.connection, "disconnection": body.disconnection} })
   }
 
 }
