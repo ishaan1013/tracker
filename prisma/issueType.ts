@@ -12,7 +12,7 @@ export type IssueType = {
 }
 
 export type AssigneeType = {
-  id: number
+  id?: number
   name: string
   issues?: IssueType[]
 }

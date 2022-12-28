@@ -119,6 +119,25 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
   const handleSave = async () => {
     const newItems = [...items]
+    // const removedAssignees = [...(assignees ?? [])]?.filter(
+    //   (x) => !removed.includes(x)
+    // )
+    // console.log(
+    //   "🚀 ~ file: issuePopup.tsx:123 ~ handleSave ~ removedAssignees",
+    //   removedAssignees
+    // )
+    // const addedAssignees = removedAssignees?.concat(added)
+    // console.log(
+    //   "🚀 ~ file: issuePopup.tsx:127 ~ handleSave ~ addedAssignees",
+    //   addedAssignees
+    // )
+    const newAssignees = [...(assignees ?? [])]?.map((assignee) => {
+      return { name: assignee }
+    })
+    console.log(
+      "🚀 ~ file: issuePopup.tsx:127 ~ newAssignees ~ newAssignees",
+      newAssignees
+    )
 
     const updatedItem = {
       ...data,
@@ -126,20 +145,16 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
       description: desc,
       priority,
       issueType: type,
+      assignees: newAssignees,
     }
     const cat = data.category
     const pos = items[data.category].map((obj) => obj.id).indexOf(data.id)
-    console.log("items:", items)
-    console.log("data:", data)
-    console.log("cat:", cat, "pos:", pos)
+    // console.log("items:", items)
+    // console.log("data:", data)
+    // console.log("cat:", cat, "pos:", pos)
     newItems[cat][pos] = updatedItem
 
-    console.log("newItems:", newItems)
-
-    console.log("added", added)
-    console.log("removed", removed)
-    const dataRes = await saveAssignees()
-    console.log("🚀 ~ file: issuePopup.tsx:140 ~ handleSave ~ dataRes", dataRes)
+    await saveAssignees()
 
     setItems(newItems)
     setSaved(true)

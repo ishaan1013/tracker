@@ -54,6 +54,11 @@ const postData = async ({
   return await res.json()
 }
 
+// const getData = async () => {
+//   const res = await fetch(`/api/getIssues`)
+//   return await res.json()
+// }
+
 const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
@@ -74,7 +79,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   useEffect(() => {
     if (saved) {
-      console.log("saved:", items)
+      // console.log("saved:", items)
       updateItems(items)
       setSaved(false)
     }
@@ -97,18 +102,22 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const updateItems = async (items: IssueType[][]) => {
     incSave()
     for (const item of items[0]) {
-      const data = await postData({ items: items[0], item })
-      console.log("sent", data)
+      await postData({ items: items[0], item })
+      // console.log("sent", data)
     }
     for (const item of items[1]) {
-      const data = await postData({ items: items[1], item })
-      console.log("sent", data)
+      await postData({ items: items[1], item })
+      // console.log("sent", data)
     }
     for (const item of items[2]) {
-      const data = await postData({ items: items[2], item })
-      console.log("sent", data)
+      await postData({ items: items[2], item })
+      // console.log("sent", data)
     }
     decSave()
+
+    // const getRes = await getData()
+    // console.log("🚀 ~ file: boards.tsx:118 ~ updateItems ~ getRes", getRes)
+    // setItems(getRes?.data)
   }
 
   const [activeId, setActiveId] = useState("")
@@ -127,9 +136,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
-      {/* <p className="whitespace-pre text-xs text-gray-600">
+      <p className="whitespace-pre text-xs text-gray-600">
         {JSON.stringify(items, null, "\t")}
-      </p> */}
+      </p>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
