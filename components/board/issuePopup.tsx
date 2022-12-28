@@ -1,21 +1,26 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
+import Image from "next/image"
 import {
   FiX,
   FiTrash,
   FiDisc,
   FiCheck,
   FiBookmark,
-  FiPlus,
   FiSave,
   FiRefreshCw,
 } from "react-icons/fi"
-import { IssueType } from "../../prisma/issueType"
+import { AssigneeType, IssueType } from "../../prisma/issueType"
 import Priority from "./prioritySelect"
 import { useToastStore, useAlertStore } from "../../hooks"
+
+import CEO from "../../assets/avatars/ceo.webp"
+import Marketing from "../../assets/avatars/marketing.webp"
+import Engineer from "../../assets/avatars/engineer.webp"
+import You from "../../assets/avatars/you.webp"
 
 const IssueSelect = ({
   type,
@@ -48,40 +53,25 @@ const IssueSelect = ({
   ) : null
 }
 
-// const updateIssue = async ({
-//   item,
-//   items,
-// }: {
-//   item: IssueType
-//   items: IssueType[][]
-// }) => {
-//   const res = await fetch(`/api/upsertItem`, {
-//     method: "POST",
-//     body: JSON.stringify({
-//       id: item.id,
-//       name: item.name,
-//       userId: item.userId,
-//       description: item.description,
-//       category: item.category,
-//       issueType: item.issueType,
-//       priority: item.priority,
-//       index: items[item.category].indexOf(item),
-//       createdAt: item.createdAt,
-//     }),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//   const data = await res.json()
-//   console.log("sent", data)
-//   return data
-// }
-
 interface Props {
   opened: boolean
   setOpened: (opened: boolean) => void
   data: IssueType
 }
+
+const processAssignees = (assignees: AssigneeType[] | undefined) => {
+  if (assignees) return assignees.map((assignee) => assignee.name)
+  return undefined
+}
+
+const ppl = {
+  "The CEO": CEO,
+  "Head of Marketing": Marketing,
+  "Software Engineer": Engineer,
+  You: You,
+}
+
+const options = ["You", "Software Engineer", "Head of Marketing", "The CEO"]
 
 const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const initial = data
@@ -91,13 +81,34 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [priority, setPriority] = useState(data.priority)
   const [type, setType] = useState(data.issueType)
 
+  const [assignees, setAssignees] = useState(processAssignees(data.assignees))
+  // const [_, forceUpdate] = useReducer((x) => x + 1, 0)
+
+  const [added, setAdded] = useState<string[]>([])
+  const [removed, setRemoved] = useState<string[]>([])
+
+  useEffect(() => {
+    console.log("assignees changed:", assignees)
+    const add = []
+    const remove = []
+    if (assignees) {
+      for (const assignee of assignees) {
+        if (!initial.assignees?.map((a) => a.name).includes(assignee))
+          add.push(assignee)
+      }
+      for (const assignee of initial.assignees?.map((a) => a.name) || []) {
+        if (!assignees.includes(assignee)) remove.push(assignee)
+      }
+    }
+    console.log("added:", add)
+    setAdded(add)
+    console.log("removed:", remove)
+    setRemoved(remove)
+  }, [assignees])
+
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
   const setSaved = useItemStore((state) => state.setSaved)
-
-  useEffect(() => {
-    console.log("issue popup -- items: ", items)
-  }, [items])
 
   const setOpenToast = useToastStore((state) => state.setOpen)
   const setTitleToast = useToastStore((state) => state.setTitle)
@@ -106,8 +117,27 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const setActionAlert = useAlertStore((state) => state.setAction)
   const setDescAlert = useAlertStore((state) => state.setDesc)
 
-  const handleSave = () => {
-    const newItems = items
+  const handleSave = async () => {
+    const newItems = [...items]
+    // const removedAssignees = [...(assignees ?? [])]?.filter(
+    //   (x) => !removed.includes(x)
+    // )
+    // console.log(
+    //   "🚀 ~ file: issuePopup.tsx:123 ~ handleSave ~ removedAssignees",
+    //   removedAssignees
+    // )
+    // const addedAssignees = removedAssignees?.concat(added)
+    // console.log(
+    //   "🚀 ~ file: issuePopup.tsx:127 ~ handleSave ~ addedAssignees",
+    //   addedAssignees
+    // )
+    const newAssignees = [...(assignees ?? [])]?.map((assignee) => {
+      return { name: assignee }
+    })
+    console.log(
+      "🚀 ~ file: issuePopup.tsx:127 ~ newAssignees ~ newAssignees",
+      newAssignees
+    )
 
     const updatedItem = {
       ...data,
@@ -115,15 +145,16 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
       description: desc,
       priority,
       issueType: type,
+      assignees: newAssignees,
     }
     const cat = data.category
     const pos = items[data.category].map((obj) => obj.id).indexOf(data.id)
-    console.log("items:", items)
-    console.log("data:", data)
-    console.log("cat:", cat, "pos:", pos)
+    // console.log("items:", items)
+    // console.log("data:", data)
+    // console.log("cat:", cat, "pos:", pos)
     newItems[cat][pos] = updatedItem
 
-    console.log("newItems:", newItems)
+    await saveAssignees()
 
     setItems(newItems)
     setSaved(true)
@@ -132,6 +163,21 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     setMessageToast("Changes saved to " + name + ".")
     console.log("saved", items)
     setOpened(false)
+  }
+
+  const saveAssignees = async () => {
+    const res = await fetch(`/api/updateAssignees`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: data.id,
+        connection: added,
+        disconnection: removed,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    return await res.json()
   }
 
   return (
@@ -162,12 +208,12 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
           <div className="mt-4 flex w-full justify-between space-x-6">
             <div className="flex-grow">
               <input
-                className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
+                className="w-full rounded border-[1px] border-gray-300 p-2 text-start text-2xl font-semibold focus:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
               <textarea
-                className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
+                className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 p-2 text-sm focus:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
                 value={desc}
                 onChange={(e) => setDesc(e.target.value)}
               />
@@ -178,16 +224,54 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               </div> */}
               <div className="mb-1 text-sm font-semibold">Priority:</div>
               <Priority popup initial={data.priority} />
-              <div className="mb-1 text-sm font-semibold">Assignees:</div>
-              <div className="h-[1px] w-full bg-gray-300 text-gray-600" />
+              <div className="text-sm font-semibold">Assignees:</div>
 
-              <div className="mt-3 text-xs">{JSON.stringify(initial)}</div>
+              {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
+              {options.map((option, i) => {
+                // const on = assignees?.find((e) => e.name === option)
+                // const on = assignees?.indexOf(option)
+                return (
+                  <button
+                    key={i}
+                    onClick={() => {
+                      if (assignees) {
+                        const newAssignees = [...assignees]
+                        assignees?.indexOf(option) !== undefined &&
+                        assignees?.indexOf(option) > -1
+                          ? newAssignees.splice(newAssignees.indexOf(option), 1)
+                          : newAssignees.push(option)
+
+                        console.log("newAssignees after:", newAssignees)
+                        setAssignees(newAssignees)
+                        // forceUpdate()
+                      }
+                    }}
+                    className={`mt-1 flex h-9 cursor-pointer select-none items-center justify-start rounded-full border-[1px] ${
+                      assignees?.indexOf(option) !== undefined &&
+                      assignees?.indexOf(option) > -1
+                        ? "border-blue-700 bg-blue-50 text-blue-700"
+                        : "border-gray-300 text-gray-600"
+                    } p-1 pr-2.5 text-sm`}>
+                    <Image
+                      alt={`Avatar of ${option}`}
+                      className={`mr-1.5 h-7 w-7 rounded-full object-contain`}
+                      src={option in ppl ? ppl[option as keyof typeof ppl] : ""}
+                    />
+                    {option}
+                  </button>
+                )
+              })}
+
+              <div className="mt-4 h-[1px] w-full bg-gray-300 text-gray-600" />
 
               <div className="mt-3 text-sm">
                 Created{" "}
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
+                {/* {JSON.stringify(processAssignees(initial.assignees)?.sort()) +
+                  "===" +
+                  JSON.stringify(assignees?.sort())} */}
               </div>
             </div>
           </div>
@@ -199,14 +283,19 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 initial.name === name &&
                 initial.description === desc &&
                 initial.priority === priority &&
-                initial.issueType === type
+                initial.issueType === type &&
+                JSON.stringify(processAssignees(initial.assignees)?.sort()) ===
+                  JSON.stringify(assignees?.sort())
               }
               className={`${
                 !(
                   initial.name === name &&
                   initial.description === desc &&
                   initial.priority === priority &&
-                  initial.issueType === type
+                  initial.issueType === type &&
+                  JSON.stringify(
+                    processAssignees(initial.assignees?.sort())
+                  ) === JSON.stringify(assignees?.sort())
                 )
                   ? "bg-blue-700 text-white hover:bg-blue-600"
                   : " cursor-not-allowed bg-gray-700 text-white/50"

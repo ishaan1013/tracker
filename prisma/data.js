@@ -30,26 +30,10 @@ const issues = [
       connectOrCreate: [
         {
           where: {
-            name: "The CEO",
-          },
-          create: {
-            name: "The CEO",
-          },
-        },
-        {
-          where: {
             name: "Software Engineer",
           },
           create: {
             name: "Software Engineer",
-          },
-        },
-        {
-          where: {
-            name: "Head of Marketing",
-          },
-          create: {
-            name: "Head of Marketing",
           },
         },
       ],
@@ -74,14 +58,6 @@ const issues = [
         },
         {
           where: {
-            name: "Software Engineer",
-          },
-          create: {
-            name: "Software Engineer",
-          },
-        },
-        {
-          where: {
             name: "Head of Marketing",
           },
           create: {
@@ -98,18 +74,7 @@ const issues = [
     index: 0,
     issueType: 2,
     priority: 2,
-    assignees: {
-      connectOrCreate: [
-        {
-          where: {
-            name: "The CEO",
-          },
-          create: {
-            name: "The CEO",
-          },
-        },
-      ],
-    },
+    assignees: {},
   },
   {
     name: "Cool jacket 1",
@@ -130,10 +95,10 @@ const issues = [
         },
         {
           where: {
-            name: "Head of Marketing",
+            name: "You",
           },
           create: {
-            name: "Head of Marketing",
+            name: "You",
           },
         },
       ],

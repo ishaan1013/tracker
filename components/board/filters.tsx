@@ -51,7 +51,7 @@ const Filters = () => {
                   } border-2 bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 ${
                     user
                       ? "z-[2] border-blue-700 hover:z-[2]"
-                      : "border-white grayscale"
+                      : "border-white grayscale hover:grayscale-0"
                   } translate-y-0 overflow-hidden duration-100 hover:z-[1] hover:-translate-y-1.5`}>
                   <Image
                     src={ppl1[index]}

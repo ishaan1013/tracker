@@ -46,17 +46,6 @@ const Board = async () => {
       <AlertPopup />
 
       <div className="flex h-screen flex-grow flex-col overflow-auto p-8 ">
-        {/* Breadcrumbs: */}
-
-        {/* <div className="mb-2 flex cursor-default select-none items-center justify-start space-x-2 whitespace-nowrap text-gray-600">
-          <div className="flex items-center">
-            Projects&nbsp;&nbsp;/&nbsp;&nbsp;Project Name&nbsp;&nbsp;/&nbsp;
-            <div className="z-10 flex items-center rounded px-1.5 font-medium  hover:bg-gray-150">
-              Kanban Board
-            </div>
-          </div>
-        </div> */}
-
         <Header />
         {/* <p>signed in as {JSON.stringify(session)}</p> */}
 
