@@ -64,19 +64,20 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const setItems = useItemStore((state) => state.setItems)
   const saved = useItemStore((state) => state.saved)
   const setSaved = useItemStore((state) => state.setSaved)
-  // const titleToast = useToastStore((state) => state.title)
-  // const openToast = useToastStore((state) => state.open)
 
+  //! useEffect[data] unnecessary after removing server component fetching & prop passing
   useEffect(() => {
     if (data && data !== items) {
       setItems(data)
     }
   }, [data])
 
+  //! useEffect[items] unnecessary after saving set to directly update db
   useEffect(() => {
     updateItems(items)
   }, [items])
 
+  //! useEffect[saved] unnecessary after saving set to directly update db -> useSaveStore will contain the global save state
   useEffect(() => {
     if (saved) {
       // console.log("saved:", items)
@@ -85,10 +86,12 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
     }
   }, [saved])
 
+  //! useSaveStore will be necessary to keep track of the global save state
   const save = useSaveStore((state) => state.save)
   const incSave = useSaveStore((state) => state.incSave)
   const decSave = useSaveStore((state) => state.decSave)
 
+  //! keep for testing
   useEffect(() => {
     if (save === 0) {
       console.log("done save")
@@ -99,6 +102,7 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
     }
   }, [save])
 
+  //! updateItems will be unnecessary after saving set to directly update db
   const updateItems = async (items: IssueType[][]) => {
     incSave()
     for (const item of items[0]) {
@@ -136,9 +140,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
-      <p className="whitespace-pre text-xs text-gray-600">
+      {/* <p className="whitespace-pre text-xs text-gray-600">
         {JSON.stringify(items, null, "\t")}
-      </p>
+      </p> */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
