@@ -33,13 +33,13 @@ const Priority = ({
       setTriggerClass(
         `${
           popup ? "mb-3" : "ml-6"
-        } select-none flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"hover:bg-gray-150 text-gray-600 border-gray-300`
+        } select-none flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 duration-100 py-1 px-2.5 rounded text-base border-[1px] hover:bg-gray-150 text-gray-600 border-gray-300`
       )
     } else {
       setTriggerClass(
         `${
           popup ? "mb-3" : "ml-6"
-        } select-none flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 duration-100 py-1 px-2.5 rounded text-base border-[1px] "+"bg-gray-150 hover:bg-gray-200 text-blue-700 border-blue-700`
+        } select-none flex items-center focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 duration-100 py-1 px-2.5 rounded text-base border-[1px] bg-blue-50 hover:bg-blue-100 text-blue-700 border-blue-700`
       )
     }
   }, [val])
@@ -54,14 +54,18 @@ const Priority = ({
       </Select.Trigger>
 
       <Select.Portal>
-        <Select.Content className=" z-50 select-none rounded border-[1px] border-gray-300 bg-gray-150 p-1.5 text-base text-gray-600 duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
+        <Select.Content
+          position="popper"
+          align="start"
+          sideOffset={3}
+          className=" z-50 select-none rounded border-[1px] border-gray-300 bg-gray-150 p-1.5 text-base text-gray-600 duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
           <Select.ScrollUpButton />
           <Select.Viewport>
             {validInitial ? null : (
               <>
                 <Select.Item
                   value="Priority"
-                  className="mb-1 flex cursor-pointer items-center rounded px-2 opacity-80 duration-100 hover:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
+                  className="mb-1 flex cursor-pointer items-center rounded px-2.5 duration-100 hover:opacity-40 focus:bg-blue-600 focus:text-white focus:outline-none">
                   <Select.ItemText>Priority</Select.ItemText>
                 </Select.Item>
                 <Select.Separator className="my-1 h-[1px] w-full bg-gray-300" />
@@ -69,18 +73,18 @@ const Priority = ({
             )}
             <Select.Item
               value="Low"
-              className="flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="flex cursor-pointer items-center rounded py-0.5 px-2.5 duration-100 hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:outline-none data-[state=checked]:font-semibold data-[state=checked]:hover:text-white">
               <Select.ItemText>Low</Select.ItemText>
             </Select.Item>
 
             <Select.Item
               value="Medium"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2.5 duration-100 hover:bg-blue-600 hover:text-white focus:bg-blue-600 focus:text-white focus:outline-none data-[state=checked]:font-semibold data-[state=checked]:hover:text-white">
               <Select.ItemText>Medium</Select.ItemText>
             </Select.Item>
             <Select.Item
               value="High"
-              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2 duration-100 hover:bg-blue-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 data-[state=checked]:font-semibold data-[state=checked]:text-blue-700 data-[state=checked]:hover:text-white">
+              className="mb-1 flex cursor-pointer items-center rounded py-0.5 px-2.5 duration-100 hover:bg-blue-600 hover:text-white hover:ring-0 focus:bg-blue-600 focus:text-white focus:outline-none data-[state=checked]:font-semibold data-[state=checked]:hover:text-white">
               <Select.ItemText>High</Select.ItemText>
             </Select.Item>
           </Select.Viewport>

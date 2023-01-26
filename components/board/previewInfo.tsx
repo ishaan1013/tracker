@@ -52,9 +52,6 @@ export const IssuePpl = ({
             />
           )
         })}
-        {/* <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div>
-        <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div>
-        <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div> */}
       </div>
     )
   return (
@@ -68,10 +65,6 @@ export const IssuePpl = ({
             } rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}></div>
         )
       })}
-      {/* <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div>
-      <div className="-ml-1.5 h-7 w-7 rounded-full border-2 border-white bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"></div> */}
     </div>
   )
 }

@@ -64,8 +64,6 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   const setItems = useItemStore((state) => state.setItems)
   const saved = useItemStore((state) => state.saved)
   const setSaved = useItemStore((state) => state.setSaved)
-  // const titleToast = useToastStore((state) => state.title)
-  // const openToast = useToastStore((state) => state.open)
 
   useEffect(() => {
     if (data && data !== items) {
@@ -79,7 +77,6 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   useEffect(() => {
     if (saved) {
-      // console.log("saved:", items)
       updateItems(items)
       setSaved(false)
     }
@@ -103,21 +100,14 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
     incSave()
     for (const item of items[0]) {
       await postData({ items: items[0], item })
-      // console.log("sent", data)
     }
     for (const item of items[1]) {
       await postData({ items: items[1], item })
-      // console.log("sent", data)
     }
     for (const item of items[2]) {
       await postData({ items: items[2], item })
-      // console.log("sent", data)
     }
     decSave()
-
-    // const getRes = await getData()
-    // console.log("🚀 ~ file: boards.tsx:118 ~ updateItems ~ getRes", getRes)
-    // setItems(getRes?.data)
   }
 
   const [activeId, setActiveId] = useState("")
@@ -136,9 +126,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
-      <p className="whitespace-pre text-xs text-gray-600">
+      {/* <p className="whitespace-pre text-xs text-gray-600">
         {JSON.stringify(items, null, "\t")}
-      </p>
+      </p> */}
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}

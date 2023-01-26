@@ -18,7 +18,6 @@ const ppl1 = [You, Engineer, Marketing, CEO]
 const ppl2 = ["You", "Software Engineer", "Head of Marketing", "The CEO"]
 
 const Filters = () => {
-  // const [users, setUsers] = useState([false, false, false, false])
   const searchStore = useSearchStore()
   const users = useUsersFilterStore((state) => state.users)
   const setUsers = useUsersFilterStore((state) => state.setUsers)

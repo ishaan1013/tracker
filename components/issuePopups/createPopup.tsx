@@ -2,21 +2,9 @@
 
 import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { useItemStore } from "../../hooks"
-import {
-  FiX,
-  FiTrash,
-  FiDisc,
-  FiCheck,
-  FiBookmark,
-  FiPlus,
-  FiSave,
-  FiRefreshCw,
-} from "react-icons/fi"
-import { IoSearch } from "react-icons/io5"
+import { FiDisc, FiCheck, FiBookmark, FiPlus } from "react-icons/fi"
 import Priority from "../board/prioritySelect"
 import Status from "../board/statusSelect"
-// import { IssueType } from '../../prisma/issueType';
 
 interface Props {
   opened: boolean

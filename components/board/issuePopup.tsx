@@ -208,14 +208,10 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
               />
             </div>
             <div className="flex w-60 flex-col items-start">
-              {/* <div className="mb-3 py-1 px-2 rounded border-[1px] border-gray-300 duration-100 hover:bg-gray-150 font-semibold flex items-center">
-                Priority: <IssueIcons className="ml-1.5 -translate-y-[1px]" priority={data.priority} />
-              </div> */}
               <div className="mb-1 text-sm font-semibold">Priority:</div>
               <Priority popup initial={data.priority} />
               <div className="text-sm font-semibold">Assignees:</div>
 
-              {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
               {options.map((option, i) => {
                 return (
                   <button
