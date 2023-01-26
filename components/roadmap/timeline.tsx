@@ -1,11 +1,11 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { prisma } from "../../prisma/db"
 
 import { FiChevronLeft, FiLoader, FiPlus, FiZap } from "react-icons/fi"
 import EpicPopup from "./epicPopup"
 import { useCreateEpicPopupStore } from "../../hooks"
+import useDates from "../../hooks/useDates"
 
 const Timeline = () => {
   const monthRef = useRef<HTMLDivElement>(null)
@@ -18,6 +18,8 @@ const Timeline = () => {
     const monthTo = monthRef.current
     monthTo?.focus()
   }, [])
+
+  const dates = useDates()
 
   return (
     <>
@@ -75,37 +77,7 @@ const Timeline = () => {
         <div className="roadmapScroll relative inline-block h-full w-full overflow-y-hidden overflow-x-scroll rounded-r">
           {/* <div className="absolute -z-10 h-14 w-full rounded-tr border-b-[1px] border-gray-300 bg-gray-150"></div> */}
           <div className="flex h-full">
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                May
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Jun
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Jul
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Aug
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Sep
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Oct
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+            {/* <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
               <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
                 Nov
               </div>
@@ -133,22 +105,16 @@ const Timeline = () => {
               <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
                 Jan 23
               </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Feb 23
+            </div> */}
+            {dates.map((date, i) => (
+              <div
+                key={i}
+                className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+                <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
+                  {date}
+                </div>
               </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Mar 23
-              </div>
-            </div>
-            <div className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-              <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                Apr 23
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </div>
