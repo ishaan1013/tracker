@@ -42,7 +42,6 @@ const Filters = () => {
               <Tooltip.Trigger asChild>
                 <button
                   onClick={() => {
-                    console.log("updated")
                     setUsers(users, index)
                   }}
                   className={`h-9 w-9 rounded-full ${

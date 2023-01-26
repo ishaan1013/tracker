@@ -110,7 +110,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
-  const setSaved = useItemStore((state) => state.setSaved)
 
   const setOpenToast = useToastStore((state) => state.setOpen)
   const setTitleToast = useToastStore((state) => state.setTitle)
@@ -125,10 +124,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     const newAssignees = [...(assignees ?? [])]?.map((assignee) => {
       return { name: assignee }
     })
-    console.log(
-      "🚀 ~ file: issuePopup.tsx:127 ~ newAssignees ~ newAssignees",
-      newAssignees
-    )
 
     const updatedItem = {
       ...data,
@@ -145,7 +140,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     await saveAssignees()
 
     setItems(newItems)
-    setSaved(true)
     setOpenToast(true)
     setTitleToast("Save Successful")
     setMessageToast("Changes saved to " + name + ".")
@@ -224,7 +218,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                           ? newAssignees.splice(newAssignees.indexOf(option), 1)
                           : newAssignees.push(option)
 
-                        console.log("newAssignees after:", newAssignees)
                         setAssignees(newAssignees)
                       }
                     }}

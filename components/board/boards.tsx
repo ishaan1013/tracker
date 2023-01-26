@@ -62,8 +62,6 @@ const postData = async ({
 const Boards = ({ data }: { data: IssueType[][] }) => {
   const items = useItemStore((state) => state.items)
   const setItems = useItemStore((state) => state.setItems)
-  const saved = useItemStore((state) => state.saved)
-  const setSaved = useItemStore((state) => state.setSaved)
 
   useEffect(() => {
     if (data && data !== items) {
@@ -74,13 +72,6 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
   useEffect(() => {
     updateItems(items)
   }, [items])
-
-  useEffect(() => {
-    if (saved) {
-      updateItems(items)
-      setSaved(false)
-    }
-  }, [saved])
 
   const save = useSaveStore((state) => state.save)
   const incSave = useSaveStore((state) => state.incSave)
