@@ -12,6 +12,7 @@ import {
   FiBookmark,
   FiSave,
   FiRefreshCw,
+  FiLoader,
 } from "react-icons/fi"
 import { AssigneeType, IssueType } from "../../prisma/issueType"
 import Priority from "./prioritySelect"
@@ -86,6 +87,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
   const [added, setAdded] = useState<string[]>([])
   const [removed, setRemoved] = useState<string[]>([])
+  const [saving, setSaving] = useState(false)
 
   useEffect(() => {
     console.log("assignees changed:", assignees)
@@ -118,19 +120,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const setDescAlert = useAlertStore((state) => state.setDesc)
 
   const handleSave = async () => {
+    setSaving(true)
     const newItems = [...items]
-    // const removedAssignees = [...(assignees ?? [])]?.filter(
-    //   (x) => !removed.includes(x)
-    // )
-    // console.log(
-    //   "🚀 ~ file: issuePopup.tsx:123 ~ handleSave ~ removedAssignees",
-    //   removedAssignees
-    // )
-    // const addedAssignees = removedAssignees?.concat(added)
-    // console.log(
-    //   "🚀 ~ file: issuePopup.tsx:127 ~ handleSave ~ addedAssignees",
-    //   addedAssignees
-    // )
     const newAssignees = [...(assignees ?? [])]?.map((assignee) => {
       return { name: assignee }
     })
@@ -149,9 +140,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     }
     const cat = data.category
     const pos = items[data.category].map((obj) => obj.id).indexOf(data.id)
-    // console.log("items:", items)
-    // console.log("data:", data)
-    // console.log("cat:", cat, "pos:", pos)
     newItems[cat][pos] = updatedItem
 
     await saveAssignees()
@@ -162,6 +150,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     setTitleToast("Save Successful")
     setMessageToast("Changes saved to " + name + ".")
     console.log("saved", items)
+    setSaving(false)
     setOpened(false)
   }
 
@@ -228,8 +217,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
               {/* <div className="mt-3 text-xs">{JSON.stringify(assignees)}</div> */}
               {options.map((option, i) => {
-                // const on = assignees?.find((e) => e.name === option)
-                // const on = assignees?.indexOf(option)
                 return (
                   <button
                     key={i}
@@ -243,7 +230,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
 
                         console.log("newAssignees after:", newAssignees)
                         setAssignees(newAssignees)
-                        // forceUpdate()
                       }
                     }}
                     className={`mt-1 flex h-9 cursor-pointer select-none items-center justify-start rounded-full border-[1px] ${
@@ -269,9 +255,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
                 <span className="font-semibold text-gray-600">
                   {data.createdAt.toString().split(" ").slice(1, 4).join(" ")}
                 </span>
-                {/* {JSON.stringify(processAssignees(initial.assignees)?.sort()) +
-                  "===" +
-                  JSON.stringify(assignees?.sort())} */}
               </div>
             </div>
           </div>
@@ -280,28 +263,40 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
             <button
               onClick={handleSave}
               disabled={
-                initial.name === name &&
-                initial.description === desc &&
-                initial.priority === priority &&
-                initial.issueType === type &&
-                JSON.stringify(processAssignees(initial.assignees)?.sort()) ===
-                  JSON.stringify(assignees?.sort())
-              }
-              className={`${
-                !(
-                  initial.name === name &&
+                (initial.name === name &&
                   initial.description === desc &&
                   initial.priority === priority &&
                   initial.issueType === type &&
                   JSON.stringify(
-                    processAssignees(initial.assignees?.sort())
-                  ) === JSON.stringify(assignees?.sort())
+                    processAssignees(initial.assignees)?.sort()
+                  ) === JSON.stringify(assignees?.sort())) ||
+                saving
+              }
+              className={`${
+                !(
+                  (initial.name === name &&
+                    initial.description === desc &&
+                    initial.priority === priority &&
+                    initial.issueType === type &&
+                    JSON.stringify(
+                      processAssignees(initial.assignees?.sort())
+                    ) === JSON.stringify(assignees?.sort())) ||
+                  saving
                 )
                   ? "bg-blue-700 text-white hover:bg-blue-600"
                   : " cursor-not-allowed bg-gray-700 text-white/50"
               } flex items-center whitespace-nowrap rounded py-2 pl-4 pr-5 text-base text-white duration-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
-              <FiSave className="mr-1.5" />
-              Save
+              {!saving ? (
+                <>
+                  <FiSave className="mr-1.5" />
+                  Save
+                </>
+              ) : (
+                <>
+                  <FiLoader className="animate-spin-slow mr-1.5" />
+                  Saving...
+                </>
+              )}
             </button>
             <button
               onClick={() => {
