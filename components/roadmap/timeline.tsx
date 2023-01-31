@@ -11,6 +11,7 @@ const Timeline = () => {
   const monthRef = useRef<HTMLDivElement>(null)
   const [collapsed, setCollapsed] = useState(false)
   const [opened, setOpened] = useState(false)
+  const [title, setTitle] = useState("")
 
   const setOpenedCreate = useCreateEpicPopupStore((state) => state.setOpened)
 
@@ -23,7 +24,7 @@ const Timeline = () => {
 
   return (
     <>
-      <EpicPopup opened={opened} setOpened={setOpened} />
+      <EpicPopup opened={opened} setOpened={setOpened} title={title} />
       <div className="mt-8 flex h-full w-full items-center rounded border-[1px] border-gray-300">
         <div
           className={`relative h-full rounded-l border-r-2 border-blue-700 ${
@@ -45,6 +46,7 @@ const Timeline = () => {
             <button
               onClick={() => {
                 setOpened(true)
+                setTitle("Project 1")
               }}
               className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
@@ -55,6 +57,7 @@ const Timeline = () => {
             <button
               onClick={() => {
                 setOpened(true)
+                setTitle("Project 2")
               }}
               className={`mb-3 flex w-full select-none items-center justify-center whitespace-nowrap rounded bg-blue-700 ${
                 collapsed ? "py-2.5" : "py-1.5"
@@ -106,15 +109,43 @@ const Timeline = () => {
                 Jan 23
               </div>
             </div> */}
-            {dates.map((date, i) => (
-              <div
-                key={i}
-                className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
-                <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
-                  {date}
-                </div>
-              </div>
-            ))}
+            {dates.map((date, i) => {
+              return (
+                <>
+                  {i === 5 ? (
+                    <div
+                      key={i}
+                      ref={monthRef}
+                      tabIndex={0}
+                      className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+                      <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
+                        {date}
+                      </div>
+                      <button
+                        onClick={() => {
+                          setOpened(true)
+                          setTitle("Project 1")
+                        }}
+                        className="z-10 mb-3 h-9 w-[120%] translate-x-16 rounded bg-blue-700 duration-100 hover:bg-blue-600"></button>
+                      <button
+                        onClick={() => {
+                          setOpened(true)
+                          setTitle("Project 2")
+                        }}
+                        className="z-10 mb-3 h-9 w-[120%] -translate-x-4 rounded bg-blue-700 duration-100 hover:bg-blue-600"></button>
+                    </div>
+                  ) : (
+                    <div
+                      key={i}
+                      className="flex h-full w-72 min-w-[288px] flex-col border-l-[1px] border-gray-300">
+                      <div className="mb-2 flex h-14 w-full items-center justify-center self-center border-b-[1px] border-gray-300 bg-gray-150 text-gray-600 focus:outline-none">
+                        {date}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )
+            })}
           </div>
         </div>
       </div>

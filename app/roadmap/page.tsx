@@ -21,7 +21,12 @@ const Roadmap = async () => {
       <Sidebar />
 
       <div className="flex h-screen flex-grow flex-col overflow-auto p-8 ">
-        <h1 className="mb-6 whitespace-nowrap text-2xl font-bold">Roadmap</h1>
+        <h1 className="mb-6 whitespace-nowrap text-2xl font-bold">
+          Roadmap —{" "}
+          <span className="bg-red-200 px-2 text-red-600">
+            WORK IN PROGRESS 😄
+          </span>
+        </h1>
 
         <Filters />
 

@@ -74,13 +74,13 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
               onChange={(e) => setName(e.target.value)}
             />
 
-            <div className="mt-3 flex items-center">
-              {/* <IssueSelect type={type} setType={setType} /> */}
+            {/* <div className="mt-3 flex items-center">
+              <IssueSelect type={type} setType={setType} />
               <Priority popup initial={0} />
               <Status />
-            </div>
+            </div> */}
 
-            <div className="mb-3 flex h-[1px] w-full bg-gray-300" />
+            <div className="my-3 flex h-[1px] w-full bg-gray-300" />
 
             <textarea
               className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px]  border-gray-300 bg-gray-150 p-2 text-sm placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"

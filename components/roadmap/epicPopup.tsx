@@ -2,57 +2,17 @@
 import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
-import {
-  FiX,
-  FiTrash,
-  FiDisc,
-  FiCheck,
-  FiBookmark,
-  FiPlus,
-  FiSave,
-  FiRefreshCw,
-} from "react-icons/fi"
-import { IssueType } from "../../prisma/issueType"
-import { data } from "autoprefixer"
+import { FiX, FiTrash, FiSave, FiRefreshCw } from "react-icons/fi"
 
-const IssueSelect = ({
-  type,
-  setType,
+const EpicPopup = ({
+  opened,
+  setOpened,
+  title,
 }: {
-  type: number
-  setType: (type: number) => void
-}) => {
-  return type === 0 ? (
-    <button
-      onClick={() => setType(1)}
-      className="flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
-      <FiDisc className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
-      ISSUE
-    </button>
-  ) : type === 1 ? (
-    <button
-      onClick={() => setType(2)}
-      className="flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
-      <FiCheck className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
-      BUG
-    </button>
-  ) : type === 2 ? (
-    <button
-      onClick={() => setType(0)}
-      className="flex select-none items-center rounded border-[1px] border-blue-700 bg-blue-50 py-0.5 pl-1.5 pr-2 text-[0.95rem] font-medium text-blue-700 duration-100 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0">
-      <FiBookmark className="mr-2 h-5 w-5 rounded bg-blue-700 p-0.5 text-white" />
-      STORY
-    </button>
-  ) : null
-}
-
-interface Props {
   opened: boolean
   setOpened: (opened: boolean) => void
-  data?: IssueType
-}
-
-const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
+  title: string
+}) => {
   // const [type, setType] = useState(data.issueType)
 
   return (
@@ -61,7 +21,7 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
       <Dialog.Portal>
         <Dialog.Overlay className="DialogOverlay fixed inset-0 z-50 bg-[#011242]/50" />
         <Dialog.Content className="DialogContent xs:w-[90%] fixed left-1/2 top-1/2 z-50 flex w-[95%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-md border-[1px] border-gray-300 bg-white p-6 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 lg:w-[60rem]">
-          <div className="flex w-full items-center justify-between">
+          <div className="flex w-full items-center justify-end">
             {/* <IssueSelect type={type} setType={setType} /> */}
 
             <div className="flex space-x-2">
@@ -78,7 +38,7 @@ const EpicPopup: React.FC<Props> = ({ opened, setOpened, data }) => {
             <div className="flex-grow">
               <input
                 className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-start text-2xl font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 sm:text-3xl"
-                defaultValue={""}
+                defaultValue={title}
               />
               <textarea
                 className="mt-4 h-[120px] max-h-[180px] min-h-[50px] w-full resize-y rounded border-[1px] border-gray-300 bg-gray-150 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-base"
