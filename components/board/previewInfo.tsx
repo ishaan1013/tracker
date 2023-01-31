@@ -1,12 +1,6 @@
 import { AssigneeType } from "../../prisma/issueType"
 import Image from "next/image"
-import {
-  FiArrowDown,
-  FiArrowUp,
-  FiBookmark,
-  FiCheck,
-  FiDisc,
-} from "react-icons/fi"
+import { FiBookmark, FiCheck, FiDisc } from "react-icons/fi"
 
 import High from "../../assets/icons/p-high.svg"
 import Low from "../../assets/icons/p-low.svg"

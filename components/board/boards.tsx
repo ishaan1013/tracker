@@ -79,11 +79,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   useEffect(() => {
     if (save === 0) {
-      console.log("done save")
     } else if (save > 0) {
-      console.log("save")
     } else {
-      console.log("save is less than 0???")
+      console.log("save is less than 0 (how ?????)")
     }
   }, [save])
 
@@ -199,16 +197,6 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
               arrayMove(items[1], oldIndex, newIndex),
               items[2],
             ])
-            console.log("getting")
-            const test = async () => {
-              const response = await fetch("api/hello", {
-                method: "GET",
-              })
-              return response.json()
-            }
-            test().then((data) => {
-              console.log(data)
-            })
           }
         }}
         modifiers={[

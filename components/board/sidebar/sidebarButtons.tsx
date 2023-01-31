@@ -14,11 +14,8 @@ import {
 } from "../../../hooks"
 
 const SidebarButtons = () => {
-  // const createOpened = useCreatePopupStore((state) => state.opened)
   const setCreateOpened = useCreatePopupStore((state) => state.setOpened)
-  // const aboutOpened = useAboutPopupStore((state) => state.opened)
   const setAboutOpened = useAboutPopupStore((state) => state.setOpened)
-  // const searchOpened = useSearchPopupStore((state) => state.opened)
   const setSearchOpened = useSearchPopupStore((state) => state.setOpened)
 
   return (
@@ -31,7 +28,6 @@ const SidebarButtons = () => {
         <button
           onClick={() => {
             setSearchOpened(true)
-            console.log("search")
           }}
           className="group relative flex items-center rounded-full focus:outline-gray-50/50">
           <IoSearch className="h-8 w-8 rounded-full p-1 text-white hover:bg-white/20" />

@@ -1,7 +1,5 @@
 "use client"
-import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-import { useItemStore } from "../../hooks"
 import { FiX, FiTrash, FiSave, FiRefreshCw } from "react-icons/fi"
 
 const EpicPopup = ({

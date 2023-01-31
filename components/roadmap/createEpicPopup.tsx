@@ -2,19 +2,7 @@
 
 import { useState } from "react"
 import * as Dialog from "@radix-ui/react-dialog"
-// import { useCreateEpicPopupStore } from "../../hooks"
-import {
-  FiX,
-  FiTrash,
-  FiDisc,
-  FiCheck,
-  FiBookmark,
-  FiPlus,
-  FiSave,
-  FiRefreshCw,
-} from "react-icons/fi"
-import Priority from "../board/prioritySelect"
-import Status from "../board/statusSelect"
+import { FiDisc, FiCheck, FiBookmark, FiPlus } from "react-icons/fi"
 
 interface Props {
   opened: boolean

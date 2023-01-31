@@ -1,8 +1,4 @@
 import { redirect } from "next/navigation"
-
-import { PrismaClient, Issue } from "@prisma/client"
-import { prisma } from "../../prisma/db"
-import { IssueType } from "../../prisma/issueType"
 import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "../../pages/api/auth/[...nextauth]"
 
@@ -10,11 +6,9 @@ import Sidebar from "../../components/board/sidebar"
 import Filters from "../../components/roadmap/filters"
 import Timeline from "../../components/roadmap/timeline"
 
-import { FiPlus } from "react-icons/fi"
-
 const Roadmap = async () => {
   const session = await unstable_getServerSession(authOptions)
-  // if (!session) redirect("/")
+  if (!session) redirect("/")
 
   return (
     <main className="flex max-h-screen items-start justify-start">

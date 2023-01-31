@@ -2,14 +2,12 @@
 
 import Image from "next/image"
 import Icon from "../../../assets/icon.jpg"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import {
   FiChevronLeft,
   FiTrello,
   FiSettings,
-  FiTruck,
   FiGitCommit,
-  FiGitMerge,
 } from "react-icons/fi"
 import Link from "next/link"
 import { usePathname } from "next/navigation"

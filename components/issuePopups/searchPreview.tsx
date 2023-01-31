@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { IssueType } from "../../prisma/issueType"
 import IssuePopup from "../board/issuePopup"
 import { IssueIcons, IssuePpl } from "../board/previewInfo"

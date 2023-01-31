@@ -4,7 +4,7 @@ import { useSearchStore, useUsersFilterStore } from "../../hooks/filterStores"
 
 import { IoSearch } from "react-icons/io5"
 import { FiPlus } from "react-icons/fi"
-import { useCreateEpicPopupStore, useCreatePopupStore } from "../../hooks"
+import { useCreateEpicPopupStore } from "../../hooks"
 import CreatePopup from "./createEpicPopup"
 
 const Filters = () => {

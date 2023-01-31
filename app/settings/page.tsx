@@ -2,7 +2,6 @@ import { redirect } from "next/navigation"
 
 import { PrismaClient, Issue } from "@prisma/client"
 import { prisma } from "../../prisma/db"
-import { IssueType } from "../../prisma/issueType"
 import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "../../pages/api/auth/[...nextauth]"
 

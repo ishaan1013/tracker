@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import * as Select from "@radix-ui/react-select"
 import { FiChevronDown } from "react-icons/fi"
 

@@ -90,7 +90,7 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const [saving, setSaving] = useState(false)
 
   useEffect(() => {
-    console.log("assignees changed:", assignees)
+    // console.log("assignees changed:", assignees)
     const add = []
     const remove = []
     if (assignees) {
@@ -102,9 +102,9 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
         if (!assignees.includes(assignee)) remove.push(assignee)
       }
     }
-    console.log("added:", add)
+    // console.log("added:", add)
     setAdded(add)
-    console.log("removed:", remove)
+    // console.log("removed:", remove)
     setRemoved(remove)
   }, [assignees])
 
@@ -143,7 +143,6 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
     setOpenToast(true)
     setTitleToast("Save Successful")
     setMessageToast("Changes saved to " + name + ".")
-    console.log("saved", items)
     setSaving(false)
     setOpened(false)
   }

@@ -5,9 +5,7 @@ import * as Dialog from "@radix-ui/react-dialog"
 import { useItemStore } from "../../hooks"
 import { FiX } from "react-icons/fi"
 import { IoSearch } from "react-icons/io5"
-import { IssueIcons, IssuePpl } from "../board/previewInfo"
 import SearchPreview from "./searchPreview"
-// import { IssueType } from '../../prisma/issueType';
 
 interface Props {
   opened: boolean

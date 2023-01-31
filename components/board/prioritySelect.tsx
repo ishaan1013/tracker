@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import * as Select from "@radix-ui/react-select"
-import { FiCheck, FiChevronDown } from "react-icons/fi"
+import { FiChevronDown } from "react-icons/fi"
 import { usePriorityStore } from "../../hooks/filterStores"
 
 const Priority = ({

@@ -1,11 +1,10 @@
 import { redirect } from "next/navigation"
 
-import { PrismaClient, Issue } from "@prisma/client"
+import { Issue } from "@prisma/client"
 import { prisma } from "../../prisma/db"
 import { IssueType } from "../../prisma/issueType"
 import { unstable_getServerSession } from "next-auth/next"
 import { authOptions } from "../../pages/api/auth/[...nextauth]"
-// import { useSession } from "next-auth/react"
 
 import Sidebar from "../../components/board/sidebar"
 import Boards from "../../components/board/boards"
@@ -38,7 +37,6 @@ const Board = async () => {
       ? data[1].push(newItem)
       : data[2].push(newItem)
   })
-  console.log("\n\ndata fetched in server component\n\n")
 
   return (
     <main className="flex max-h-screen items-start justify-start">
