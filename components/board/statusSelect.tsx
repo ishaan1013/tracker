@@ -1,11 +1,18 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import * as Select from "@radix-ui/react-select"
 import { FiChevronDown } from "react-icons/fi"
 
-const Status = () => {
+const Status = ({
+  setCreateStatus,
+}: {
+  setCreateStatus: (status: string) => void
+}) => {
   const [val, setVal] = useState<string>("To-Do")
+  useEffect(() => {
+    setCreateStatus(val)
+  }, [val])
 
   return (
     <Select.Root value={val} onValueChange={(value) => setVal(value)}>

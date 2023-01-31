@@ -18,6 +18,9 @@ import Marketing from "../../assets/avatars/marketing.webp"
 import Engineer from "../../assets/avatars/engineer.webp"
 import You from "../../assets/avatars/you.webp"
 import Image from "next/image"
+import { IssueType } from "../../prisma/issueType"
+import { v4 as uuidv4 } from "uuid"
+import { useItemStore } from "../../hooks"
 
 interface Props {
   opened: boolean
@@ -111,10 +114,70 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
   const [desc, setDesc] = useState("")
   const [users, setUsers] = useState([true, false, false, false])
 
+  const [createPriority, setCreatePriority] = useState("")
+  const [createStatus, setCreateStatus] = useState("")
+
   const [valid, setValid] = useState({
     title: true,
     desc: true,
   })
+
+  const cleanup = () => {
+    setValid({ title: true, desc: true })
+    setName("")
+    setDesc("")
+    setUsers([true, false, false, false])
+  }
+
+  const items = useItemStore((state) => state.items)
+  const setItems = useItemStore((state) => state.setItems)
+
+  const handleCreate = async () => {
+    console.log("Issue Created")
+
+    const p = ["Low", "Medium", "High"]
+    const s = ["To-Do", "In Progress", "Complete"]
+
+    const item: IssueType = {
+      id: uuidv4(),
+      name,
+      userId: null,
+      description: desc,
+      category: s.indexOf(createStatus),
+      issueType: type,
+      priority: p.indexOf(createPriority),
+      index: items[s.indexOf(createStatus)].length,
+      createdAt: new Date(),
+    }
+
+    const newItems = [...items]
+    newItems[s.indexOf(createStatus)].push(item)
+    // const res = await postData({ item })
+    // console.log("🚀 ~ file: createPopup.tsx:157 ~ handleCreate ~ res", res)
+    setItems(newItems)
+    //todo set assignees
+  }
+
+  const postData = async ({ item }: { item: IssueType }) => {
+    const res = await fetch(`/api/upsertItem`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: item.id,
+        name: item.name,
+        userId: item.userId,
+        description: item.description,
+        category: item.category,
+        issueType: item.issueType,
+        priority: item.priority,
+        index: item.index,
+        createdAt: item.createdAt,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    return await res.json()
+  }
 
   return (
     <Dialog.Root open={opened} onOpenChange={setOpened}>
@@ -146,8 +209,12 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
 
             <div className="mt-3 flex items-center">
               <IssueSelect type={type} setType={setType} />
-              <Priority popup initial={0} />
-              <Status />
+              <Priority
+                popup
+                initial={0}
+                setCreatePriority={setCreatePriority}
+              />
+              <Status setCreateStatus={setCreateStatus} />
               <Assignees users={users} setUsers={setUsers} />
             </div>
 
@@ -174,13 +241,15 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
             <div className="flex w-full select-none items-center justify-between space-x-4">
               <button
                 onClick={() => {
-                  const titleValid = 0 < name.length && name.length < 30
-                  const descValid = 0 < desc.length && desc.length < 1000
+                  const titleValid = 0 < name.length && name.length <= 30
+                  const descValid = 0 < desc.length && desc.length <= 1000
                   const valid = { title: titleValid, desc: descValid }
                   setValid(valid)
 
                   if (titleValid && descValid) {
-                    console.log("Issue Created")
+                    handleCreate()
+                    cleanup()
+                    setOpened(false)
                   }
                 }}
                 className={`mt-4 flex w-full items-center justify-center whitespace-nowrap rounded bg-blue-700 py-2 pr-1 text-base text-white duration-100 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-lg`}>
@@ -188,12 +257,7 @@ const CreatePopup: React.FC<Props> = ({ opened, setOpened }) => {
                 Create
               </button>
               <Dialog.Close
-                onClick={() => {
-                  setValid({ title: true, desc: true })
-                  setName("")
-                  setDesc("")
-                  setUsers([true, false, false, false])
-                }}
+                onClick={cleanup}
                 className="mt-4 flex w-full items-center justify-center whitespace-nowrap rounded border-[1px] border-gray-300 py-2 pr-1 text-base font-medium text-gray-600 duration-100 hover:bg-gray-150 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-lg">
                 Cancel
               </Dialog.Close>
