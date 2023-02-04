@@ -6,6 +6,7 @@ const deleteItem = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).send({ message: "Only POST" })
     return
   }
+
   const body = req.body
   try {
     await prisma.issue.delete({
