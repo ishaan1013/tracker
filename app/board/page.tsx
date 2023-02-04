@@ -92,6 +92,42 @@ const doneInit = async (userId: string | null | undefined) => {
   }
 }
 
+const getData = async (userId: string | null | undefined) => {
+  if (userId) {
+    try {
+      const dataRes: Issue[] = await prisma.issue.findMany({
+        where: {
+          userId,
+        },
+        orderBy: {
+          // @ts-ignore: Production build bug?
+          index: "asc",
+        },
+        include: {
+          assignees: true,
+        },
+      })
+      const data: IssueType[][] = [[], [], []]
+      dataRes.map((item) => {
+        const newCreatedAt = item.createdAt.toString()
+        const newItem: IssueType = item
+        newItem.createdAt = newCreatedAt
+        newItem.category === 0
+          ? data[0].push(newItem)
+          : newItem.category === 1
+          ? data[1].push(newItem)
+          : data[2].push(newItem)
+      })
+
+      return data
+    } catch (e) {
+      console.log({ getData: false, e })
+    }
+  } else {
+    console.log({ getData: false, userId })
+  }
+}
+
 const Board = async () => {
   const session = await unstable_getServerSession(authOptions)
   if (!session) redirect("/")
@@ -104,29 +140,7 @@ const Board = async () => {
     await doneInit(userId)
   }
 
-  const dataRes: Issue[] = await prisma.issue.findMany({
-    where: {
-      userId,
-    },
-    orderBy: {
-      // @ts-ignore: Production build bug?
-      index: "asc",
-    },
-    include: {
-      assignees: true,
-    },
-  })
-  const data: IssueType[][] = [[], [], []]
-  dataRes.map((item) => {
-    const newCreatedAt = item.createdAt.toString()
-    const newItem: IssueType = item
-    newItem.createdAt = newCreatedAt
-    newItem.category === 0
-      ? data[0].push(newItem)
-      : newItem.category === 1
-      ? data[1].push(newItem)
-      : data[2].push(newItem)
-  })
+  const data: IssueType[][] | undefined = await getData(userId)
 
   return (
     <main className="flex max-h-screen items-start justify-start">
@@ -135,9 +149,9 @@ const Board = async () => {
       <AlertPopup />
 
       <div className="flex h-screen flex-grow flex-col overflow-auto p-8 ">
-        <div className="text-xs text-orange-900">
+        {/* <div className="text-xs text-orange-900">
           session: {JSON.stringify(session)}
-        </div>
+        </div> */}
         <Header />
         {/* <p>signed in as {JSON.stringify(session)}</p> */}
 
@@ -145,7 +159,7 @@ const Board = async () => {
 
         <Filters />
 
-        <Boards data={data} />
+        <Boards data={data ?? [[], [], []]} />
       </div>
     </main>
   )
