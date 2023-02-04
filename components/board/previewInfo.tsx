@@ -29,7 +29,10 @@ export const IssuePpl = ({
 }) => {
   if (data)
     return (
-      <div className="z-0 flex flex-row-reverse items-center">
+      <div
+        className={`${
+          bigger ? "h-9 w-9" : "h-7 w-7"
+        } z-0 flex flex-row-reverse items-center`}>
         {data.map((assignee, i) => {
           return (
             <Image
