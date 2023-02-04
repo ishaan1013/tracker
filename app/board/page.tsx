@@ -79,6 +79,7 @@ const doneInit = async (userId: string | null | undefined) => {
           email: userId,
         },
         data: {
+          // @ts-ignore
           init: true,
         },
       })
@@ -100,7 +101,7 @@ const getData = async (userId: string | null | undefined) => {
           userId,
         },
         orderBy: {
-          // @ts-ignore: Production build bug?
+          // @ts-ignore
           index: "asc",
         },
         include: {
