@@ -7,6 +7,8 @@ export interface AlertStoreState {
   setAction: (action: string) => void
   desc: string
   setDesc: (desc: string) => void
+  fn: "delete" | ""
+  setFn: (fn: "delete" | "") => void
   // confirmed: boolean
   // setConfirmed: (confirmed: boolean) => void
 }
@@ -18,6 +20,8 @@ export const useAlertStore = create<AlertStoreState>()((set) => ({
   setAction: (action) => set({ action }),
   desc: "",
   setDesc: (desc) => set({ desc }),
+  fn: "",
+  setFn: (fn) => set({ fn })
   // confirmed: false,
   // setConfirmed: (confirmed) => set({ confirmed }),
 }))
