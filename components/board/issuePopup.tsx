@@ -117,6 +117,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
   const setOpenAlert = useAlertStore((state) => state.setOpen)
   const setActionAlert = useAlertStore((state) => state.setAction)
   const setDescAlert = useAlertStore((state) => state.setDesc)
+  const setFn = useAlertStore((state) => state.setFn)
+  const setToDelete = useItemStore((state) => state.setToDelete)
 
   const handleSave = async () => {
     setSaving(true)
@@ -174,6 +176,8 @@ const IssuePopup: React.FC<Props> = ({ opened, setOpened, data }) => {
             <div className="flex space-x-2">
               <button
                 onClick={() => {
+                  setFn("delete")
+                  setToDelete({ id: data.id, category: data.category })
                   setOpenAlert(true)
                   setActionAlert("Delete " + name)
                   setDescAlert("This action cannot be undone.")

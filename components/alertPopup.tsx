@@ -2,6 +2,7 @@
 
 import * as AlertDialog from "@radix-ui/react-alert-dialog"
 import { FiCheck } from "react-icons/fi"
+import { useItemStore } from "../hooks"
 import { useAlertStore } from "../hooks/useAlertStore"
 
 const AlertPopup = () => {
@@ -9,6 +10,30 @@ const AlertPopup = () => {
   const setOpen = useAlertStore((state) => state.setOpen)
   const action = useAlertStore((state) => state.action)
   const desc = useAlertStore((state) => state.desc)
+  const fn = useAlertStore((state) => state.fn)
+  const items = useItemStore((state) => state.items)
+  const setItems = useItemStore((state) => state.setItems)
+  const toDelete = useItemStore((state) => state.toDelete)
+
+  const deleteItem = async () => {
+    const res = await fetch(`/api/deleteItem`, {
+      method: "POST",
+      body: JSON.stringify({
+        id: toDelete.id,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+    return await res.json()
+  }
+
+  const deleteItemState = () => {
+    const index = items[toDelete.category].map((e) => e.id).indexOf(toDelete.id)
+    const newItems = [...items]
+    newItems[toDelete.category].splice(index, 1)
+    setItems(newItems)
+  }
 
   return (
     <AlertDialog.Root defaultOpen={false} open={open}>
@@ -32,7 +57,15 @@ const AlertPopup = () => {
             </AlertDialog.Cancel>
             <AlertDialog.Action asChild className="">
               <button
-                onClick={() => {}}
+                onClick={
+                  fn === "delete"
+                    ? () => {
+                        deleteItem()
+                        deleteItemState()
+                        setOpen(false)
+                      }
+                    : () => {}
+                }
                 className="ml-3 flex w-full items-center justify-center whitespace-nowrap rounded bg-red-600 py-2 pl-4 pr-5 text-center text-base text-white duration-100 hover:bg-red-500 focus:outline-none focus:ring-2 focus:ring-red-400/75 focus:ring-offset-0">
                 <FiCheck className="mr-1.5" />
                 Confirm
