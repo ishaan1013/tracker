@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "node prisma/seed.js",
-    "vercel-build": "prisma db push && next build"
+    "vercel-build": "prisma generate && next build"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.0.5",
