@@ -8,9 +8,11 @@ import { usePriorityStore } from "../../hooks/filterStores"
 const Priority = ({
   popup,
   initial,
+  setCreatePriority,
 }: {
   popup?: boolean
   initial?: number
+  setCreatePriority?: (priority: string) => void
 }) => {
   const [val, setVal] = useState<string>("Priority")
   const setPriority = usePriorityStore((state) => state.setPriority)
@@ -27,6 +29,10 @@ const Priority = ({
   useEffect(() => {
     if (!popup) {
       setPriority(val)
+    }
+
+    if (setCreatePriority) {
+      setCreatePriority(val)
     }
 
     if (val === "Priority") {

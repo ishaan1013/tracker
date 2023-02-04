@@ -1,7 +1,7 @@
 const issues = [
   {
-    name: "Cool helmet",
-    description: "A nice helmet to wear on your head",
+    name: "Create campaign",
+    description: "The issue description!",
     category: 0,
     index: 0,
     issueType: 2,
@@ -20,8 +20,8 @@ const issues = [
     },
   },
   {
-    name: "Cool helmet 1",
-    description: "A nice helmet to wear on your head",
+    name: "Rewrite codebase",
+    description: "The issue description!",
     category: 0,
     index: 1,
     issueType: 0,
@@ -40,8 +40,8 @@ const issues = [
     },
   },
   {
-    name: "Cool helmet 2",
-    description: "A nice helmet to wear on your head",
+    name: "Hire a designer",
+    description: "The issue description!",
     category: 0,
     index: 2,
     issueType: 1,
@@ -68,8 +68,8 @@ const issues = [
     },
   },
   {
-    name: "Cool jacket",
-    description: "A nice jacket to wear on your head",
+    name: "Hit the gym",
+    description: "The issue description!",
     category: 1,
     index: 0,
     issueType: 2,
@@ -77,8 +77,8 @@ const issues = [
     assignees: {},
   },
   {
-    name: "Cool jacket 1",
-    description: "A nice jacket to wear on your head",
+    name: "Fix design system",
+    description: "The issue description!",
     category: 1,
     index: 1,
     issueType: 1,
@@ -105,8 +105,8 @@ const issues = [
     },
   },
   {
-    name: "Cool shirt",
-    description: "A nice shirt to wear on your head",
+    name: "Start the company",
+    description: "The issue description!",
     category: 2,
     index: 0,
     issueType: 0,

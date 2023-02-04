@@ -23,7 +23,7 @@ import {
 } from "@dnd-kit/modifiers"
 import { useState, useEffect } from "react"
 import { IssueType } from "../../prisma/issueType"
-import { useItemStore, useSaveStore, useToastStore } from "../../hooks"
+import { useItemStore, useSaveStore } from "../../hooks"
 
 import Preview from "./preview"
 
@@ -115,9 +115,9 @@ const Boards = ({ data }: { data: IssueType[][] }) => {
 
   return (
     <div className="mt-8 flex flex-grow space-x-2 pr-6 text-sm md:space-x-4">
-      {/* <p className="whitespace-pre text-xs text-gray-600">
+      <p className="whitespace-pre text-xs text-gray-600">
         {JSON.stringify(items, null, "\t")}
-      </p> */}
+      </p>
       <DndContext
         sensors={sensors}
         collisionDetection={closestCenter}
