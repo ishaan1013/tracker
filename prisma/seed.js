@@ -6,32 +6,32 @@ const load = async () => {
 
   try {
     await prisma.issue.deleteMany()
-    await prisma.assignee.deleteMany()
-    for (const issue of issues) {
-      const {
-        name,
-        description,
-        category,
-        index,
-        issueType,
-        priority,
-        assignees,
-      } = issue
-      await prisma.issue.create({
-        data: {
-          name,
-          description,
-          category,
-          index,
-          issueType,
-          priority,
-          assignees,
-        },
-        include: {
-          assignees: true,
-        },
-      })
-    }
+    // await prisma.assignee.deleteMany()
+    // for (const issue of issues) {
+    //   const {
+    //     name,
+    //     description,
+    //     category,
+    //     index,
+    //     issueType,
+    //     priority,
+    //     assignees,
+    //   } = issue
+    //   await prisma.issue.create({
+    //     data: {
+    //       name,
+    //       description,
+    //       category,
+    //       index,
+    //       issueType,
+    //       priority,
+    //       assignees,
+    //     },
+    //     include: {
+    //       assignees: true,
+    //     },
+    //   })
+    // }
     // await prisma.issue.createMany({
     //   data: issues,
     // })

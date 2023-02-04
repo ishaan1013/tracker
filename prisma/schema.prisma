@@ -46,6 +46,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   issues        Issue[]
+  init          Boolean   @default(false)
 }
 
 model VerificationToken {
