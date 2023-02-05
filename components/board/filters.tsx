@@ -29,7 +29,7 @@ const Filters = () => {
         <IoSearch className="pointer-events-none absolute left-2 text-gray-600" />
         <input
           value={searchStore.query}
-          placeholder="Type to search..."
+          placeholder="Search..."
           onChange={(e) => searchStore.setQuery(e.target.value)}
           className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-sm text-gray-600 placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0"
         />

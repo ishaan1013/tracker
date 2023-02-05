@@ -38,7 +38,7 @@ const SearchPopup: React.FC<Props> = ({ opened, setOpened }) => {
               className="w-full rounded border-[1px] border-gray-300 bg-gray-150 p-2 pl-8 text-base font-medium placeholder:select-none placeholder:opacity-40 focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0 xl:text-lg"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Type to search..."
+              placeholder="Search..."
             />
           </div>
 

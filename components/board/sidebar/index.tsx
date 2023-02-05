@@ -40,8 +40,8 @@ export default function Sidebar() {
             className={`flex h-full w-full flex-col overflow-hidden px-4 ${
               hidden ? "hidden" : "block"
             }`}>
-            <div className="mb-4 flex items-center justify-start">
-              <div className="pointer-events-none relative mr-2 h-10 w-10 select-none overflow-hidden rounded bg-white contrast-125 -hue-rotate-[330deg] saturate-150">
+            <div className="mb-4 flex select-none items-center justify-start rounded bg-transparent px-1.5 py-2 hover:bg-gray-200">
+              <div className="pointer-events-none relative mr-2 h-10 w-10 overflow-hidden rounded contrast-125 -hue-rotate-[330deg] saturate-150">
                 <Image src={Icon} alt="Project Icon" />
               </div>
               <div>
@@ -76,7 +76,7 @@ export default function Sidebar() {
                   ? "bg-gray-200 hover:bg-gray-300"
                   : "bg-transparent hover:bg-gray-200"
               } mt-1 flex items-center justify-start rounded py-2 px-1.5 text-start font-medium focus:outline-none focus:ring-2 focus:ring-blue-500/75 focus:ring-offset-0`}>
-              <FiSettings className="mr-2" /> Project Settings
+              <FiSettings className="mr-2" /> Settings
             </Link>
           </div>
         </div>
