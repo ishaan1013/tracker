@@ -42,7 +42,7 @@ const DataSettings = ({ session }: { session: Session }) => {
     <>
       <div className="border-b-[1px] border-b-gray-300 pt-10 pb-8">
         <h2 className=" mb-6 whitespace-nowrap text-xl font-bold text-gray-600">
-          Project data
+          Project Data
         </h2>
         <div className="grid grid-cols-2 gap-x-3 md:gap-x-4">
           <button
