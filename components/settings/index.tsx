@@ -10,7 +10,7 @@ const Settings = ({ session }: { session: Session }) => {
     <>
       <UserInfo session={session} />
 
-      <DataSettings />
+      <DataSettings session={session} />
       <ProjectSettings />
     </>
   )

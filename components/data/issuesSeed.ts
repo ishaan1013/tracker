@@ -1,3 +1,5 @@
+import { IssueType } from "../../prisma/issueType"
+
 const issues = [
   {
     name: "Create campaign",

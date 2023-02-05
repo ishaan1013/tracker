@@ -5,7 +5,7 @@ import Image from "next/image"
 const UserInfo = ({ session }: { session: Session }) => {
   return (
     <>
-      <div className="mb-2 flex w-full items-center justify-start space-x-4 rounded border-[1px] border-gray-300 bg-gray-150 p-4 md:p-6">
+      <div className="flex w-full select-none items-center justify-start space-x-4 rounded border-[1px] border-gray-300 bg-gray-150 p-4 md:p-6">
         <Image
           src={session.user?.image ?? ""}
           alt="profile picture"
