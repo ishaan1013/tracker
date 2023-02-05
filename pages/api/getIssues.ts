@@ -1,20 +1,15 @@
-import { Issue } from '@prisma/client'
-import type { NextApiRequest, NextApiResponse } from 'next'
-import { prisma } from '../../prisma/db'
-import { IssueType } from '../../prisma/issueType'
+import { Issue } from "@prisma/client"
+import type { NextApiRequest, NextApiResponse } from "next"
+import { prisma } from "../../prisma/db"
+import { IssueType } from "../../prisma/issueType"
 
-const getIssues = async (
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
-
-  if(req.method !== 'GET') {
-    res.status(405).send({ message: 'Only GET' })
+const getIssues = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== "GET") {
+    res.status(405).send({ message: "Only GET" })
     return
   }
 
   try {
-
     const dataRes: Issue[] = await prisma.issue.findMany({
       orderBy: {
         // @ts-ignore: Production build bug?
@@ -35,12 +30,11 @@ const getIssues = async (
         ? data[1].push(newItem)
         : data[2].push(newItem)
     })
-  
-    res.status(200).json({ data })
-  } catch (e) {
-      res.status(400).json({ success: false, message: e })
-  }
 
+    res.status(200).json({ success: true, data })
+  } catch (e) {
+    res.status(400).json({ success: false, e })
+  }
 }
 
 export default getIssues
